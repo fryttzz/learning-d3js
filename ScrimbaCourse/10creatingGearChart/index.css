@@ -2,14 +2,15 @@
 * {
     margin: 0;
     padding: 0;
+    background-color: #f3fff3;
+    font-family: 'Roboto', Times, serif;
 }
 
 body {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
-    background-color: #f3fff3;
+    padding: 30px;
 }
 
 body h1 {

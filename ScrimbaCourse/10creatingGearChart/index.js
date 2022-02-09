@@ -1,29 +1,257 @@
 // 1 = AB
 // 2 = BA
-const data = [
-    { id: 1, linha: "101", direcao: 2, horario: 360 },
-    { id: 2, linha: "101", direcao: 1, horario: 390 },
-    { id: 3, linha: "101", direcao: 2, horario: 420 },
-    { id: 4, linha: "101", direcao: 1, horario: 450 },
-    { id: 5, linha: "101", direcao: 2, horario: 480 },
-    { id: 6, linha: "101", direcao: 1, horario: 510 },
-    { id: 7, linha: "101", direcao: 2, horario: 540 },
-    { id: 8, linha: "101", direcao: 1, horario: 570 },
-    { id: 12, linha: "101", direcao: 2, horario: 600 },
-    { id: 13, linha: "101", direcao: 1, horario: 630 },
-    { id: 14, linha: "101", direcao: 2, horario: 660 },
-    { id: 15, linha: "101", direcao: 1, horario: 690 },
-    { id: 16, linha: "101", direcao: 2, horario: 705 },
-    { id: 17, linha: "101", direcao: 1, horario: 735 },
-    { id: 18, linha: "101", direcao: 2, horario: 760 },
-    { id: 19, linha: "101", direcao: 1, horario: 790 },
+const data = [{
+        "linha": "101",
+        "dia de operacao": "Seg a Sex",
+        "sentido": 2,
+        "horario": 385
+    },
+    {
+        "linha": "101",
+        "dia de operacao": "Seg a Sex",
+        "sentido": 1,
+        "horario": 425
+    },
+    {
+        "linha": "101",
+        "dia de operacao": "Seg a Sex",
+        "sentido": 2,
+        "horario": 440
+    },
+    {
+        "linha": "101",
+        "dia de operacao": "Seg a Sex",
+        "sentido": 1,
+        "horario": 480
+    },
+    {
+        "linha": "101",
+        "dia de operacao": "Seg a Sex",
+        "sentido": 2,
+        "horario": 495
+    },
+    {
+        "linha": "101",
+        "dia de operacao": "Seg a Sex",
+        "sentido": 1,
+        "horario": 545
+    },
+    {
+        "linha": "101",
+        "dia de operacao": "Seg a Sex",
+        "sentido": 2,
+        "horario": 565
+    },
+    {
+        "linha": "101",
+        "dia de operacao": "Seg a Sex",
+        "sentido": 1,
+        "horario": 605
+    },
+    {
+        "linha": "101",
+        "dia de operacao": "Seg a Sex",
+        "sentido": 2,
+        "horario": 620
+    },
+    {
+        "linha": "101",
+        "dia de operacao": "Seg a Sex",
+        "sentido": 1,
+        "horario": 665
+    },
+    {
+        "linha": "101",
+        "dia de operacao": "Seg a Sex",
+        "sentido": 2,
+        "horario": 680
+    },
+    {
+        "linha": "101",
+        "dia de operacao": "Seg a Sex",
+        "sentido": 1,
+        "horario": 725
+    },
+    {
+        "linha": "101",
+        "dia de operacao": "Seg a Sex",
+        "sentido": 2,
+        "horario": 745
+    },
+    {
+        "linha": "101",
+        "dia de operacao": "Seg a Sex",
+        "sentido": 1,
+        "horario": 785
+    },
+    {
+        "linha": "101",
+        "dia de operacao": "Seg a Sex",
+        "sentido": 2,
+        "horario": 805
+    },
+    {
+        "linha": "101",
+        "dia de operacao": "Seg a Sex",
+        "sentido": 1,
+        "horario": 840
+    },
+    {
+        "linha": "101",
+        "dia de operacao": "Seg a Sex",
+        "sentido": 2,
+        "horario": 855
+    },
+    {
+        "linha": "101",
+        "dia de operacao": "Seg a Sex",
+        "sentido": 1,
+        "horario": 905
+    },
+    {
+        "linha": "101",
+        "dia de operacao": "Seg a Sex",
+        "sentido": 2,
+        "horario": 920
+    },
+    {
+        "linha": "101",
+        "dia de operacao": "Seg a Sex",
+        "sentido": 1,
+        "horario": 965
+    },
+    {
+        "linha": "101",
+        "dia de operacao": "Seg a Sex",
+        "sentido": 2,
+        "horario": 980
+    },
+    {
+        "linha": "101",
+        "dia de operacao": "Seg a Sex",
+        "sentido": 1,
+        "horario": 1025
+    },
+    {
+        "linha": "101",
+        "dia de operacao": "Seg a Sex",
+        "sentido": 2,
+        "horario": 1040
+    },
+    {
+        "linha": "101",
+        "dia de operacao": "Seg a Sex",
+        "sentido": 1,
+        "horario": 1090
+    },
+    {
+        "linha": "101",
+        "dia de operacao": "Seg a Sex",
+        "sentido": 2,
+        "horario": 1100
+    },
+    {
+        "linha": "101",
+        "dia de operacao": "Seg a Sex",
+        "sentido": 1,
+        "horario": 1118
+    },
+    {
+        "linha": "101",
+        "dia de operacao": "Seg a Sex",
+        "sentido": 2,
+        "horario": 1135
+    },
+    {
+        "linha": "104",
+        "dia de operacao": "Seg a Sex",
+        "sentido": 2,
+        "horario": 430
+    },
+    {
+        "linha": "104",
+        "dia de operacao": "Seg a Sex",
+        "sentido": 2,
+        "horario": 480
+    },
+    {
+        "linha": "104",
+        "dia de operacao": "Seg a Sex",
+        "sentido": 1,
+        "horario": 723
+    },
+    {
+        "linha": "104",
+        "dia de operacao": "Seg a Sex",
+        "sentido": 2,
+        "horario": 745
+    },
+    {
+        "linha": "104",
+        "dia de operacao": "Seg a Sex",
+        "sentido": 1,
+        "horario": 780
+    },
+
+    {
+        "linha": "104",
+        "dia de operacao": "Seg a Sex",
+        "sentido": 2,
+        "horario": 805
+    },
+    {
+        "linha": "104",
+        "dia de operacao": "Seg a Sex",
+        "sentido": 1,
+        "horario": 1090
+    },
+    {
+        "linha": "104",
+        "dia de operacao": "Seg a Sex",
+        "sentido": 1,
+        "horario": 1110
+    },
+    {
+        "linha": "104",
+        "dia de operacao": "Seg a Sex",
+        "sentido": 2,
+        "horario": 1140
+    },
+    {
+        "linha": "106",
+        "dia de operacao": "Seg a Sex",
+        "sentido": 1,
+        "horario": 1060
+    },
+    {
+        "linha": "106",
+        "dia de operacao": "Seg a Sex",
+        "sentido": 2,
+        "horario": 1090
+    },
+    {
+        "linha": "108",
+        "dia de operacao": "Seg a Sex",
+        "sentido": 1,
+        "horario": 1360
+    },
+    {
+        "linha": "108",
+        "dia de operacao": "Seg a Sex",
+        "sentido": 2,
+        "horario": 1390
+    }
 ]
 
-// const data2 = [
-//     ...data.filter(e => e.linha != data[0].linha)
-// ]
+var sumstat = d3.group(data,
+    d => d.linha)
 
-var svgWidth = 1000,
+var res = Array.from(sumstat.keys()); // list of group names
+var color = d3.scaleOrdinal()
+    .domain(res)
+    .range(['#984ea3', '#ff7f00', '#ffff33', '#999999', '#e41a1c', '#377eb8', '#4daf4a', '#a65628', ])
+
+var svgWidth = 1100,
     svgHeight = 600;
 
 var margin = { top: 60, right: 70, bottom: 60, left: 70 };
@@ -52,20 +280,17 @@ var x2 = d3.scaleLinear()
 
 //y axis width scale
 var y = d3.scaleLinear()
-    .domain(d3.extent(data, (d) => d.direcao))
+    .domain(d3.extent(data, (d) => d.sentido))
     .range([height, 0]);
 
 //axies generator
 var x1Generator = d3.axisBottom(x1)
-    // .scale(x1)
 
 var x2Generator = d3.axisTop(x2)
-    // .scale(x2)
 
 var yGenerator = d3.axisLeft(y)
 
-let xTickLabels = e => `${Math.floor(e / 60)}:${(e % 60).toString().padStart(2, '0')}`
-
+let xTickLabels = e => `${Math.floor(e / 60)}:${(e % 60).toString().padStart(2, '0')}`;
 //x1 axis tick labels
 x1Generator.tickFormat((d) => xTickLabels(d));
 //x2 axis tick labels
@@ -76,31 +301,17 @@ let yTickLabels = ["AB", "BA"]
 yGenerator.ticks(1)
 yGenerator.tickFormat((d, i) => yTickLabels[i])
 
-//creating the line container
-var line1 = d3.line()
-    .x((d) => x1(d.horario))
-    .y((d) => y(d.direcao))
-
 //components
 g.append("g")
     .attr("transform", "translate(0," + (height + 10) + ")")
-    .call(x1Generator)
+    .call(x1Generator);
 
 g.append("g")
     .attr("transform", "translate(0,-10)")
-    .call(x2Generator)
+    .call(x2Generator);
 
 g.append("g")
-    .call(yGenerator)
-
-g.append("path")
-    .datum(data)
-    .attr("fill", "none")
-    .attr("stroke", "#FFA900")
-    .attr("stroke-linejoin", "round")
-    .attr("stroke-linecap", "round")
-    .attr("stroke-width", 3)
-    .attr("d", line1)
+    .call(yGenerator);
 
 //ticks text style
 g.selectAll(".tick text")
@@ -114,13 +325,65 @@ g.selectAll(".domain")
     .attr("opacity", ".6")
     .attr("color", "#059451");
 
+//path and lines
+var line = d3.line()
+    .x((d) => x1(d.horario))
+    .y((d) => y(d.sentido))
+    //.curve(d3.curveCardinal);
+
+const lines = g.selectAll("lines")
+    .data(sumstat)
+    .enter()
+    .append("g");
+
+lines.append("path")
+    .attr('fill', 'none')
+    .attr("stroke-linejoin", "round")
+    .attr("stroke-linecap", "round")
+    .attr('stroke', d => color(d[0]))
+    .attr('stroke-width', 3)
+    .attr("d", function(d) {
+        return line(d[1]);
+    });
+
 //dots
-g.selectAll("firstCircles")
+g.selectAll("circle")
     .data(data)
-    .join("circle")
-    .attr("fill", "#FFA900")
+    .enter()
+    .append("circle")
     .attr("stroke", "#c3f3c3")
     .attr("stroke-width", 2)
-    .attr("cx", function(d) { return x1(d.horario) })
-    .attr("cy", function(d) { return y(d.direcao) })
+    .attr("fill", (d) => color(d))
+    .attr("cx", (d) => x1(d.horario))
+    .attr("cy", (d) => y(d.sentido))
     .attr("r", 7)
+
+//array of cars
+// const carsNames = data.map((element, index, array) => {
+//     let ax = array[index]
+//     if (element.linha === ax.linha)
+//         return element.linha
+// })
+// console.log(carsNames);
+
+// //reduce the objects for each car
+// const carsCount = Object.keys(carsNames.reduce((obj, linha) => {
+//     if (!obj[linha]) {
+//         obj[linha] = 1;
+//     } else {
+//         obj[linha]++;
+//     }
+//     return obj;
+// }, {}));
+// console.log(carsCount);
+
+// //create a array for each car
+// const cars = []
+// for (let index = 0; index < carsCount.length; index++) {
+//     const element = carsCount[index];
+//     const linhas = data.filter((data) => {
+//         return data.linha === element
+//     })
+//     cars.push(linhas)
+// }
+// console.log(cars);
