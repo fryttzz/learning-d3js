@@ -39,16 +39,18 @@ const data = [
     { linha: "109", dia_operacao: "Seg a Sex", sentido: 1, horario: 1150 },
 ];
 
-var sumstat = d3.group(data,
-    d => d.linha)
+var sumstat = d3.groups(data, d => d.linha);
 
-var res = Array.from(sumstat.keys()); // list of group names
-var color = d3.scaleOrdinal()
-    .domain(res)
-    .range(['#984EA3', '#FF7F00', '#E41A1C', '#377EB8', '#999999', '#FFFF33', '#A65628', '#4DAF4A', ])
+//set color pallete for different vairables
+var mediaName = sumstat.map(d => d[0])
+
+var color = d3.scaleOrdinal().domain(mediaName).range(['#984EA3', '#FF7F00', '#E41A1C', '#377EB8', '#999999', '#FFFF33', '#A65628', '#4DAF4A', ])
 
 var svgWidth = 1100,
     svgHeight = 600;
+
+// var svgWidth = 3300,
+//     svgHeight = 600;
 
 var margin = { top: 60, right: 70, bottom: 60, left: 70 };
 var width = svgWidth - margin.left - margin.right;
@@ -147,17 +149,17 @@ lines.append("path")
         return line(d[1]);
     });
 
-//dots
-lines.selectAll("circle")
+g.selectAll("circle")
+    .append("g")
     .data(data)
     .enter()
     .append("circle")
     .attr("stroke", "#c3f3c3")
     .attr("stroke-width", 2)
+    .attr("r", 6)
     .attr("cx", d => x1(d.horario))
     .attr("cy", d => y(d.sentido))
-    .attr("fill", d => color(d))
-    .attr("r", 7)
+    .style("fill", d => color(d.linha))
 
 //array of cars
 // const carsNames = data.map((element, index, array) => {
