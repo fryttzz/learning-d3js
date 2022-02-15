@@ -73,7 +73,7 @@ var data = [{
 ]
 
 var rectTransform = function(d) {
-    return "translate(" + x(d.saida) + "," + y(d.linha) + ")";
+    return "translate(" + x1(d.saida) + "," + y(d.linha) + ")";
 };
 
 var cars = d3.groups(data, d => d.linha);
@@ -85,7 +85,7 @@ var color = d3.scaleOrdinal().domain(mediaName).range(['#984EA3', '#FF7F00', '#E
 const svgHeight = 600,
     svgWidth = 1100;
 
-var margin = { top: 50, right: 55, bottom: 60, left: 90 };
+var margin = { top: 60, right: 55, bottom: 60, left: 90 };
 var width = svgWidth - margin.left - margin.right;
 var height = svgHeight - margin.top - margin.bottom;
 
@@ -99,7 +99,12 @@ var g = svg.append("g")
 
 var xDomain = [d3.min(data, d => d.saida), d3.max(data, d => d.entrada)]
 
-var x = d3.scaleTime()
+var x1 = d3.scaleTime()
+    .domain(xDomain)
+    .nice()
+    .range([15, width]);
+
+var x2 = d3.scaleTime()
     .domain(xDomain)
     .nice()
     .range([15, width]);
@@ -109,13 +114,16 @@ var y = d3.scaleBand()
     .range([0, height])
     .paddingInner(0.3)
 
-var xGenerator = d3.axisBottom(x)
+var x1Generator = d3.axisBottom(x1)
+
+var x2Generator = d3.axisTop(x2)
 
 var yGenerator = d3.axisLeft(y)
 
 let xTickLabels = e => `${Math.floor(e / 60)}:${(e % 60).toString().padStart(2, '0')}`;
 // xGenerator.ticks(29)
-xGenerator.tickFormat((d) => xTickLabels(d));
+x1Generator.tickFormat((d) => xTickLabels(d));
+x2Generator.tickFormat((d) => xTickLabels(d));
 
 //x1 axis tick labels
 yGenerator.ticks(mediaName.length)
@@ -127,7 +135,11 @@ yGenerator.tickFormat((d) => {
 
 g.append("g")
     .attr("transform", "translate(0," + (height + 10) + ")")
-    .call(xGenerator);
+    .call(x1Generator);
+
+g.append("g")
+    .attr("transform", "translate(0,-10)")
+    .call(x2Generator);
 
 g.append("g")
     .call(yGenerator);
@@ -150,7 +162,7 @@ const rects = g.selectAll('rect')
     .append('rect')
     .attr('y', 0)
     .attr('height', y.bandwidth())
-    .attr('width', d => x(d.entrada) - x(d.saida))
+    .attr('width', d => x1(d.entrada) - x1(d.saida))
     .attr("rx", 6)
     .attr("ry", 6)
     .style("fill", d => color(d.linha))

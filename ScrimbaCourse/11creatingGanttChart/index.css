@@ -10,7 +10,7 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: #f3fff3;
+    background-color: #fff;
 }
 
 body h1 {
@@ -21,6 +21,6 @@ body h1 {
 }
 
 .svg-container {
-    background-color: #c3f3c3;
+    background-color: #e4fae4;
     border-radius: 5px;
 }
