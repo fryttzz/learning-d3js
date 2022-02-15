@@ -47,25 +47,25 @@ var data = [{
         "entrada": 425
     },
     {
-        "id": 8,
+        "id": 9,
         "linha": "110",
         "saida": 435,
         "entrada": 490
     },
     {
-        "id": 9,
+        "id": 10,
         "linha": "110",
         "saida": 500,
         "entrada": 550
     },
     {
-        "id": 10,
+        "id": 11,
         "linha": "110",
         "saida": 560,
         "entrada": 607
     },
     {
-        "id": 10,
+        "id": 12,
         "linha": "110",
         "saida": 615,
         "entrada": 660
@@ -97,27 +97,24 @@ var svg = d3.select('svg')
 var g = svg.append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-//x axes with stale
+var xDomain = [d3.min(data, d => d.saida), d3.max(data, d => d.entrada)]
+
 var x = d3.scaleTime()
-    .domain(d3.extent(data, (d) => d.saida))
+    .domain(xDomain)
     .nice()
     .range([15, width]);
 
-//y axis width scale
-// var y = d3.scaleOrdinal()
-//     .domain(d3.extent(data, (d) => d.linha))
-//     .range([height, 0]);
-
-var y = d3.scaleLinear()
-    .domain(d3.extent(data, (d) => d.linha))
-    .range([height, 0]);
+var y = d3.scaleBand()
+    .domain(data.map(function(x) { return x.linha }))
+    .range([0, height])
+    .paddingInner(0.3)
 
 var xGenerator = d3.axisBottom(x)
 
 var yGenerator = d3.axisLeft(y)
 
 let xTickLabels = e => `${Math.floor(e / 60)}:${(e % 60).toString().padStart(2, '0')}`;
-// x1Generator.ticks(29)
+// xGenerator.ticks(29)
 xGenerator.tickFormat((d) => xTickLabels(d));
 
 //x1 axis tick labels
@@ -126,6 +123,7 @@ let yTickLabels = e => e;
 yGenerator.tickFormat((d) => {
     return yTickLabels(d)
 });
+
 
 g.append("g")
     .attr("transform", "translate(0," + (height + 10) + ")")
@@ -146,12 +144,12 @@ g.selectAll(".domain")
     .attr("opacity", ".6")
     .attr("color", "#059451");
 
-g.selectAll('rect')
+const rects = g.selectAll('rect')
     .data(data)
     .enter()
     .append('rect')
     .attr('y', 0)
-    .attr('height', 50)
+    .attr('height', y.bandwidth())
     .attr('width', d => x(d.entrada) - x(d.saida))
     .attr("rx", 6)
     .attr("ry", 6)
