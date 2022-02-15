@@ -1,75 +1,53 @@
 var data = [{
         "id": 1,
+        "carro": 3,
         "linha": "101",
         "saida": 385,
         "entrada": 425
     },
     {
         "id": 2,
+        "carro": 3,
         "linha": "101",
         "saida": 435,
         "entrada": 475
     },
     {
         "id": 3,
+        "carro": 3,
         "linha": "101",
         "saida": 480,
         "entrada": 505
     },
     {
         "id": 4,
+        "carro": 3,
         "linha": "104",
-        "saida": 385,
-        "entrada": 425
+        "saida": 515,
+        "entrada": 570
     },
     {
         "id": 5,
+        "carro": 3,
         "linha": "104",
-        "saida": 435,
-        "entrada": 487
+        "saida": 580,
+        "entrada": 630
     },
     {
         "id": 6,
+        "carro": 3,
         "linha": "104",
-        "saida": 723,
-        "entrada": 760
+        "saida": 645,
+        "entrada": 700
     },
     {
         "id": 7,
+        "carro": 3,
         "linha": "109",
-        "saida": 770,
-        "entrada": 810
+        "saida": 709,
+        "entrada": 750
     },
-    {
-        "id": 8,
-        "linha": "110",
-        "saida": 385,
-        "entrada": 425
-    },
-    {
-        "id": 9,
-        "linha": "110",
-        "saida": 435,
-        "entrada": 490
-    },
-    {
-        "id": 10,
-        "linha": "110",
-        "saida": 500,
-        "entrada": 550
-    },
-    {
-        "id": 11,
-        "linha": "110",
-        "saida": 560,
-        "entrada": 607
-    },
-    {
-        "id": 12,
-        "linha": "110",
-        "saida": 615,
-        "entrada": 660
-    },
+
 ]
 
 var rectTransform = function(d) {
@@ -98,22 +76,21 @@ var g = svg.append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 var xDomain = [d3.min(data, d => d.saida), d3.max(data, d => d.entrada)]
+console.log([d3.min(data, d => d.saida), d3.max(data, d => d.entrada)]);
 
 var x1 = d3.scaleTime()
     .domain(xDomain)
-    .nice()
     .range([15, width]);
 
 var x2 = d3.scaleTime()
     .domain(xDomain)
-    .nice()
     .range([15, width]);
 
 var y = d3.scaleBand()
     .domain(data.map(function(x) { return x.linha }))
     .range([0, height])
-    .paddingInner(0.20)
-    .paddingOuter(1)
+    .paddingInner(0.62)
+    .paddingOuter(2)
 
 var x1Generator = d3.axisBottom(x1)
 
@@ -122,7 +99,6 @@ var x2Generator = d3.axisTop(x2)
 var yGenerator = d3.axisLeft(y)
 
 let xTickLabels = e => `${Math.floor(e / 60)}:${(e % 60).toString().padStart(2, '0')}`;
-// xGenerator.ticks(29)
 x1Generator.tickFormat((d) => xTickLabels(d));
 x2Generator.tickFormat((d) => xTickLabels(d));
 
@@ -132,7 +108,6 @@ let yTickLabels = e => e;
 yGenerator.tickFormat((d) => {
     return yTickLabels(d)
 });
-
 
 g.append("g")
     .attr("transform", "translate(0," + (height + 10) + ")")
@@ -166,5 +141,5 @@ const rects = g.selectAll('rect')
     .attr('width', d => x1(d.entrada) - x1(d.saida))
     .attr("rx", 6)
     .attr("ry", 6)
-    .style("fill", d => color(d.linha))
+    .style("fill", d => color(d.carro))
     .attr('transform', rectTransform);
