@@ -39,16 +39,45 @@ var data = [{
         "linha": "109",
         "saida": 770,
         "entrada": 810
-    }
+    },
+    {
+        "id": 8,
+        "linha": "110",
+        "saida": 385,
+        "entrada": 425
+    },
+    {
+        "id": 8,
+        "linha": "110",
+        "saida": 435,
+        "entrada": 490
+    },
+    {
+        "id": 9,
+        "linha": "110",
+        "saida": 500,
+        "entrada": 550
+    },
+    {
+        "id": 10,
+        "linha": "110",
+        "saida": 560,
+        "entrada": 607
+    },
+    {
+        "id": 10,
+        "linha": "110",
+        "saida": 615,
+        "entrada": 660
+    },
 ]
 
 var rectTransform = function(d) {
-    return "translate(" + x(d.entrada) + "," + y(d.linha) + ")";
+    return "translate(" + x(d.saida) + "," + y(d.linha) + ")";
 };
 
 var cars = d3.groups(data, d => d.linha);
 
-//set color pallete for different vairables
 var mediaName = cars.map(d => d[0])
 
 var color = d3.scaleOrdinal().domain(mediaName).range(['#984EA3', '#FF7F00', '#E41A1C', '#377EB8', '#999999', '#FFFF33', '#A65628', '#4DAF4A', ])
@@ -56,7 +85,7 @@ var color = d3.scaleOrdinal().domain(mediaName).range(['#984EA3', '#FF7F00', '#E
 const svgHeight = 600,
     svgWidth = 1100;
 
-var margin = { top: 30, right: 55, bottom: 60, left: 90 };
+var margin = { top: 50, right: 55, bottom: 60, left: 90 };
 var width = svgWidth - margin.left - margin.right;
 var height = svgHeight - margin.top - margin.bottom;
 
@@ -70,16 +99,18 @@ var g = svg.append("g")
 
 //x axes with stale
 var x = d3.scaleTime()
-    .domain(d3.extent(data, (d) => d.entrada))
+    .domain(d3.extent(data, (d) => d.saida))
     .nice()
     .range([15, width]);
 
 //y axis width scale
+// var y = d3.scaleOrdinal()
+//     .domain(d3.extent(data, (d) => d.linha))
+//     .range([height, 0]);
+
 var y = d3.scaleLinear()
     .domain(d3.extent(data, (d) => d.linha))
-    .range([height, 15]);
-
-console.log(d3.extent(data, (d) => d.linha));
+    .range([height, 0]);
 
 var xGenerator = d3.axisBottom(x)
 
@@ -121,7 +152,7 @@ g.selectAll('rect')
     .append('rect')
     .attr('y', 0)
     .attr('height', 50)
-    .attr('width', d => d.entrada - d.saida)
+    .attr('width', d => x(d.entrada) - x(d.saida))
     .attr("rx", 6)
     .attr("ry", 6)
     .style("fill", d => color(d.linha))
