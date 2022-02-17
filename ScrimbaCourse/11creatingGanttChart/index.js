@@ -70,6 +70,30 @@ var data = [{
         "saida": 615,
         "entrada": 660
     },
+    {
+        "id": 13,
+        "linha": "110",
+        "saida": 670,
+        "entrada": 720
+    },
+    {
+        "id": 14,
+        "linha": "110",
+        "saida": 730,
+        "entrada": 789
+    },
+    {
+        "id": 14,
+        "linha": "110",
+        "saida": 1000,
+        "entrada": 1063
+    },
+    {
+        "id": 14,
+        "linha": "110",
+        "saida": 1300,
+        "entrada": 1355
+    },
 ]
 
 var rectTransform = function(d) {
@@ -101,12 +125,10 @@ var xDomain = [d3.min(data, d => d.saida), d3.max(data, d => d.entrada)]
 
 var x1 = d3.scaleTime()
     .domain(xDomain)
-    .nice()
     .range([15, width]);
 
 var x2 = d3.scaleTime()
     .domain(xDomain)
-    .nice()
     .range([15, width]);
 
 var y = d3.scaleBand()
@@ -132,7 +154,6 @@ let yTickLabels = e => e;
 yGenerator.tickFormat((d) => {
     return yTickLabels(d)
 });
-
 
 g.append("g")
     .attr("transform", "translate(0," + (height + 10) + ")")

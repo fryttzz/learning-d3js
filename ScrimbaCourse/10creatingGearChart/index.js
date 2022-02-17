@@ -68,12 +68,10 @@ var g = svg.append("g")
 //x axis width scale
 var x1 = d3.scaleLinear()
     .domain(d3.extent(data, (d) => d.horario))
-    .nice()
     .range([15, width]);
 
 var x2 = d3.scaleLinear()
     .domain(d3.extent(data, (d) => d.horario))
-    .nice()
     .range([15, width]);
 
 //y axis width scale
@@ -132,7 +130,7 @@ g.selectAll(".domain")
 var line = d3.line()
     .x((d) => x1(d.horario))
     .y((d) => y(d.sentido))
-    // .curve(d3.curveCardinal);
+    //.curve(d3.curveCardinal);
 
 const lines = g.selectAll("lines")
     .data(sumstat)
