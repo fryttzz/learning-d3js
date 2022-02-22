@@ -1,9 +1,3 @@
-//javascript
-// d3.axisTop()
-// d3.axisRight()
-// d3.axisBottom()
-// d3.axisLeft()
-
 var data = [80, 100, 56, 120, 180, 30, 40, 120, 160];
 
 var svgWidth = 500,
