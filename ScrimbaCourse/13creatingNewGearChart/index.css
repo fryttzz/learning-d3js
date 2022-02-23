@@ -8,17 +8,18 @@
 body {
     display: flex;
     flex-direction: column;
-    background-color: #fff;
+    justify-content: center;
+    align-items: center;
+    background-color: #FFFFFF;
 }
 
 body h1 {
     margin-top: 30px;
     margin-bottom: 10px;
     font-weight: 400;
-    color: #262D33;
+    color: #3874a8;
 }
 
-.svg-container {
-    background-color: #e4fae4;
-    border-radius: 5px;
+.chart1 .chart2 .chart3 .chart4 {
+    background-color: azure;
 }
