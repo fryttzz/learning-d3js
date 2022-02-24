@@ -15,11 +15,11 @@ body {
 
 body h1 {
     margin-top: 30px;
-    margin-bottom: 10px;
     font-weight: 400;
     color: #3874a8;
 }
 
 .chart1 .chart2 .chart3 .chart4 {
     background-color: azure;
+    overflow: hidden;
 }

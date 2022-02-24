@@ -13,7 +13,7 @@ const data = [{
         "tempo_volta": 0,
         "tempo_planejado2": 0,
         "tempo_parado2": 0,
-        "sentido": 0
+        "sentido": 1
     },
     {
         "id": "2",
@@ -30,7 +30,7 @@ const data = [{
         "tempo_volta": 68,
         "tempo_planejado2": 75,
         "tempo_parado2": 7,
-        "sentido": 1
+        "sentido": 0
     },
     {
         "id": "3",
@@ -47,7 +47,7 @@ const data = [{
         "tempo_volta": 0,
         "tempo_planejado2": 0,
         "tempo_parado2": 0,
-        "sentido": 0
+        "sentido": 1
     },
     {
         "id": "4",
@@ -64,7 +64,7 @@ const data = [{
         "tempo_volta": 68,
         "tempo_planejado2": 75,
         "tempo_parado2": 7,
-        "sentido": 1
+        "sentido": 0
     },
     {
         "id": "5",
@@ -81,7 +81,7 @@ const data = [{
         "tempo_volta": 0,
         "tempo_planejado2": 0,
         "tempo_parado2": 0,
-        "sentido": 0
+        "sentido": 1
     },
     {
         "id": "6",
@@ -98,7 +98,7 @@ const data = [{
         "tempo_volta": 64,
         "tempo_planejado2": 80,
         "tempo_parado2": 16,
-        "sentido": 1
+        "sentido": 0
     },
     {
         "id": "7",
@@ -115,7 +115,7 @@ const data = [{
         "tempo_volta": 0,
         "tempo_planejado2": 0,
         "tempo_parado2": 0,
-        "sentido": 0
+        "sentido": 1
     },
     {
         "id": "8",
@@ -132,7 +132,7 @@ const data = [{
         "tempo_volta": 65,
         "tempo_planejado2": 75,
         "tempo_parado2": 10,
-        "sentido": 1
+        "sentido": 0
     },
     {
         "id": "9",
@@ -149,7 +149,7 @@ const data = [{
         "tempo_volta": 0,
         "tempo_planejado2": 0,
         "tempo_parado2": 0,
-        "sentido": 0
+        "sentido": 1
     },
     {
         "id": "10",
@@ -166,7 +166,7 @@ const data = [{
         "tempo_volta": 72,
         "tempo_planejado2": 75,
         "tempo_parado2": 3,
-        "sentido": 1
+        "sentido": 0
     },
     {
         "id": "11",
@@ -183,7 +183,7 @@ const data = [{
         "tempo_volta": 0,
         "tempo_planejado2": 0,
         "tempo_parado2": 0,
-        "sentido": 0
+        "sentido": 1
     },
     {
         "id": "12",
@@ -200,7 +200,7 @@ const data = [{
         "tempo_volta": 74,
         "tempo_planejado2": 130,
         "tempo_parado2": 56,
-        "sentido": 1
+        "sentido": 0
     },
     {
         "id": "13",
@@ -217,7 +217,7 @@ const data = [{
         "tempo_volta": 0,
         "tempo_planejado2": 0,
         "tempo_parado2": 0,
-        "sentido": 1
+        "sentido": 0
     },
     {
         "id": "14",
@@ -234,7 +234,7 @@ const data = [{
         "tempo_volta": 0,
         "tempo_planejado2": 70,
         "tempo_parado2": 0,
-        "sentido": 0
+        "sentido": 1
     },
     {
         "id": "15",
@@ -251,7 +251,7 @@ const data = [{
         "tempo_volta": 0,
         "tempo_planejado2": 0,
         "tempo_parado2": 0,
-        "sentido": 1
+        "sentido": 0
     },
     {
         "id": "16",
@@ -268,57 +268,113 @@ const data = [{
         "tempo_volta": 0,
         "tempo_planejado2": 235,
         "tempo_parado2": 0,
-        "sentido": 0
+        "sentido": 1
     },
 ]
-var svgWidth = 1440,
-    svgHeight = 1000;
+var svgWidth = 1300,
+    svgHeight = 900;
 
-var margin = { top: 50, right: 50, bottom: 80, left: 50 };
+var margin = { top: 45, right: 50, bottom: 80, left: 50 };
 var width = svgWidth - margin.left - margin.right;
 var height = svgHeight / 4 - margin.top - margin.bottom;
-var points = []
+var points = [
+    [],
+    [
+        { carro: '402', xpoint: 549, ypoint: 0 },
+        { carro: '402', xpoint: 584, ypoint: height },
 
-for (let index = 0; index < data.length; index++) {
-    const element = data[index];
-    if (element.sentido === 1) {
-        points.push({
-            carro: element.carro,
-            xpoint: element.saida,
-            ypoint: height
-        }, {
-            carro: element.carro,
-            xpoint: element.entrada,
-            ypoint: 0
-        })
-    } else if (element.sentido === 0) {
-        points.push({
-            carro: element.carro,
-            xpoint: element.saida,
-            ypoint: 0
-        }, {
-            carro: element.carro,
-            xpoint: element.entrada,
-            ypoint: height
-        })
-    }
-}
+        { carro: '401', xpoint: 549, ypoint: height },
+        { carro: '401', xpoint: 584, ypoint: 0 },
+
+        { carro: '402', xpoint: 586, ypoint: height },
+        { carro: '402', xpoint: 619, ypoint: 0 },
+
+        { carro: '402', xpoint: 621, ypoint: 0 },
+        { carro: '402', xpoint: 657, ypoint: height },
+
+        { carro: '402', xpoint: 660, ypoint: height },
+        { carro: '402', xpoint: 692, ypoint: 0 },
+
+        { carro: '402', xpoint: 694, ypoint: 0 },
+        { carro: '402', xpoint: 720, ypoint: height - 4 },
+        //{ carro: '402', xpoint: 724, ypoint: 100 },
+    ],
+    [
+        { carro: '402', xpoint: 720, ypoint: height - 4 },
+        { carro: '402', xpoint: 724, ypoint: height },
+
+        { carro: '402', xpoint: 740, ypoint: 100 },
+        { carro: '402', xpoint: 774, ypoint: 0 },
+
+        { carro: '402', xpoint: 775, ypoint: 0 },
+        { carro: '402', xpoint: 805, ypoint: height },
+
+        { carro: '402', xpoint: 816, ypoint: height },
+        { carro: '402', xpoint: 851, ypoint: 0 },
+
+        { carro: '402', xpoint: 853, ypoint: 0 },
+        { carro: '402', xpoint: 887, ypoint: height },
+
+        { carro: '402', xpoint: 890, ypoint: height },
+        { carro: '402', xpoint: 929, ypoint: 0 },
+
+        { carro: '402', xpoint: 935, ypoint: 0 },
+        { carro: '402', xpoint: 969, ypoint: height },
+
+        { carro: '402', xpoint: 972, ypoint: height },
+        { carro: '402', xpoint: 1008, ypoint: 0 }
+    ],
+    [
+        { carro: '402', xpoint: 0, ypoint: height },
+        { carro: '402', xpoint: 0, ypoint: 0 },
+
+        { carro: '402', xpoint: 0, ypoint: 0 },
+        { carro: '402', xpoint: 0, ypoint: height },
+
+        { carro: '402', xpoint: 0, ypoint: height },
+        { carro: '402', xpoint: 0, ypoint: 0 },
+
+        { carro: '402', xpoint: 1271, ypoint: 0 },
+        { carro: '402', xpoint: 1319, ypoint: height }
+    ],
+]
+
+// for (let index = 0; index < data.length; index++) {
+//     const element = data[index];
+//     if (element.sentido === 1) {
+//         points.push({
+//             carro: element.carro,
+//             xpoint: element.saida,
+//             ypoint: height
+//         }, {
+//             carro: element.carro,
+//             xpoint: element.entrada,
+//             ypoint: 0
+//         })
+//     } else if (element.sentido === 0) {
+//         points.push({
+//             carro: element.carro,
+//             xpoint: element.saida,
+//             ypoint: 0
+//         }, {
+//             carro: element.carro,
+//             xpoint: element.entrada,
+//             ypoint: height
+//         })
+//     }
+// }
 
 var svg = d3.select("svg")
     .attr("width", svgWidth)
     .attr("height", svgHeight)
     .attr("class", "svg-container")
 
-var sumstat = d3.groups(points, d => d.carro);
-var mediaName = sumstat.map(d => d[0])
-
-var color = d3.scaleOrdinal().domain(mediaName).range(['#e41a1c', '#377eb8', '#4daf4a', '#984ea3', '#ff7f00', '#ffff33', '#a65628', '#f781bf', '#999999'])
-
 window.addEventListener('DOMContentLoaded', (event) => {
     drawChart()
 });
 
 function drawChart() {
+
     const groups = 4
     const groupHeight = svgHeight / 4
     const domains = [
@@ -362,6 +418,11 @@ function drawChart() {
     const positions = [0, groupHeight, groupHeight * 2, groupHeight * 3]
 
     for (let index = 0; index < groups; index++) {
+        var sumstat = d3.groups(points[index], d => d.carro);
+        var mediaName = sumstat.map(d => d[0])
+
+        var color = d3.scaleOrdinal().domain(mediaName).range(['#e41a1c', '#377eb8', '#4daf4a', '#984ea3', '#ff7f00', '#ffff33', '#a65628', '#f781bf', '#999999'])
+
         const g = svg.append("g")
             .attr("transform", "translate(" + margin.left + "," + positions[index] + ")")
             .attr("class", `chart${index + 1}`)
@@ -400,6 +461,9 @@ function drawChart() {
         var y1Generator = d3.axisLeft(y1).ticks(1).tickSize(1)
         var y2Generator = d3.axisRight(y2).ticks(1).tickSize(1)
 
+        let xTickLabels = e => `${Math.floor(e / 60)}:${(e % 60).toString().padStart(2, '0')}`;
+        x3Generator.tickFormat((d) => xTickLabels(d));
+
         //y axis tick labels
         let yTickLabels = ["A", "B"]
         y1Generator.tickFormat((d, i) => yTickLabels[i])
@@ -417,7 +481,7 @@ function drawChart() {
             .call(x2Generator)
 
         gChart.append("g")
-            .attr("transform", "translate(0 ,0)")
+            .attr("transform", "translate(0,0)")
             .attr("class", "yAxis1")
             .attr('stroke-width', 3)
             .call(y1Generator)
@@ -445,7 +509,6 @@ function drawChart() {
 
         gChart.selectAll(".xAxis2 .tick")
             .attr("stroke-width", "0")
-
         gChart.selectAll(".yAxis1 text")
             .attr("color", "#059451")
             .attr("font-size", 16)
@@ -518,29 +581,47 @@ function drawChart() {
             .attr("stroke", "currentColor")
             .attr("stroke-width", 2);
 
-        // var line = d3.line()
-        //     .x((d) => d.xpoint)
-        //     .y((d) => d.ypoint)
-        //     .curve(d3.curveCatmullRom.alpha(0.2))
-        //     .defined(((d) => d.xpoint != 0))
+        if (points[index].length > 0) {
+            const line = d3.line()
+                .x((d) => x1(d.xpoint))
+                .y((d) => d.ypoint)
+                .curve(d3.curveCatmullRom.alpha(0.70))
+                .defined(((d) => d.xpoint != 0))
 
-        // const lines = gChart.selectAll("lines")
-        //     .data(sumstat)
-        //     .enter()
-        //     .append("g");
+            const lines = gChart.selectAll("lines")
+                .data(sumstat)
+                .enter()
+                .append("g");
 
-        // lines.append("path")
-        //     .attr('fill', 'none')
-        //     .attr("stroke-linejoin", "round")
-        //     .attr("stroke-linecap", "round")
-        //     .attr('stroke', d => color(d[0]))
-        //     .attr('marker-start', 'url(#arrow)')
-        //     .attr('marker-mid', 'url(#arrow)')
-        //     .attr('marker-end', 'url(#arrow)')
-        //     .attr('stroke-width', 3)
-        //     .attr("d", (d) => {
-        //         return line(d[1])
-        //     })
+            lines.append("path")
+                .attr('fill', 'none')
+                .attr("stroke-linejoin", "round")
+                .attr("stroke-linecap", "round")
+                .attr('stroke', "red"
+                    //d => color(d[0])
+                )
+                .attr('stroke-width', 3)
+                .attr("d", (d) => line(d[1]))
+
+            gChart.selectAll("circle")
+                .data(points[index])
+                .enter()
+                .append("circle")
+                .attr("stroke-width", 2)
+                .attr("r", 4)
+                .attr("cx", d => x1(d.xpoint))
+                .attr("cy", d => d.ypoint)
+                .style("fill", "red"
+                    //d => color(d.carro)
+                )
+
+            gChart.selectAll(".text")
+                .append("text")
+                .attr("transform", "translate(" + 100 + ", 0 )")
+                .attr("text-anchor", "middle")
+                .attr("fill", "red")
+                .attr("font-weight", "bolder")
+                .text("teste")
+        }
     }
-
 }
