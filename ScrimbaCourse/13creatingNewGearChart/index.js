@@ -410,7 +410,7 @@ function drawChart() {
             [0, 360],
             [360, 720],
             [720, 1080],
-            [1080, 1440],
+            [1080, 1439.99],
         ],
         tickHours = [],
         tick10Min = [],
@@ -536,6 +536,7 @@ function drawChart() {
 
         gChart.selectAll(".xAxis2 .tick")
             .attr("stroke-width", "0")
+
         gChart.selectAll(".yAxis1 text")
             .attr("color", "#059451")
             .attr("font-size", 16)
@@ -549,12 +550,8 @@ function drawChart() {
             .join("g")
 
         gridHours.append("line")
-            .attr("x1", (d) => {
-                return x1(d)
-            })
-            .attr("x2", d => {
-                return x1(d)
-            })
+            .attr("x1", (d) => x1(d))
+            .attr("x2", d => x1(d))
             .attr("y1", height)
             .attr("y2", 0)
             .attr("stroke-opacity", 0.7)
@@ -566,12 +563,8 @@ function drawChart() {
             .join("g")
 
         grid10Min.append("line")
-            .attr("x1", (d) => {
-                return x1(d)
-            })
-            .attr("x2", d => {
-                return x1(d)
-            })
+            .attr("x1", (d) => x1(d))
+            .attr("x2", d => x1(d))
             .attr("y1", height)
             .attr("y2", 0)
             .attr("stroke-opacity", 0.35)
@@ -583,12 +576,8 @@ function drawChart() {
             .join("g")
 
         grid5Min.append("line")
-            .attr("x1", (d) => {
-                return x1(d)
-            })
-            .attr("x2", d => {
-                return x1(d)
-            })
+            .attr("x1", (d) => x1(d))
+            .attr("x2", d => x1(d))
             .attr("y1", 10)
             .attr("y2", 0)
             .attr("stroke-opacity", 0.2)
@@ -596,12 +585,8 @@ function drawChart() {
             .attr("stroke-width", 2);
 
         grid5Min.append("line")
-            .attr("x1", (d) => {
-                return x1(d)
-            })
-            .attr("x2", d => {
-                return x1(d)
-            })
+            .attr("x1", (d) => x1(d))
+            .attr("x2", d => x1(d))
             .attr("y1", height)
             .attr("y2", height - 10)
             .attr("stroke-opacity", 0.2)
@@ -633,22 +618,22 @@ function drawChart() {
                 .attr('stroke-width', 3)
                 .attr("d", (d) => line(d[1]))
 
-            const trinagles = gChart.selectAll("triangles")
-                .data(points[index])
-                .enter()
-                .append("g");
+            // const trinagles = gChart.selectAll("triangles")
+            //     .data(points[index])
+            //     .enter()
+            //     .append("g");
 
-            trinagles.append("path")
-                .attr("d", triangle)
-                .attr("stroke", d => color(d.carro))
-                .attr("fill", d => color(d.carro))
-                .attr("transform", (d) => {
-                    if (d.ypoint === 0) {
-                        return "translate(" + x1(d.xpoint) + "," + (d.ypoint - 4) + "), rotate(0)"
-                    } else {
-                        return "translate(" + x1(d.xpoint) + "," + (d.ypoint + 4) + "), rotate(60)"
-                    }
-                })
+            // trinagles.append("path")
+            //     .attr("d", triangle)
+            //     .attr("stroke", d => color(d.carro))
+            //     .attr("fill", d => color(d.carro))
+            //     .attr("transform", (d) => {
+            //         if (d.ypoint === 0) {
+            //             return "translate(" + x1(d.xpoint) + "," + (d.ypoint - 4) + "), rotate(0)"
+            //         } else {
+            //             return "translate(" + x1(d.xpoint) + "," + (d.ypoint + 4) + "), rotate(60)"
+            //         }
+            //     })
         }
     }
 }
