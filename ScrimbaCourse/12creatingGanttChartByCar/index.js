@@ -143,3 +143,96 @@ const rects = g.selectAll('rect')
     .attr("ry", 6)
     .style("fill", d => color(d.carro))
     .attr('transform', rectTransform);
+
+// for (let index = 0; index < data.length; index++) {
+//     const element = data[index];
+//     if (element.saida > 0 && element.saida < 360) {
+//         if (element.sentido === 1) {
+//             points[0].push({
+//                 carro: element.carro,
+//                 xpoint: element.saida,
+//                 ypoint: height
+//             }, {
+//                 carro: element.carro,
+//                 xpoint: element.entrada,
+//                 ypoint: 0
+//             })
+//         } else if (element.sentido === 0) {
+//             points[0].push({
+//                 carro: element.carro,
+//                 xpoint: element.saida,
+//                 ypoint: 0
+//             }, {
+//                 carro: element.carro,
+//                 xpoint: element.entrada,
+//                 ypoint: height
+//             })
+//         }
+//     } else if (element.saida >= 360 && element.saida < 720) {
+//         if (element.sentido === 1) {
+//             points[1].push({
+//                 carro: element.carro,
+//                 xpoint: element.saida,
+//                 ypoint: height
+//             }, {
+//                 carro: element.carro,
+//                 xpoint: element.entrada,
+//                 ypoint: 0
+//             })
+//         } else if (element.sentido === 0) {
+//             points[1].push({
+//                 carro: element.carro,
+//                 xpoint: element.saida,
+//                 ypoint: 0
+//             }, {
+//                 carro: element.carro,
+//                 xpoint: element.entrada,
+//                 ypoint: height
+//             })
+//         }
+//     } else if (element.saida >= 720 && element.saida < 1080) {
+//         if (element.sentido === 1) {
+//             points[2].push({
+//                 carro: element.carro,
+//                 xpoint: element.saida,
+//                 ypoint: height
+//             }, {
+//                 carro: element.carro,
+//                 xpoint: element.entrada,
+//                 ypoint: 0
+//             })
+//         } else if (element.sentido === 0) {
+//             points[2].push({
+//                 carro: element.carro,
+//                 xpoint: element.saida,
+//                 ypoint: 0
+//             }, {
+//                 carro: element.carro,
+//                 xpoint: element.entrada,
+//                 ypoint: height
+//             })
+//         }
+//     } else if (element.saida >= 1080 && element.saida < 1440) {
+//         if (element.sentido === 1) {
+//             points[3].push({
+//                 carro: element.carro,
+//                 xpoint: element.saida,
+//                 ypoint: height
+//             }, {
+//                 carro: element.carro,
+//                 xpoint: element.entrada,
+//                 ypoint: 0
+//             })
+//         } else if (element.sentido === 0) {
+//             points[3].push({
+//                 carro: element.carro,
+//                 xpoint: element.saida,
+//                 ypoint: 0
+//             }, {
+//                 carro: element.carro,
+//                 xpoint: element.entrada,
+//                 ypoint: height
+//             })
+//         }
+//     }
+// }

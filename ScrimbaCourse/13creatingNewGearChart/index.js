@@ -16,6 +16,23 @@ const data = [{
         "sentido": 1
     },
     {
+        "id": "19",
+        "itinerario": "Ref.Mal.Floriano/Eldorado/Serrano",
+        "carro": "401",
+        "reserva": "605",
+        "saida_planejado": 545, //09:05
+        "saida": 549,
+        "diferenca": 4,
+        "entrada": 584,
+        "tempo_viagem1": 35,
+        "tempo_planejado1": 40,
+        "tempo_parado1": 2,
+        "tempo_volta": 0,
+        "tempo_planejado2": 0,
+        "tempo_parado2": 0,
+        "sentido": 0
+    },
+    {
         "id": "2",
         "itinerario": "Serrano/Andreazza/Marechal Floriano",
         "carro": "402",
@@ -279,90 +296,103 @@ var width = svgWidth - margin.left - margin.right;
 var height = svgHeight / 4 - margin.top - margin.bottom;
 var points = [
     [],
-    [
-        { carro: '402', xpoint: 549, ypoint: 0 },
-        { carro: '402', xpoint: 584, ypoint: height },
-
-        { carro: '401', xpoint: 549, ypoint: height },
-        { carro: '401', xpoint: 584, ypoint: 0 },
-
-        { carro: '402', xpoint: 586, ypoint: height },
-        { carro: '402', xpoint: 619, ypoint: 0 },
-
-        { carro: '402', xpoint: 621, ypoint: 0 },
-        { carro: '402', xpoint: 657, ypoint: height },
-
-        { carro: '402', xpoint: 660, ypoint: height },
-        { carro: '402', xpoint: 692, ypoint: 0 },
-
-        { carro: '402', xpoint: 694, ypoint: 0 },
-        { carro: '402', xpoint: 720, ypoint: height - 4 },
-        //{ carro: '402', xpoint: 724, ypoint: 100 },
-    ],
-    [
-        { carro: '402', xpoint: 720, ypoint: height - 4 },
-        { carro: '402', xpoint: 724, ypoint: height },
-
-        { carro: '402', xpoint: 740, ypoint: 100 },
-        { carro: '402', xpoint: 774, ypoint: 0 },
-
-        { carro: '402', xpoint: 775, ypoint: 0 },
-        { carro: '402', xpoint: 805, ypoint: height },
-
-        { carro: '402', xpoint: 816, ypoint: height },
-        { carro: '402', xpoint: 851, ypoint: 0 },
-
-        { carro: '402', xpoint: 853, ypoint: 0 },
-        { carro: '402', xpoint: 887, ypoint: height },
-
-        { carro: '402', xpoint: 890, ypoint: height },
-        { carro: '402', xpoint: 929, ypoint: 0 },
-
-        { carro: '402', xpoint: 935, ypoint: 0 },
-        { carro: '402', xpoint: 969, ypoint: height },
-
-        { carro: '402', xpoint: 972, ypoint: height },
-        { carro: '402', xpoint: 1008, ypoint: 0 }
-    ],
-    [
-        { carro: '402', xpoint: 0, ypoint: height },
-        { carro: '402', xpoint: 0, ypoint: 0 },
-
-        { carro: '402', xpoint: 0, ypoint: 0 },
-        { carro: '402', xpoint: 0, ypoint: height },
-
-        { carro: '402', xpoint: 0, ypoint: height },
-        { carro: '402', xpoint: 0, ypoint: 0 },
-
-        { carro: '402', xpoint: 1271, ypoint: 0 },
-        { carro: '402', xpoint: 1319, ypoint: height }
-    ],
+    [],
+    [],
+    []
 ]
 
-// for (let index = 0; index < data.length; index++) {
-//     const element = data[index];
-//     if (element.sentido === 1) {
-//         points.push({
-//             carro: element.carro,
-//             xpoint: element.saida,
-//             ypoint: height
-//         }, {
-//             carro: element.carro,
-//             xpoint: element.entrada,
-//             ypoint: 0
-//         })
-//     } else if (element.sentido === 0) {
-//         points.push({
-//             carro: element.carro,
-//             xpoint: element.saida,
-//             ypoint: 0
-//         }, {
-//             carro: element.carro,
-//             xpoint: element.entrada,
-//             ypoint: height
-//         })
-//     }
-// }
+for (let index = 0; index < data.length; index++) {
+    const element = data[index];
+    if (element.saida > 0 && element.saida < 360) {
+        if (element.sentido === 1) {
+            points[0].push({
+                carro: element.carro,
+                xpoint: element.saida,
+                ypoint: height
+            }, {
+                carro: element.carro,
+                xpoint: element.entrada,
+                ypoint: 0
+            })
+        } else if (element.sentido === 0) {
+            points[0].push({
+                carro: element.carro,
+                xpoint: element.saida,
+                ypoint: 0
+            }, {
+                carro: element.carro,
+                xpoint: element.entrada,
+                ypoint: height
+            })
+        }
+    } else if (element.saida >= 360 && element.saida < 720) {
+        if (element.sentido === 1) {
+            points[1].push({
+                carro: element.carro,
+                xpoint: element.saida,
+                ypoint: height
+            }, {
+                carro: element.carro,
+                xpoint: element.entrada,
+                ypoint: 0
+            })
+        } else if (element.sentido === 0) {
+            points[1].push({
+                carro: element.carro,
+                xpoint: element.saida,
+                ypoint: 0
+            }, {
+                carro: element.carro,
+                xpoint: element.entrada,
+                ypoint: height
+            })
+        }
+    } else if (element.saida >= 720 && element.saida < 1080) {
+        if (element.sentido === 1) {
+            points[2].push({
+                carro: element.carro,
+                xpoint: element.saida,
+                ypoint: height
+            }, {
+                carro: element.carro,
+                xpoint: element.entrada,
+                ypoint: 0
+            })
+        } else if (element.sentido === 0) {
+            points[2].push({
+                carro: element.carro,
+                xpoint: element.saida,
+                ypoint: 0
+            }, {
+                carro: element.carro,
+                xpoint: element.entrada,
+                ypoint: height
+            })
+        }
+    } else if (element.saida >= 1080 && element.saida < 1440) {
+        if (element.sentido === 1) {
+            points[3].push({
+                carro: element.carro,
+                xpoint: element.saida,
+                ypoint: height
+            }, {
+                carro: element.carro,
+                xpoint: element.entrada,
+                ypoint: 0
+            })
+        } else if (element.sentido === 0) {
+            points[3].push({
+                carro: element.carro,
+                xpoint: element.saida,
+                ypoint: 0
+            }, {
+                carro: element.carro,
+                xpoint: element.entrada,
+                ypoint: height
+            })
+        }
+    }
+}
 
 var svg = d3.select("svg")
     .attr("width", svgWidth)
@@ -374,17 +404,15 @@ window.addEventListener('DOMContentLoaded', (event) => {
 });
 
 function drawChart() {
-
     const groups = 4
     const groupHeight = svgHeight / 4
     const domains = [
-        [0, 360],
-        [360, 720],
-        [720, 1080],
-        [1080, 1440],
-    ]
-
-    const tickHours = [],
+            [0, 360],
+            [360, 720],
+            [720, 1080],
+            [1080, 1440],
+        ],
+        tickHours = [],
         tick10Min = [],
         tick5Min = []
 
@@ -422,7 +450,6 @@ function drawChart() {
         var mediaName = sumstat.map(d => d[0])
 
         var color = d3.scaleOrdinal().domain(mediaName).range(['#e41a1c', '#377eb8', '#4daf4a', '#984ea3', '#ff7f00', '#ffff33', '#a65628', '#f781bf', '#999999'])
-
         const g = svg.append("g")
             .attr("transform", "translate(" + margin.left + "," + positions[index] + ")")
             .attr("class", `chart${index + 1}`)
@@ -582,6 +609,12 @@ function drawChart() {
             .attr("stroke-width", 2);
 
         if (points[index].length > 0) {
+            var triangleSize = 50;
+
+            var triangle = d3.symbol()
+                .type(d3.symbolTriangle)
+                .size(triangleSize);
+
             const line = d3.line()
                 .x((d) => x1(d.xpoint))
                 .y((d) => d.ypoint)
@@ -589,39 +622,33 @@ function drawChart() {
                 .defined(((d) => d.xpoint != 0))
 
             const lines = gChart.selectAll("lines")
-                .data(sumstat)
-                .enter()
+                .data(sumstat).enter()
                 .append("g");
 
             lines.append("path")
                 .attr('fill', 'none')
                 .attr("stroke-linejoin", "round")
                 .attr("stroke-linecap", "round")
-                .attr('stroke', "red"
-                    //d => color(d[0])
-                )
+                .attr('stroke', d => color(d[0]))
                 .attr('stroke-width', 3)
                 .attr("d", (d) => line(d[1]))
 
-            gChart.selectAll("circle")
+            const trinagles = gChart.selectAll("triangles")
                 .data(points[index])
                 .enter()
-                .append("circle")
-                .attr("stroke-width", 2)
-                .attr("r", 4)
-                .attr("cx", d => x1(d.xpoint))
-                .attr("cy", d => d.ypoint)
-                .style("fill", "red"
-                    //d => color(d.carro)
-                )
+                .append("g");
 
-            gChart.selectAll(".text")
-                .append("text")
-                .attr("transform", "translate(" + 100 + ", 0 )")
-                .attr("text-anchor", "middle")
-                .attr("fill", "red")
-                .attr("font-weight", "bolder")
-                .text("teste")
+            trinagles.append("path")
+                .attr("d", triangle)
+                .attr("stroke", d => color(d.carro))
+                .attr("fill", d => color(d.carro))
+                .attr("transform", (d) => {
+                    if (d.ypoint === 0) {
+                        return "translate(" + x1(d.xpoint) + "," + (d.ypoint - 4) + "), rotate(0)"
+                    } else {
+                        return "translate(" + x1(d.xpoint) + "," + (d.ypoint + 4) + "), rotate(60)"
+                    }
+                })
         }
     }
 }
