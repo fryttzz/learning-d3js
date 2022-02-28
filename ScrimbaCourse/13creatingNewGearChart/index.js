@@ -353,7 +353,7 @@ const data = [{
         "tempo_volta": 0,
         "tempo_planejado2": 0,
         "tempo_parado2": 0,
-        "sentido": 0
+        "sentido": 1
     },
 ]
 var svgWidth = 1300,
@@ -572,7 +572,7 @@ for (let i = 0; i < data.length; i++) {
                 })
                 points[0].push({
                     carro: element.carro,
-                    xpoint: 360,
+                    xpoint: 1,
                     ypoint: newHeight
                 }, {
                     carro: element.carro,
