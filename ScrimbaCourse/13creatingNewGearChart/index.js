@@ -118,6 +118,57 @@ const data = [{
         "sentido": 0
     },
     {
+        "id": "4",
+        "itinerario": "Serrano/Andreazza/Marechal Floriano",
+        "carro": "410",
+        "reserva": "605",
+        "saida_planejado": 660,
+        "saida": 660,
+        "diferenca": 0,
+        "entrada": 692,
+        "tempo_viagem": 32,
+        "tempo_planejado1": 35,
+        "tempo_parado1": 2,
+        "tempo_volta": 68,
+        "tempo_planejado2": 75,
+        "tempo_parado2": 7,
+        "sentido": 1
+    },
+    {
+        "id": "5",
+        "itinerario": "Ref.Mal.Floriano/Trav.Leopoldina/Serrano",
+        "carro": "410",
+        "reserva": "605",
+        "saida_planejado": 695,
+        "saida": 694,
+        "diferenca": -1,
+        "entrada": 724,
+        "tempo_viagem": 30,
+        "tempo_planejado1": 45,
+        "tempo_parado1": 16,
+        "tempo_volta": 0,
+        "tempo_planejado2": 0,
+        "tempo_parado2": 0,
+        "sentido": 0
+    },
+    {
+        "id": "6",
+        "itinerario": "Serrano/Eldorado/Mal.Floriano",
+        "carro": "410",
+        "reserva": "605",
+        "saida_planejado": 740,
+        "saida": 740,
+        "diferenca": 0,
+        "entrada": 774,
+        "tempo_viagem": 34,
+        "tempo_planejado1": 35,
+        "tempo_parado1": 1,
+        "tempo_volta": 64,
+        "tempo_planejado2": 80,
+        "tempo_parado2": 16,
+        "sentido": 1
+    },
+    {
         "id": "7",
         "itinerario": "Ref.Mal.Floriano/Eldorado/Serrano",
         "carro": "402",
@@ -287,6 +338,23 @@ const data = [{
         "tempo_parado2": 0,
         "sentido": 1
     },
+    {
+        "id": "16",
+        "itinerario": "Ref.Marechal/Travessão/Serrano/Eldorado/Iracema",
+        "carro": "402",
+        "reserva": "",
+        "saida_planejado": 1420,
+        "saida": 1420,
+        "diferenca": 0,
+        "entrada": 1480,
+        "tempo_viagem": 60,
+        "tempo_planejado1": 60,
+        "tempo_parado1": 0,
+        "tempo_volta": 0,
+        "tempo_planejado2": 0,
+        "tempo_parado2": 0,
+        "sentido": 0
+    },
 ]
 var svgWidth = 1300,
     svgHeight = 900;
@@ -301,29 +369,72 @@ var points = [
     []
 ]
 
-for (let index = 0; index < data.length; index++) {
-    const element = data[index];
+function pythagoras(a, b) {
+    let c = Math.ceil(Math.sqrt(Math.pow(a, 2) + Math.pow(b, 2)));
+    return c
+}
+
+for (let i = 0; i < data.length; i++) {
+    const element = data[i];
     if (element.saida > 0 && element.saida < 360) {
         if (element.sentido === 1) {
             points[0].push({
                 carro: element.carro,
                 xpoint: element.saida,
                 ypoint: height
-            }, {
-                carro: element.carro,
-                xpoint: element.entrada,
-                ypoint: 0
             })
+            if (element.entrada > 360) {
+                let newHeight = pythagoras(element.entrada - 360, element.entrada - 360);
+                points[0].push({
+                    carro: element.carro,
+                    xpoint: element.entrada,
+                    ypoint: newHeight
+                })
+                points[1].push({
+                    carro: element.carro,
+                    xpoint: 0,
+                    ypoint: newHeight
+                }, {
+                    carro: element.carro,
+                    xpoint: element.entrada,
+                    ypoint: 0
+                })
+            } else {
+                points[0].push({
+                    carro: element.carro,
+                    xpoint: element.entrada,
+                    ypoint: 0
+                })
+            }
         } else if (element.sentido === 0) {
             points[0].push({
                 carro: element.carro,
                 xpoint: element.saida,
                 ypoint: 0
-            }, {
-                carro: element.carro,
-                xpoint: element.entrada,
-                ypoint: height
-            })
+            }, )
+            if (element.entrada > 360) {
+                let newHeight = height - pythagoras(element.entrada - 360, element.entrada - 360)
+                points[1].push({
+                    carro: element.carro,
+                    xpoint: 360,
+                    ypoint: newHeight
+                })
+                points[2].push({
+                    carro: element.carro,
+                    xpoint: 360,
+                    ypoint: newHeight
+                }, {
+                    carro: element.carro,
+                    xpoint: element.entrada,
+                    ypoint: height
+                })
+            } else {
+                points[0].push({
+                    carro: element.carro,
+                    xpoint: element.entrada,
+                    ypoint: height
+                })
+            }
         }
     } else if (element.saida >= 360 && element.saida < 720) {
         if (element.sentido === 1) {
@@ -331,21 +442,59 @@ for (let index = 0; index < data.length; index++) {
                 carro: element.carro,
                 xpoint: element.saida,
                 ypoint: height
-            }, {
-                carro: element.carro,
-                xpoint: element.entrada,
-                ypoint: 0
-            })
+            }, )
+            if (element.entrada >= 720) {
+                let newHeight = pythagoras(element.entrada - 720, element.entrada - 720)
+                points[1].push({
+                    carro: element.carro,
+                    xpoint: 720,
+                    ypoint: newHeight
+                })
+                points[2].push({
+                    carro: element.carro,
+                    xpoint: 720,
+                    ypoint: newHeight
+                }, {
+                    carro: element.carro,
+                    xpoint: element.entrada,
+                    ypoint: 0
+                })
+            } else {
+                points[1].push({
+                    carro: element.carro,
+                    xpoint: element.entrada,
+                    ypoint: 0
+                })
+            }
         } else if (element.sentido === 0) {
             points[1].push({
                 carro: element.carro,
                 xpoint: element.saida,
                 ypoint: 0
-            }, {
-                carro: element.carro,
-                xpoint: element.entrada,
-                ypoint: height
             })
+            if (element.entrada > 720) {
+                let newHeight = height - pythagoras(element.entrada - 720, element.entrada - 720)
+                points[1].push({
+                    carro: element.carro,
+                    xpoint: 720,
+                    ypoint: newHeight
+                })
+                points[2].push({
+                    carro: element.carro,
+                    xpoint: 720,
+                    ypoint: newHeight
+                }, {
+                    carro: element.carro,
+                    xpoint: element.entrada,
+                    ypoint: height
+                })
+            } else {
+                points[1].push({
+                    carro: element.carro,
+                    xpoint: element.entrada,
+                    ypoint: height
+                })
+            }
         }
     } else if (element.saida >= 720 && element.saida < 1080) {
         if (element.sentido === 1) {
@@ -353,21 +502,59 @@ for (let index = 0; index < data.length; index++) {
                 carro: element.carro,
                 xpoint: element.saida,
                 ypoint: height
-            }, {
-                carro: element.carro,
-                xpoint: element.entrada,
-                ypoint: 0
-            })
+            }, )
+            if (element.entrada >= 1080) {
+                let newHeight = pythagoras(element.entrada - 1080, element.entrada - 1080)
+                points[2].push({
+                    carro: element.carro,
+                    xpoint: 1080,
+                    ypoint: newHeight
+                })
+                points[3].push({
+                    carro: element.carro,
+                    xpoint: 1080,
+                    ypoint: newHeight
+                }, {
+                    carro: element.carro,
+                    xpoint: element.entrada,
+                    ypoint: 0
+                })
+            } else {
+                points[2].push({
+                    carro: element.carro,
+                    xpoint: element.entrada,
+                    ypoint: 0
+                })
+            }
         } else if (element.sentido === 0) {
             points[2].push({
                 carro: element.carro,
                 xpoint: element.saida,
                 ypoint: 0
-            }, {
-                carro: element.carro,
-                xpoint: element.entrada,
-                ypoint: height
             })
+            if (element.entrada > 1080) {
+                let newHeight = height - pythagoras(element.entrada - 1080, element.entrada - 1080)
+                points[2].push({
+                    carro: element.carro,
+                    xpoint: 1080,
+                    ypoint: newHeight
+                })
+                points[3].push({
+                    carro: element.carro,
+                    xpoint: 1080,
+                    ypoint: newHeight
+                }, {
+                    carro: element.carro,
+                    xpoint: element.entrada,
+                    ypoint: height
+                })
+            } else {
+                points[2].push({
+                    carro: element.carro,
+                    xpoint: element.entrada,
+                    ypoint: height
+                })
+            }
         }
     } else if (element.saida >= 1080 && element.saida < 1440) {
         if (element.sentido === 1) {
@@ -375,21 +562,59 @@ for (let index = 0; index < data.length; index++) {
                 carro: element.carro,
                 xpoint: element.saida,
                 ypoint: height
-            }, {
-                carro: element.carro,
-                xpoint: element.entrada,
-                ypoint: 0
-            })
+            }, )
+            if (element.entrada >= 1440) {
+                let newHeight = pythagoras(element.entrada - 1440, element.entrada - 1440)
+                points[3].push({
+                    carro: element.carro,
+                    xpoint: 1440,
+                    ypoint: newHeight
+                })
+                points[0].push({
+                    carro: element.carro,
+                    xpoint: 360,
+                    ypoint: newHeight
+                }, {
+                    carro: element.carro,
+                    xpoint: element.entrada - 1440,
+                    ypoint: 0
+                })
+            } else {
+                points[3].push({
+                    carro: element.carro,
+                    xpoint: element.entrada,
+                    ypoint: 0
+                })
+            }
         } else if (element.sentido === 0) {
             points[3].push({
                 carro: element.carro,
                 xpoint: element.saida,
                 ypoint: 0
-            }, {
-                carro: element.carro,
-                xpoint: element.entrada,
-                ypoint: height
             })
+            if (element.entrada > 1440) {
+                let newHeight = height - pythagoras(element.entrada - 1440, element.entrada - 1440)
+                points[3].push({
+                    carro: element.carro,
+                    xpoint: 1440,
+                    ypoint: newHeight
+                })
+                points[0].push({
+                    carro: element.carro,
+                    xpoint: 1,
+                    ypoint: newHeight
+                }, {
+                    carro: element.carro,
+                    xpoint: element.entrada - 1440,
+                    ypoint: height
+                })
+            } else {
+                points[3].push({
+                    carro: element.carro,
+                    xpoint: element.entrada,
+                    ypoint: height
+                })
+            }
         }
     }
 }
