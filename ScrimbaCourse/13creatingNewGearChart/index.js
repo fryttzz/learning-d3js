@@ -203,6 +203,23 @@ const data = [{
         "sentido": 0
     },
     {
+        "id": "8",
+        "itinerario": "Serrano/Andreazza/Marechal Floriano",
+        "carro": "401",
+        "reserva": "605",
+        "saida_planejado": 815,
+        "saida": 816,
+        "diferenca": 1,
+        "entrada": 851,
+        "tempo_viagem": 35,
+        "tempo_planejado1": 35,
+        "tempo_parado1": 2,
+        "tempo_volta": 65,
+        "tempo_planejado2": 75,
+        "tempo_parado2": 10,
+        "sentido": 1
+    },
+    {
         "id": "9",
         "itinerario": "Ref.Mal.Floriano/Eldorado/Serrano",
         "carro": "402",
@@ -341,6 +358,23 @@ const data = [{
     {
         "id": "16",
         "itinerario": "Ref.Marechal/Travessão/Serrano/Eldorado/Iracema",
+        "carro": "422",
+        "reserva": "",
+        "saida_planejado": 1270,
+        "saida": 1271,
+        "diferenca": 1,
+        "entrada": 1319,
+        "tempo_viagem": 48,
+        "tempo_planejado1": 90,
+        "tempo_parado1": 42,
+        "tempo_volta": 0,
+        "tempo_planejado2": 235,
+        "tempo_parado2": 0,
+        "sentido": 0
+    },
+    {
+        "id": "16",
+        "itinerario": "Ref.Marechal/Travessão/Serrano/Eldorado/Iracema",
         "carro": "402",
         "reserva": "",
         "saida_planejado": 1420,
@@ -376,6 +410,14 @@ function pythagoras(a, b) {
 
 for (let i = 0; i < data.length; i++) {
     const element = data[i];
+    var y1 = 0
+    var y2 = height
+    var x1 = element.entrada
+    var x2 = element.saida
+    var angle = Math.atan2(y2 - y1, x2 - x1);
+    console.log(angle * 180 / Math.PI);
+
+
     if (element.saida > 0 && element.saida < 360) {
         if (element.sentido === 1) {
             points[0].push({
@@ -411,7 +453,7 @@ for (let i = 0; i < data.length; i++) {
                 carro: element.carro,
                 xpoint: element.saida,
                 ypoint: 0
-            }, )
+            })
             if (element.entrada > 360) {
                 let newHeight = height - pythagoras(element.entrada - 360, element.entrada - 360)
                 points[1].push({
@@ -442,7 +484,7 @@ for (let i = 0; i < data.length; i++) {
                 carro: element.carro,
                 xpoint: element.saida,
                 ypoint: height
-            }, )
+            })
             if (element.entrada >= 720) {
                 let newHeight = pythagoras(element.entrada - 720, element.entrada - 720)
                 points[1].push({
@@ -502,7 +544,7 @@ for (let i = 0; i < data.length; i++) {
                 carro: element.carro,
                 xpoint: element.saida,
                 ypoint: height
-            }, )
+            })
             if (element.entrada >= 1080) {
                 let newHeight = pythagoras(element.entrada - 1080, element.entrada - 1080)
                 points[2].push({
@@ -562,7 +604,7 @@ for (let i = 0; i < data.length; i++) {
                 carro: element.carro,
                 xpoint: element.saida,
                 ypoint: height
-            }, )
+            })
             if (element.entrada >= 1440) {
                 let newHeight = pythagoras(element.entrada - 1440, element.entrada - 1440)
                 points[3].push({
@@ -572,7 +614,7 @@ for (let i = 0; i < data.length; i++) {
                 })
                 points[0].push({
                     carro: element.carro,
-                    xpoint: 1,
+                    xpoint: 0.1,
                     ypoint: newHeight
                 }, {
                     carro: element.carro,
@@ -601,7 +643,7 @@ for (let i = 0; i < data.length; i++) {
                 })
                 points[0].push({
                     carro: element.carro,
-                    xpoint: 1,
+                    xpoint: 0.1,
                     ypoint: newHeight
                 }, {
                     carro: element.carro,
@@ -667,14 +709,16 @@ function drawChart() {
             tick5MinCount += 10;
         }
     }
+    var cars = d3.groups(data, d => d.carro);
+    var carsName = cars.map(d => d[0])
+
+    var color = d3.scaleOrdinal().domain(carsName).range(['#e41a1c', '#377eb8', '#4daf4a', '#984ea3', '#ff7f00', '#ffff33', '#a65628', '#f781bf', '#999999'])
 
     const positions = [0, groupHeight, groupHeight * 2, groupHeight * 3]
 
     for (let index = 0; index < groups; index++) {
         var sumstat = d3.groups(points[index], d => d.carro);
-        var mediaName = sumstat.map(d => d[0])
 
-        var color = d3.scaleOrdinal().domain(mediaName).range(['#e41a1c', '#377eb8', '#4daf4a', '#984ea3', '#ff7f00', '#ffff33', '#a65628', '#f781bf', '#999999'])
         const g = svg.append("g")
             .attr("transform", "translate(" + margin.left + "," + positions[index] + ")")
             .attr("class", `chart${index + 1}`)
@@ -819,7 +863,7 @@ function drawChart() {
             .attr("stroke-width", 2);
 
         if (points[index].length > 0) {
-            var triangleSize = 50;
+            var triangleSize = 80;
 
             var triangle = d3.symbol()
                 .type(d3.symbolTriangle)
@@ -845,7 +889,7 @@ function drawChart() {
 
             // const trinagles = gChart.selectAll("triangles")
             //     .data(points[index])
-            //     .enter()
+            //     .enter() 
             //     .append("g");
 
             // trinagles.append("path")
@@ -854,9 +898,9 @@ function drawChart() {
             //     .attr("fill", d => color(d.carro))
             //     .attr("transform", (d) => {
             //         if (d.ypoint === 0) {
-            //             return "translate(" + x1(d.xpoint) + "," + (d.ypoint - 4) + "), rotate(0)"
+            //             return "translate(" + x1(d.xpoint) + "," + (d.ypoint) + "), rotate(5)"
             //         } else {
-            //             return "translate(" + x1(d.xpoint) + "," + (d.ypoint + 4) + "), rotate(60)"
+            //             return "translate(" + x1(d.xpoint) + "," + (d.ypoint) + "), rotate(5)"
             //         }
             //     })
         }
