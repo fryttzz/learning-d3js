@@ -1428,18 +1428,23 @@ var data = [{
     }
 
 ];
-data = data.map(element => {
+
+data = data.map((element, index) => {
     if (element.saida === "-") {
         element.saida = 0
     }
     if (element.entrada === "-") {
         element.entrada = 0
     }
+    // if (element.itinerario === 'Viagem de deslocamento') {
+    //     element.saida = 0
+    //     element.entrada = 0
+    // }
 
     return {
         ...element,
-        saida_planejada: parseInt(element.saida_planejada.toString()) * 60 + parseInt(element.saida_planejada.slice(3, 5)),
-        saida: parseInt(element.saida.toString()) * 60 + parseInt(element.saida.toString().slice(3, 5)),
+        saida_planejada: parseInt(element.saida_planejada.toString()) * 60 + parseInt(element.saida_planejada.slice(-2)),
+        saida: parseInt(element.saida.toString()) * 60 + parseInt(element.saida.toString().slice(-2)),
         entrada: parseInt(element.entrada.toString()) * 60 + parseInt(element.entrada.toString().slice(-2)),
     }
 })
@@ -1458,8 +1463,8 @@ var points = [
 ]
 
 function pythagoras(a, b) {
-    let c = Math.ceil(Math.sqrt(Math.pow(a, 2) + Math.pow(b, 2)));
-    return c
+    let result = Math.ceil(Math.sqrt(Math.pow(a, 2) + Math.pow(b, 2)));
+    return result
 }
 
 for (let i = 0; i < data.length; i++) {
@@ -1473,62 +1478,64 @@ for (let i = 0; i < data.length; i++) {
     if (element.saida > 0 && element.saida < 360) {
         if (element.sentido === 1) {
             points[0].push({
+                    carro: element.carro,
+                    xpoint: element.saida,
+                    ypoint: height
+                })
+                // if (element.entrada > 360) {
+                //     let newHeight = pythagoras(element.entrada - 360, element.entrada - 360);
+                //     points[0].push({
+                //         carro: element.carro,
+                //         xpoint: 360,
+                //         ypoint: newHeight
+                //     })
+                //     points[1].push({
+                //         carro: element.carro,
+                //         xpoint: 0,
+                //         ypoint: newHeight
+                //     }, {
+                //         carro: element.carro,
+                //         xpoint: element.entrada,
+                //         ypoint: 0
+                //     })
+                // } else {
+                // }
+            points[0].push({
                 carro: element.carro,
-                xpoint: element.saida,
-                ypoint: height
+                xpoint: element.entrada,
+                ypoint: 0
             })
-            if (element.entrada > 360) {
-                let newHeight = pythagoras(element.entrada - 360, element.entrada - 360);
-                points[0].push({
-                    carro: element.carro,
-                    xpoint: 360,
-                    ypoint: newHeight
-                })
-                points[1].push({
-                    carro: element.carro,
-                    xpoint: 0,
-                    ypoint: newHeight
-                }, {
-                    carro: element.carro,
-                    xpoint: element.entrada,
-                    ypoint: 0
-                })
-            } else {
-                points[0].push({
-                    carro: element.carro,
-                    xpoint: element.entrada,
-                    ypoint: 0
-                })
-            }
+
         } else if (element.sentido === 0) {
             points[0].push({
                 carro: element.carro,
                 xpoint: element.saida,
                 ypoint: 0
             })
-            if (element.entrada > 360) {
-                let newHeight = height - pythagoras(element.entrada - 360, element.entrada - 360)
-                points[1].push({
-                    carro: element.carro,
-                    xpoint: 360,
-                    ypoint: newHeight
-                })
-                points[2].push({
-                    carro: element.carro,
-                    xpoint: 360,
-                    ypoint: newHeight
-                }, {
-                    carro: element.carro,
-                    xpoint: element.entrada,
-                    ypoint: height
-                })
-            } else {
-                points[0].push({
-                    carro: element.carro,
-                    xpoint: element.entrada,
-                    ypoint: height
-                })
-            }
+            if (element.entrada > 360) console.log(pythagoras(element.entrada - 360, element.entrada - 360));
+            // if (element.entrada > 360) {
+            //     let newHeight = 360 - element.saida + element.entrada - 360
+            //     points[0].push({
+            //         carro: element.carro,
+            //         xpoint: 360,
+            //         ypoint: newHeight
+            //     })
+            //     points[1].push({
+            //         carro: element.carro,
+            //         xpoint: 360,
+            //         ypoint: newHeight
+            //     }, {
+            //         carro: element.carro,
+            //         xpoint: element.entrada,
+            //         ypoint: height
+            //     })
+            // } else {
+            // }
+            points[0].push({
+                carro: element.carro,
+                xpoint: element.entrada,
+                ypoint: height
+            })
         }
     } else if (element.saida >= 360 && element.saida < 720) {
         if (element.sentido === 1) {
@@ -1703,6 +1710,7 @@ for (let i = 0; i < data.length; i++) {
                     ypoint: height
                 })
             } else {
+
                 points[3].push({
                     carro: element.carro,
                     xpoint: element.entrada,
@@ -1712,8 +1720,6 @@ for (let i = 0; i < data.length; i++) {
         }
     }
 }
-
-console.log(points);
 
 var svg = d3.select("svg")
     .attr("width", svgWidth)
@@ -1728,7 +1734,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 var cars = d3.groups(data, d => d.carro);
 var carsName = cars.map(d => d[0])
 
-var color = d3.scaleOrdinal().domain(carsName).range(['#e41a1c', '#377eb8', '#4daf4a', '#984ea3', '#ff7f00', '#ffff33', '#a65628', '#f781bf', '#999999'])
+var color = d3.scaleOrdinal().domain(carsName).range(['#e41a1c', '#377eb8', '#4daf4a', '#984ea3', '#ff7f00', '#fff000', '#a65628', '#f781bf', '#999999'])
 
 function drawChart() {
     const groups = 4
@@ -1920,7 +1926,7 @@ function drawChart() {
             .attr("stroke-width", 2);
 
         if (points[index].length > 0) {
-            var triangleSize = 80;
+            var triangleSize = 30;
 
             var triangle = d3.symbol()
                 .type(d3.symbolTriangle)
@@ -1929,9 +1935,8 @@ function drawChart() {
             const line = d3.line()
                 .x((d) => x1(d.xpoint))
                 .y((d) => d.ypoint)
-                .curve(d3.curveCatmullRom.alpha(0.7))
+                //.curve(d3.curveCatmullRom.alpha(0.7))
                 .defined(((d) => d.xpoint != 0))
-
 
             const lines = gChart.selectAll("lines")
                 .data(sumstat).enter()
