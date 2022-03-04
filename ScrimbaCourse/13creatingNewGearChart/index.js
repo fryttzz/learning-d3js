@@ -508,261 +508,261 @@ var data = [{
         "tempo_parado2": "-",
         "sentido": 0
     },
-    {
-        "id": "31",
-        "itinerario": "Viagem de deslocamento",
-        "carro": "605",
-        "reserva": "",
-        "saida_planejada": "05:20",
-        "saida": "05:19",
-        "diferenca": "-6163:6:0:01",
-        "entrada": "05:28",
-        "tempo_viagem": "9m",
-        "tempo_planejado1": "10m",
-        "tempo_parado1": "2m",
-        "tempo_volta": "36m",
-        "tempo_planejado2": "5m",
-        "tempo_parado2": "-31m",
-        "sentido": 1
-    },
-    {
-        "id": "32",
-        "itinerario": "Ref.Mal.Floriano/Eldorado/Serrano",
-        "carro": "605",
-        "reserva": "",
-        "saida_planejada": "05:30",
-        "saida": "05:30",
-        "diferenca": "-6163:6",
-        "entrada": "05:59",
-        "tempo_viagem": "29m",
-        "tempo_planejado1": "30m",
-        "tempo_parado1": "2m",
-        "tempo_volta": "-",
-        "tempo_planejado2": "-",
-        "tempo_parado2": "-",
-        "sentido": 0
-    },
-    {
-        "id": "33",
-        "itinerario": "Serrano/Andreazza/Marechal Floriano",
-        "carro": "605",
-        "reserva": "",
-        "saida_planejada": "06:00",
-        "saida": "06:01",
-        "diferenca": "-6163:5:23:59",
-        "entrada": "06:27",
-        "tempo_viagem": "26m",
-        "tempo_planejado1": "35m",
-        "tempo_parado1": "3m",
-        "tempo_volta": "55m",
-        "tempo_planejado2": "65m",
-        "tempo_parado2": "10m",
-        "sentido": 1
-    },
-    {
-        "id": "34",
-        "itinerario": "Ref.Mal.Floriano/Eldorado/Serrano",
-        "carro": "605",
-        "reserva": "",
-        "saida_planejada": "06:35",
-        "saida": "06:30",
-        "diferenca": "-6163:6:0:05",
-        "entrada": "7:08",
-        "tempo_viagem": "38m",
-        "tempo_planejado1": "35m",
-        "tempo_parado1": "3m",
-        "tempo_volta": "-",
-        "tempo_planejado2": "-",
-        "tempo_parado2": "-",
-        "sentido": 0
-    },
-    {
-        "id": "35",
-        "itinerario": "Serrano/Andreazza/Marechal Floriano",
-        "carro": "605",
-        "reserva": "",
-        "saida_planejada": "07:10",
-        "saida": "07:11",
-        "diferenca": "-6163:5:23:59",
-        "entrada": "7:46",
-        "tempo_viagem": "35m",
-        "tempo_planejado1": "35m",
-        "tempo_parado1": "1m",
-        "tempo_volta": "73m",
-        "tempo_planejado2": "70m",
-        "tempo_parado2": "-3m",
-        "sentido": 1
-    },
-    {
-        "id": "36",
-        "itinerario": "Ref.Mal.Floriano/Eldorado/Serrano",
-        "carro": "605",
-        "reserva": "",
-        "saida_planejada": "07:45",
-        "saida": "07:47",
-        "diferenca": "-6163:5:23:58",
-        "entrada": "8:17",
-        "tempo_viagem": "30m",
-        "tempo_planejado1": "45m",
-        "tempo_parado1": "14m",
-        "tempo_volta": "-",
-        "tempo_planejado2": "-",
-        "tempo_parado2": "-",
-        "sentido": 0
-    },
-    {
-        "id": "37",
-        "itinerario": "Serrano/Andreazza/Marechal Floriano",
-        "carro": "605",
-        "reserva": "",
-        "saida_planejada": "08:30",
-        "saida": "08:31",
-        "diferenca": "-6163:5:23:59",
-        "entrada": "9:06",
-        "tempo_viagem": "35m",
-        "tempo_planejado1": "2h 40m",
-        "tempo_parado1": "2h 6m",
-        "tempo_volta": "65m",
-        "tempo_planejado2": "3h 25m",
-        "tempo_parado2": "2h 20m",
-        "sentido": 1
-    },
-    {
-        "id": "38",
-        "itinerario": "Ref.Mal.Floriano/Eldorado/Serrano",
-        "carro": "605",
-        "reserva": "810",
-        "saida_planejada": "11:10",
-        "saida": "11:12",
-        "diferenca": "-6163:5:23:58",
-        "entrada": "11:47",
-        "tempo_viagem": "35m",
-        "tempo_planejado1": "45m",
-        "tempo_parado1": "9m",
-        "tempo_volta": "-",
-        "tempo_planejado2": "-",
-        "tempo_parado2": "-",
-        "sentido": 0
-    },
-    {
-        "id": "39",
-        "itinerario": "Serrano/Andreazza/Marechal Floriano",
-        "carro": "605",
-        "reserva": "810",
-        "saida_planejada": "11:55",
-        "saida": "11:56",
-        "diferenca": "-6163:5:23:59",
-        "entrada": "12:31",
-        "tempo_viagem": "35m",
-        "tempo_planejado1": "35m",
-        "tempo_parado1": "1m",
-        "tempo_volta": "70m",
-        "tempo_planejado2": "80m",
-        "tempo_parado2": "10m",
-        "sentido": 1
-    },
-    {
-        "id": "40",
-        "itinerario": "Ref.Mal.Floriano/Trav.Leopoldina/Serrano",
-        "carro": "605",
-        "reserva": "810",
-        "saida_planejada": "12:30",
-        "saida": "12:32",
-        "diferenca": "-6163:5:23:58",
-        "entrada": "13:05",
-        "tempo_viagem": "33m",
-        "tempo_planejado1": "40m",
-        "tempo_parado1": "5m",
-        "tempo_volta": "-",
-        "tempo_planejado2": "-",
-        "tempo_parado2": "-",
-        "sentido": 0
-    },
-    {
-        "id": "41",
-        "itinerario": "Serrano/Eldorado/Mal.Floriano",
-        "carro": "605",
-        "reserva": "810",
-        "saida_planejada": "13:10",
-        "saida": "13:10",
-        "diferenca": "-6163:6",
-        "entrada": "13:49",
-        "tempo_viagem": "39m",
-        "tempo_planejado1": "3h 30m",
-        "tempo_parado1": "3h",
-        "tempo_volta": "72m",
-        "tempo_planejado2": "4h 10m",
-        "tempo_parado2": "2h 58m",
-        "sentido": 1
-    },
-    {
-        "id": "42",
-        "itinerario": "Ref.Mal.Floriano/Trav.Leopoldina/Serrano",
-        "carro": "605",
-        "reserva": "",
-        "saida_planejada": "16:40",
-        "saida": "16:49",
-        "diferenca": "-6163:5:23:51",
-        "entrada": "17:21",
-        "tempo_viagem": "32m",
-        "tempo_planejado1": "45m",
-        "tempo_parado1": "5m",
-        "tempo_volta": "-",
-        "tempo_planejado2": "-",
-        "tempo_parado2": "-",
-        "sentido": 0
-    },
-    {
-        "id": "43",
-        "itinerario": "Serrano/Eldorado/Mal.Floriano",
-        "carro": "605",
-        "reserva": "",
-        "saida_planejada": "17:25",
-        "saida": "17:26",
-        "diferenca": "-6163:5:23:59",
-        "entrada": "18:14",
-        "tempo_viagem": "48m",
-        "tempo_planejado1": "50m",
-        "tempo_parado1": "4m",
-        "tempo_volta": "80m",
-        "tempo_planejado2": "95m",
-        "tempo_parado2": "15m",
-        "sentido": 1
-    },
-    {
-        "id": "44",
-        "itinerario": "Ref.Mal.Floriano/Eldorado/Serrano",
-        "carro": "605",
-        "reserva": "",
-        "saida_planejada": "18:15",
-        "saida": "18:18",
-        "diferenca": "-6163:5:23:57",
-        "entrada": "18:59",
-        "tempo_viagem": "41m",
-        "tempo_planejado1": "45m",
-        "tempo_parado1": "6m",
-        "tempo_volta": "-",
-        "tempo_planejado2": "-",
-        "tempo_parado2": "-",
-        "sentido": 0
-    },
-    {
-        "id": "45",
-        "itinerario": "Serrano/Andreazza/Marechal Floriano",
-        "carro": "605",
-        "reserva": "",
-        "saida_planejada": "19:00",
-        "saida": "19:05",
-        "diferenca": "-6163:5:23:55",
-        "entrada": "19:32",
-        "tempo_viagem": "27m",
-        "tempo_planejado1": "-",
-        "tempo_parado1": "-",
-        "tempo_volta": "68m",
-        "tempo_planejado2": "-",
-        "tempo_parado2": "-",
-        "sentido": 1
-    },
+    // {
+    //     "id": "31",
+    //     "itinerario": "Viagem de deslocamento",
+    //     "carro": "605",
+    //     "reserva": "",
+    //     "saida_planejada": "05:20",
+    //     "saida": "05:19",
+    //     "diferenca": "-6163:6:0:01",
+    //     "entrada": "05:28",
+    //     "tempo_viagem": "9m",
+    //     "tempo_planejado1": "10m",
+    //     "tempo_parado1": "2m",
+    //     "tempo_volta": "36m",
+    //     "tempo_planejado2": "5m",
+    //     "tempo_parado2": "-31m",
+    //     "sentido": 1
+    // },
+    // {
+    //     "id": "32",
+    //     "itinerario": "Ref.Mal.Floriano/Eldorado/Serrano",
+    //     "carro": "605",
+    //     "reserva": "",
+    //     "saida_planejada": "05:30",
+    //     "saida": "05:30",
+    //     "diferenca": "-6163:6",
+    //     "entrada": "05:59",
+    //     "tempo_viagem": "29m",
+    //     "tempo_planejado1": "30m",
+    //     "tempo_parado1": "2m",
+    //     "tempo_volta": "-",
+    //     "tempo_planejado2": "-",
+    //     "tempo_parado2": "-",
+    //     "sentido": 0
+    // },
+    // {
+    //     "id": "33",
+    //     "itinerario": "Serrano/Andreazza/Marechal Floriano",
+    //     "carro": "605",
+    //     "reserva": "",
+    //     "saida_planejada": "06:00",
+    //     "saida": "06:01",
+    //     "diferenca": "-6163:5:23:59",
+    //     "entrada": "06:27",
+    //     "tempo_viagem": "26m",
+    //     "tempo_planejado1": "35m",
+    //     "tempo_parado1": "3m",
+    //     "tempo_volta": "55m",
+    //     "tempo_planejado2": "65m",
+    //     "tempo_parado2": "10m",
+    //     "sentido": 1
+    // },
+    // {
+    //     "id": "34",
+    //     "itinerario": "Ref.Mal.Floriano/Eldorado/Serrano",
+    //     "carro": "605",
+    //     "reserva": "",
+    //     "saida_planejada": "06:35",
+    //     "saida": "06:30",
+    //     "diferenca": "-6163:6:0:05",
+    //     "entrada": "7:08",
+    //     "tempo_viagem": "38m",
+    //     "tempo_planejado1": "35m",
+    //     "tempo_parado1": "3m",
+    //     "tempo_volta": "-",
+    //     "tempo_planejado2": "-",
+    //     "tempo_parado2": "-",
+    //     "sentido": 0
+    // },
+    // {
+    //     "id": "35",
+    //     "itinerario": "Serrano/Andreazza/Marechal Floriano",
+    //     "carro": "605",
+    //     "reserva": "",
+    //     "saida_planejada": "07:10",
+    //     "saida": "07:11",
+    //     "diferenca": "-6163:5:23:59",
+    //     "entrada": "7:46",
+    //     "tempo_viagem": "35m",
+    //     "tempo_planejado1": "35m",
+    //     "tempo_parado1": "1m",
+    //     "tempo_volta": "73m",
+    //     "tempo_planejado2": "70m",
+    //     "tempo_parado2": "-3m",
+    //     "sentido": 1
+    // },
+    // {
+    //     "id": "36",
+    //     "itinerario": "Ref.Mal.Floriano/Eldorado/Serrano",
+    //     "carro": "605",
+    //     "reserva": "",
+    //     "saida_planejada": "07:45",
+    //     "saida": "07:47",
+    //     "diferenca": "-6163:5:23:58",
+    //     "entrada": "8:17",
+    //     "tempo_viagem": "30m",
+    //     "tempo_planejado1": "45m",
+    //     "tempo_parado1": "14m",
+    //     "tempo_volta": "-",
+    //     "tempo_planejado2": "-",
+    //     "tempo_parado2": "-",
+    //     "sentido": 0
+    // },
+    // {
+    //     "id": "37",
+    //     "itinerario": "Serrano/Andreazza/Marechal Floriano",
+    //     "carro": "605",
+    //     "reserva": "",
+    //     "saida_planejada": "08:30",
+    //     "saida": "08:31",
+    //     "diferenca": "-6163:5:23:59",
+    //     "entrada": "9:06",
+    //     "tempo_viagem": "35m",
+    //     "tempo_planejado1": "2h 40m",
+    //     "tempo_parado1": "2h 6m",
+    //     "tempo_volta": "65m",
+    //     "tempo_planejado2": "3h 25m",
+    //     "tempo_parado2": "2h 20m",
+    //     "sentido": 1
+    // },
+    // {
+    //     "id": "38",
+    //     "itinerario": "Ref.Mal.Floriano/Eldorado/Serrano",
+    //     "carro": "605",
+    //     "reserva": "810",
+    //     "saida_planejada": "11:10",
+    //     "saida": "11:12",
+    //     "diferenca": "-6163:5:23:58",
+    //     "entrada": "11:47",
+    //     "tempo_viagem": "35m",
+    //     "tempo_planejado1": "45m",
+    //     "tempo_parado1": "9m",
+    //     "tempo_volta": "-",
+    //     "tempo_planejado2": "-",
+    //     "tempo_parado2": "-",
+    //     "sentido": 0
+    // },
+    // {
+    //     "id": "39",
+    //     "itinerario": "Serrano/Andreazza/Marechal Floriano",
+    //     "carro": "605",
+    //     "reserva": "810",
+    //     "saida_planejada": "11:55",
+    //     "saida": "11:56",
+    //     "diferenca": "-6163:5:23:59",
+    //     "entrada": "12:31",
+    //     "tempo_viagem": "35m",
+    //     "tempo_planejado1": "35m",
+    //     "tempo_parado1": "1m",
+    //     "tempo_volta": "70m",
+    //     "tempo_planejado2": "80m",
+    //     "tempo_parado2": "10m",
+    //     "sentido": 1
+    // },
+    // {
+    //     "id": "40",
+    //     "itinerario": "Ref.Mal.Floriano/Trav.Leopoldina/Serrano",
+    //     "carro": "605",
+    //     "reserva": "810",
+    //     "saida_planejada": "12:30",
+    //     "saida": "12:32",
+    //     "diferenca": "-6163:5:23:58",
+    //     "entrada": "13:05",
+    //     "tempo_viagem": "33m",
+    //     "tempo_planejado1": "40m",
+    //     "tempo_parado1": "5m",
+    //     "tempo_volta": "-",
+    //     "tempo_planejado2": "-",
+    //     "tempo_parado2": "-",
+    //     "sentido": 0
+    // },
+    // {
+    //     "id": "41",
+    //     "itinerario": "Serrano/Eldorado/Mal.Floriano",
+    //     "carro": "605",
+    //     "reserva": "810",
+    //     "saida_planejada": "13:10",
+    //     "saida": "13:10",
+    //     "diferenca": "-6163:6",
+    //     "entrada": "13:49",
+    //     "tempo_viagem": "39m",
+    //     "tempo_planejado1": "3h 30m",
+    //     "tempo_parado1": "3h",
+    //     "tempo_volta": "72m",
+    //     "tempo_planejado2": "4h 10m",
+    //     "tempo_parado2": "2h 58m",
+    //     "sentido": 1
+    // },
+    // {
+    //     "id": "42",
+    //     "itinerario": "Ref.Mal.Floriano/Trav.Leopoldina/Serrano",
+    //     "carro": "605",
+    //     "reserva": "",
+    //     "saida_planejada": "16:40",
+    //     "saida": "16:49",
+    //     "diferenca": "-6163:5:23:51",
+    //     "entrada": "17:21",
+    //     "tempo_viagem": "32m",
+    //     "tempo_planejado1": "45m",
+    //     "tempo_parado1": "5m",
+    //     "tempo_volta": "-",
+    //     "tempo_planejado2": "-",
+    //     "tempo_parado2": "-",
+    //     "sentido": 0
+    // },
+    // {
+    //     "id": "43",
+    //     "itinerario": "Serrano/Eldorado/Mal.Floriano",
+    //     "carro": "605",
+    //     "reserva": "",
+    //     "saida_planejada": "17:25",
+    //     "saida": "17:26",
+    //     "diferenca": "-6163:5:23:59",
+    //     "entrada": "18:14",
+    //     "tempo_viagem": "48m",
+    //     "tempo_planejado1": "50m",
+    //     "tempo_parado1": "4m",
+    //     "tempo_volta": "80m",
+    //     "tempo_planejado2": "95m",
+    //     "tempo_parado2": "15m",
+    //     "sentido": 1
+    // },
+    // {
+    //     "id": "44",
+    //     "itinerario": "Ref.Mal.Floriano/Eldorado/Serrano",
+    //     "carro": "605",
+    //     "reserva": "",
+    //     "saida_planejada": "18:15",
+    //     "saida": "18:18",
+    //     "diferenca": "-6163:5:23:57",
+    //     "entrada": "18:59",
+    //     "tempo_viagem": "41m",
+    //     "tempo_planejado1": "45m",
+    //     "tempo_parado1": "6m",
+    //     "tempo_volta": "-",
+    //     "tempo_planejado2": "-",
+    //     "tempo_parado2": "-",
+    //     "sentido": 0
+    // },
+    // {
+    //     "id": "45",
+    //     "itinerario": "Serrano/Andreazza/Marechal Floriano",
+    //     "carro": "605",
+    //     "reserva": "",
+    //     "saida_planejada": "19:00",
+    //     "saida": "19:05",
+    //     "diferenca": "-6163:5:23:55",
+    //     "entrada": "19:32",
+    //     "tempo_viagem": "27m",
+    //     "tempo_planejado1": "-",
+    //     "tempo_parado1": "-",
+    //     "tempo_volta": "68m",
+    //     "tempo_planejado2": "-",
+    //     "tempo_parado2": "-",
+    //     "sentido": 1
+    // },
     {
         "id": "46",
         "itinerario": "Viagem de deslocamento",
@@ -1439,10 +1439,10 @@ data = data.map((element, index) => {
     if (element.tempo_parado1 === "-") {
         element.tempo_parado1 = "0"
     }
-    // if (element.itinerario === 'Viagem de deslocamento') {
-    //     element.saida = 0
-    //     element.entrada = 0
-    // }
+    if (element.itinerario === 'Viagem de deslocamento') {
+        element.saida = 0
+        element.entrada = 0
+    }
     return {
         ...element,
         saida_planejada: parseInt(element.saida_planejada.toString()) * 60 + parseInt(element.saida_planejada.slice(-2)),
@@ -1464,16 +1464,11 @@ var points = [
     []
 ]
 
-function pythagoras(a, b) {
-    let result = Math.ceil(Math.sqrt(Math.pow(a, 2) + Math.pow(b, 2)));
-    return result
-}
-
-function getNewHeightBA(height, width, a, b, ) {
+function getNewHeightBA(height, width, a, b) {
     return height - (height * (a - width) / (a - b))
 }
 
-function getNewHeightAB(height, width, a, b, ) {
+function getNewHeightAB(height, width, a, b) {
     return (height * (a - width) / (a - b))
 }
 
@@ -1486,7 +1481,6 @@ for (let i = 0; i < data.length; i++) {
                 carro: element.carro,
                 xpoint: element.saida,
                 ypoint: height,
-                parcked: element.tempo_parado1
             })
             if (element.entrada > 360) {
                 let newHeight = getNewHeightAB(height, 360, element.entrada, element.saida)
@@ -1733,13 +1727,13 @@ var svg = d3.select("svg")
 
 window.addEventListener('DOMContentLoaded', (event) => {
     drawChart();
-    //drawLabels();
+    drawLabels();
 });
 
 var cars = d3.groups(data, d => d.carro);
 var carsName = cars.map(d => d[0])
 
-var color = d3.scaleOrdinal().domain(carsName).range(['#e41a1c', '#377eb8', '#4daf4a', '#984ea3', '#ff7f00', '#fff000', '#a65628', '#f781bf', '#999999'])
+var color = d3.scaleOrdinal().domain(carsName).range(['#e41a1c', '#377eb8', '#4daf4a', '#984ea3', '#ff7f00', '#999999', '#a65628', '#f781bf', '#fff000', ])
 
 function drawChart() {
     const groups = 4
@@ -1781,7 +1775,6 @@ function drawChart() {
         }
     }
 
-
     const positions = [0, groupHeight, groupHeight * 2, groupHeight * 3]
 
     for (let index = 0; index < groups; index++) {
@@ -1822,7 +1815,7 @@ function drawChart() {
         var x2Generator = d3.axisTop(x2).ticks(36).tickSize(0)
         var x3Generator = d3.axisTop(x3).ticks(20).tickSize(10)
 
-        var y1Generator = d3.axisLeft(y1).ticks(1).tickSize(1)
+        var y1Generator = d3.axisLeft(y1).ticks(1).tickSize(10)
         var y2Generator = d3.axisRight(y2).ticks(1).tickSize(1)
 
         let xTickLabels = e => `${Math.floor(e / 60)}:${(e % 60).toString().padStart(2, '0')}`;
@@ -1862,6 +1855,10 @@ function drawChart() {
             .attr('stroke-width', 3)
             .call(x3Generator)
 
+        gTimeLine.selectAll(".xAxis3 text")
+            .attr("color", "#262D36")
+            .attr("font-size", 14)
+
         gChart.selectAll(".xAxis1 text")
             .attr("display", "none")
 
@@ -1875,7 +1872,7 @@ function drawChart() {
             .attr("stroke-width", "0")
 
         gChart.selectAll(".yAxis1 text")
-            .attr("color", "#059451")
+            .attr("color", "#262D36")
             .attr("font-size", 16)
             .attr("font-weight", 700)
 
@@ -1932,7 +1929,6 @@ function drawChart() {
 
         if (points[index].length > 0) {
             var triangleSize = 30;
-
             var triangle = d3.symbol()
                 .type(d3.symbolTriangle)
                 .size(triangleSize);
@@ -1948,6 +1944,10 @@ function drawChart() {
                 .append("g");
 
             lines.append("path")
+                .attr("marker-end", "url(#triangle)")
+                .attr("marker-start", "url(#triangle)")
+                .attr("d", "M10 80 C 40 10, 65 10, 95 80 S 150 150, 180 80")
+                //
                 .attr('fill', 'none')
                 .attr("stroke-linejoin", "round")
                 .attr("stroke-linecap", "round")
@@ -1955,6 +1955,25 @@ function drawChart() {
                 .attr('stroke-width', 2.5)
                 .attr("d", (d) => line(d[1]))
                 .attr("class", d => `car${d[0]}`)
+
+            const trinagles = gChart.selectAll("triangles")
+                .data(sumstat)
+                .enter()
+
+            trinagles.append("svg:defs").append("svg:marker")
+                .attr("id", "triangle")
+                .attr("refX", 6)
+                .attr("refY", 6)
+                .attr("markerWidth", 30)
+                .attr("markerHeight", 30)
+                .attr("markerUnits", "userSpaceOnUse")
+                .attr("orient", "auto")
+                .append("path")
+                .attr("d", "M 0 0 12 6 0 12 3 6")
+                .style("fill", (d) => {
+                    console.log(color(d[0]));
+                    return color(d[0])
+                })
 
             // const trinagles = gChart.selectAll("triangles")
             //     .data(points[index])
@@ -1976,34 +1995,34 @@ function drawChart() {
     }
 }
 
-// function drawLabels() {
-//     // var rectTransform = function(d) {
-//     //     return "translate(" + 0 + "," + 0 + ")";
-//     // };
+function drawLabels() {
+    // var rectTransform = function(d) {
+    //     return "translate(" + 0 + "," + 0 + ")";
+    // };
 
-//     const labelGroup = svg.append("g")
-//         .attr("transform", "translate(0,0)")
+    // const labelGroup = svg.append("g")
+    //     .attr("transform", "translate(0,0)")
 
-//     const labels = labelGroup.selectAll("rect")
-//         .data(carsName)
-//         .enter()
-//         .append("g")
+    // const labels = labelGroup.selectAll("rect")
+    //     .data(carsName)
+    //     .enter()
+    //     .append("g")
 
-//     labels.append("rect")
-//         .attr('y', 0)
-//         .attr('height', 20)
-//         .attr('width', 20)
-//         .attr("rx", 6)
-//         .attr("ry", 6)
-//         .style("fill", d => color(d))
-//         .attr('transform', "translate(" + margin.left + "," + 0 + ")");
+    // labels.append("rect")
+    //     .attr('y', 0)
+    //     .attr('height', 20)
+    //     .attr('width', 20)
+    //     .attr("rx", 6)
+    //     .attr("ry", 6)
+    //     .style("fill", d => color(d))
+    //     .attr('transform', "translate(" + margin.left + "," + 0 + ")");
 
-//     var text = labelGroup.selectAll("text")
-//         .data(carsName)
-//         .enter()
-//         .append("text")
-//         .text((d) => d)
-//         .attr("y", 0)
-//         .attr("x", margin.left)
-//         .attr("fill", d => color(d))
-// }
+    // var text = labelGroup.selectAll("text")
+    //     .data(carsName)
+    //     .enter()
+    //     .append("text")
+    //     .text((d) => d)
+    //     .attr("y", 0)
+    //     .attr("x", 0)
+    //     .attr("fill", d => color(d))
+}
