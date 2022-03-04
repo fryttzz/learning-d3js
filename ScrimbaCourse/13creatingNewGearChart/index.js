@@ -1440,7 +1440,6 @@ data = data.map((element, index) => {
     //     element.saida = 0
     //     element.entrada = 0
     // }
-
     return {
         ...element,
         saida_planejada: parseInt(element.saida_planejada.toString()) * 60 + parseInt(element.saida_planejada.slice(-2)),
@@ -1467,44 +1466,48 @@ function pythagoras(a, b) {
     return result
 }
 
+function getNewHeightBA(height, width, a, b, ) {
+    return height - (height * (a - width) / (a - b))
+}
+
+function getNewHeightAB(height, width, a, b, ) {
+    console.log((height * (a - width) / (a - b)));
+    return (height * (a - width) / (a - b))
+}
+
 for (let i = 0; i < data.length; i++) {
     const element = data[i];
-    var y1 = 0
-    var y2 = height
-    var x1 = element.entrada
-    var x2 = element.saida
-    var angle = Math.atan2(y2 - y1, x2 - x1);
 
     if (element.saida > 0 && element.saida < 360) {
         if (element.sentido === 1) {
             points[0].push({
-                    carro: element.carro,
-                    xpoint: element.saida,
-                    ypoint: height
-                })
-                // if (element.entrada > 360) {
-                //     let newHeight = pythagoras(element.entrada - 360, element.entrada - 360);
-                //     points[0].push({
-                //         carro: element.carro,
-                //         xpoint: 360,
-                //         ypoint: newHeight
-                //     })
-                //     points[1].push({
-                //         carro: element.carro,
-                //         xpoint: 0,
-                //         ypoint: newHeight
-                //     }, {
-                //         carro: element.carro,
-                //         xpoint: element.entrada,
-                //         ypoint: 0
-                //     })
-                // } else {
-                // }
-            points[0].push({
                 carro: element.carro,
-                xpoint: element.entrada,
-                ypoint: 0
+                xpoint: element.saida,
+                ypoint: height
             })
+            if (element.entrada > 360) {
+                let newHeight = getNewHeightAB(height, 360, element.entrada, element.saida)
+                points[0].push({
+                    carro: element.carro,
+                    xpoint: 360,
+                    ypoint: newHeight
+                })
+                points[1].push({
+                    carro: element.carro,
+                    xpoint: 0,
+                    ypoint: newHeight
+                }, {
+                    carro: element.carro,
+                    xpoint: element.entrada,
+                    ypoint: 0
+                })
+            } else {
+                points[0].push({
+                    carro: element.carro,
+                    xpoint: element.entrada,
+                    ypoint: 0
+                })
+            }
 
         } else if (element.sentido === 0) {
             points[0].push({
@@ -1512,30 +1515,29 @@ for (let i = 0; i < data.length; i++) {
                 xpoint: element.saida,
                 ypoint: 0
             })
-            if (element.entrada > 360) console.log(pythagoras(element.entrada - 360, element.entrada - 360));
-            // if (element.entrada > 360) {
-            //     let newHeight = 360 - element.saida + element.entrada - 360
-            //     points[0].push({
-            //         carro: element.carro,
-            //         xpoint: 360,
-            //         ypoint: newHeight
-            //     })
-            //     points[1].push({
-            //         carro: element.carro,
-            //         xpoint: 360,
-            //         ypoint: newHeight
-            //     }, {
-            //         carro: element.carro,
-            //         xpoint: element.entrada,
-            //         ypoint: height
-            //     })
-            // } else {
-            // }
-            points[0].push({
-                carro: element.carro,
-                xpoint: element.entrada,
-                ypoint: height
-            })
+            if (element.entrada > 360) {
+                let newHeight = getNewHeightBA(height, 360, element.entrada, element.saida)
+                points[0].push({
+                    carro: element.carro,
+                    xpoint: 360,
+                    ypoint: newHeight
+                })
+                points[1].push({
+                    carro: element.carro,
+                    xpoint: 360,
+                    ypoint: newHeight
+                }, {
+                    carro: element.carro,
+                    xpoint: element.entrada,
+                    ypoint: height
+                })
+            } else {
+                points[0].push({
+                    carro: element.carro,
+                    xpoint: element.entrada,
+                    ypoint: height
+                })
+            }
         }
     } else if (element.saida >= 360 && element.saida < 720) {
         if (element.sentido === 1) {
@@ -1545,7 +1547,7 @@ for (let i = 0; i < data.length; i++) {
                 ypoint: height
             })
             if (element.entrada >= 720) {
-                let newHeight = pythagoras(element.entrada - 720, element.entrada - 720)
+                let newHeight = getNewHeightAB(height, 720, element.entrada, element.saida)
                 points[1].push({
                     carro: element.carro,
                     xpoint: 720,
@@ -1574,7 +1576,7 @@ for (let i = 0; i < data.length; i++) {
                 ypoint: 0
             })
             if (element.entrada > 720) {
-                let newHeight = height - pythagoras(element.entrada - 720, element.entrada - 720)
+                let newHeight = getNewHeightBA(height, 720, element.entrada, element.saida)
                 points[1].push({
                     carro: element.carro,
                     xpoint: 720,
@@ -1605,7 +1607,7 @@ for (let i = 0; i < data.length; i++) {
                 ypoint: height
             })
             if (element.entrada >= 1080) {
-                let newHeight = pythagoras(element.entrada - 1080, element.entrada - 1080)
+                let newHeight = getNewHeightAB(height, 1080, element.entrada, element.saida)
                 points[2].push({
                     carro: element.carro,
                     xpoint: 1080,
@@ -1634,7 +1636,7 @@ for (let i = 0; i < data.length; i++) {
                 ypoint: 0
             })
             if (element.entrada > 1080) {
-                let newHeight = height - pythagoras(element.entrada - 1080, element.entrada - 1080)
+                let newHeight = getNewHeightBA(height, 1080, element.entrada, element.saida)
                 points[2].push({
                     carro: element.carro,
                     xpoint: 1080,
@@ -1665,7 +1667,7 @@ for (let i = 0; i < data.length; i++) {
                 ypoint: height
             })
             if (element.entrada >= 1440) {
-                let newHeight = pythagoras(element.entrada - 1440, element.entrada - 1440)
+                let newHeight = getNewHeightAB(height, 1440, element.entrada, element.saida)
                 points[3].push({
                     carro: element.carro,
                     xpoint: 1440,
@@ -1694,7 +1696,7 @@ for (let i = 0; i < data.length; i++) {
                 ypoint: 0
             })
             if (element.entrada > 1440) {
-                let newHeight = height - pythagoras(element.entrada - 1440, element.entrada - 1440)
+                let newHeight = getNewHeightBA(height, 1440, element.entrada, element.saida)
                 points[3].push({
                     carro: element.carro,
                     xpoint: 1440,
@@ -1935,7 +1937,7 @@ function drawChart() {
             const line = d3.line()
                 .x((d) => x1(d.xpoint))
                 .y((d) => d.ypoint)
-                //.curve(d3.curveCatmullRom.alpha(0.7))
+                .curve(d3.curveCatmullRom.alpha(0.7))
                 .defined(((d) => d.xpoint != 0))
 
             const lines = gChart.selectAll("lines")
