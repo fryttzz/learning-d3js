@@ -1436,6 +1436,9 @@ data = data.map((element, index) => {
     if (element.entrada === "-") {
         element.entrada = 0
     }
+    if (element.tempo_parado1 === "-") {
+        element.tempo_parado1 = "0"
+    }
     // if (element.itinerario === 'Viagem de deslocamento') {
     //     element.saida = 0
     //     element.entrada = 0
@@ -1471,7 +1474,6 @@ function getNewHeightBA(height, width, a, b, ) {
 }
 
 function getNewHeightAB(height, width, a, b, ) {
-    console.log((height * (a - width) / (a - b)));
     return (height * (a - width) / (a - b))
 }
 
@@ -1483,7 +1485,8 @@ for (let i = 0; i < data.length; i++) {
             points[0].push({
                 carro: element.carro,
                 xpoint: element.saida,
-                ypoint: height
+                ypoint: height,
+                parcked: element.tempo_parado1
             })
             if (element.entrada > 360) {
                 let newHeight = getNewHeightAB(height, 360, element.entrada, element.saida)
@@ -1949,7 +1952,7 @@ function drawChart() {
                 .attr("stroke-linejoin", "round")
                 .attr("stroke-linecap", "round")
                 .attr('stroke', d => color(d[0]))
-                .attr('stroke-width', 2.2)
+                .attr('stroke-width', 2.5)
                 .attr("d", (d) => line(d[1]))
                 .attr("class", d => `car${d[0]}`)
 
