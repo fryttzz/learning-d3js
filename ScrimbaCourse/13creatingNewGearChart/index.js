@@ -1464,261 +1464,7 @@ var points = [
     []
 ]
 
-function getNewHeightBA(height, width, a, b) {
-    return height - (height * (a - width) / (a - b))
-}
-
-function getNewHeightAB(height, width, a, b) {
-    return (height * (a - width) / (a - b))
-}
-
-for (let i = 0; i < data.length; i++) {
-    const element = data[i];
-
-    if (element.saida > 0 && element.saida < 360) {
-        if (element.sentido === 1) {
-            points[0].push({
-                carro: element.carro,
-                xpoint: element.saida,
-                ypoint: height,
-            })
-            if (element.entrada > 360) {
-                let newHeight = getNewHeightAB(height, 360, element.entrada, element.saida)
-                points[0].push({
-                    carro: element.carro,
-                    xpoint: 360,
-                    ypoint: newHeight
-                })
-                points[1].push({
-                    carro: element.carro,
-                    xpoint: 0,
-                    ypoint: newHeight
-                }, {
-                    carro: element.carro,
-                    xpoint: element.entrada,
-                    ypoint: 0
-                })
-            } else {
-                points[0].push({
-                    carro: element.carro,
-                    xpoint: element.entrada,
-                    ypoint: 0
-                })
-            }
-
-        } else if (element.sentido === 0) {
-            points[0].push({
-                carro: element.carro,
-                xpoint: element.saida,
-                ypoint: 0
-            })
-            if (element.entrada > 360) {
-                let newHeight = getNewHeightBA(height, 360, element.entrada, element.saida)
-                points[0].push({
-                    carro: element.carro,
-                    xpoint: 360,
-                    ypoint: newHeight
-                })
-                points[1].push({
-                    carro: element.carro,
-                    xpoint: 360,
-                    ypoint: newHeight
-                }, {
-                    carro: element.carro,
-                    xpoint: element.entrada,
-                    ypoint: height
-                })
-            } else {
-                points[0].push({
-                    carro: element.carro,
-                    xpoint: element.entrada,
-                    ypoint: height
-                })
-            }
-        }
-    } else if (element.saida >= 360 && element.saida < 720) {
-        if (element.sentido === 1) {
-            points[1].push({
-                carro: element.carro,
-                xpoint: element.saida,
-                ypoint: height
-            })
-            if (element.entrada >= 720) {
-                let newHeight = getNewHeightAB(height, 720, element.entrada, element.saida)
-                points[1].push({
-                    carro: element.carro,
-                    xpoint: 720,
-                    ypoint: newHeight
-                })
-                points[2].push({
-                    carro: element.carro,
-                    xpoint: 720,
-                    ypoint: newHeight
-                }, {
-                    carro: element.carro,
-                    xpoint: element.entrada,
-                    ypoint: 0
-                })
-            } else {
-                points[1].push({
-                    carro: element.carro,
-                    xpoint: element.entrada,
-                    ypoint: 0
-                })
-            }
-        } else if (element.sentido === 0) {
-            points[1].push({
-                carro: element.carro,
-                xpoint: element.saida,
-                ypoint: 0
-            })
-            if (element.entrada > 720) {
-                let newHeight = getNewHeightBA(height, 720, element.entrada, element.saida)
-                points[1].push({
-                    carro: element.carro,
-                    xpoint: 720,
-                    ypoint: newHeight
-                })
-                points[2].push({
-                    carro: element.carro,
-                    xpoint: 720,
-                    ypoint: newHeight
-                }, {
-                    carro: element.carro,
-                    xpoint: element.entrada,
-                    ypoint: height
-                })
-            } else {
-                points[1].push({
-                    carro: element.carro,
-                    xpoint: element.entrada,
-                    ypoint: height
-                })
-            }
-        }
-    } else if (element.saida >= 720 && element.saida < 1080) {
-        if (element.sentido === 1) {
-            points[2].push({
-                carro: element.carro,
-                xpoint: element.saida,
-                ypoint: height
-            })
-            if (element.entrada >= 1080) {
-                let newHeight = getNewHeightAB(height, 1080, element.entrada, element.saida)
-                points[2].push({
-                    carro: element.carro,
-                    xpoint: 1080,
-                    ypoint: newHeight
-                })
-                points[3].push({
-                    carro: element.carro,
-                    xpoint: 1080,
-                    ypoint: newHeight
-                }, {
-                    carro: element.carro,
-                    xpoint: element.entrada,
-                    ypoint: 0
-                })
-            } else {
-                points[2].push({
-                    carro: element.carro,
-                    xpoint: element.entrada,
-                    ypoint: 0
-                })
-            }
-        } else if (element.sentido === 0) {
-            points[2].push({
-                carro: element.carro,
-                xpoint: element.saida,
-                ypoint: 0
-            })
-            if (element.entrada > 1080) {
-                let newHeight = getNewHeightBA(height, 1080, element.entrada, element.saida)
-                points[2].push({
-                    carro: element.carro,
-                    xpoint: 1080,
-                    ypoint: newHeight
-                })
-                points[3].push({
-                    carro: element.carro,
-                    xpoint: 1080,
-                    ypoint: newHeight
-                }, {
-                    carro: element.carro,
-                    xpoint: element.entrada,
-                    ypoint: height
-                })
-            } else {
-                points[2].push({
-                    carro: element.carro,
-                    xpoint: element.entrada,
-                    ypoint: height
-                })
-            }
-        }
-    } else if (element.saida >= 1080 && element.saida < 1440) {
-        if (element.sentido === 1) {
-            points[3].push({
-                carro: element.carro,
-                xpoint: element.saida,
-                ypoint: height
-            })
-            if (element.entrada >= 1440) {
-                let newHeight = getNewHeightAB(height, 1440, element.entrada, element.saida)
-                points[3].push({
-                    carro: element.carro,
-                    xpoint: 1440,
-                    ypoint: newHeight
-                })
-                points[0].push({
-                    carro: element.carro,
-                    xpoint: 0.1,
-                    ypoint: newHeight
-                }, {
-                    carro: element.carro,
-                    xpoint: element.entrada - 1440,
-                    ypoint: 0
-                })
-            } else {
-                points[3].push({
-                    carro: element.carro,
-                    xpoint: element.entrada,
-                    ypoint: 0
-                })
-            }
-        } else if (element.sentido === 0) {
-            points[3].push({
-                carro: element.carro,
-                xpoint: element.saida,
-                ypoint: 0
-            })
-            if (element.entrada > 1440) {
-                let newHeight = getNewHeightBA(height, 1440, element.entrada, element.saida)
-                points[3].push({
-                    carro: element.carro,
-                    xpoint: 1440,
-                    ypoint: newHeight
-                })
-                points[0].push({
-                    carro: element.carro,
-                    xpoint: 0.1,
-                    ypoint: newHeight
-                }, {
-                    carro: element.carro,
-                    xpoint: element.entrada - 1440,
-                    ypoint: height
-                })
-            } else {
-
-                points[3].push({
-                    carro: element.carro,
-                    xpoint: element.entrada,
-                    ypoint: height
-                })
-            }
-        }
-    }
-}
+createPoint(data)
 
 var svg = d3.select("svg")
     .attr("width", svgWidth)
@@ -1733,7 +1479,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 var cars = d3.groups(data, d => d.carro);
 var carsName = cars.map(d => d[0])
 
-var color = d3.scaleOrdinal().domain(carsName).range(['#e41a1c', '#377eb8', '#4daf4a', '#984ea3', '#ff7f00', '#999999', '#a65628', '#f781bf', '#fff000', ])
+var color = d3.scaleOrdinal().domain(carsName).range(['#e41a1c', '#377eb8', '#4daf4a', '#984ea3', '#ff7f00', '#999999', '#a65628', '#f781bf', '#377', "#FFF000"])
 
 function drawChart() {
     const groups = 4
@@ -1928,11 +1674,6 @@ function drawChart() {
             .attr("stroke-width", 2);
 
         if (points[index].length > 0) {
-            var triangleSize = 30;
-            var triangle = d3.symbol()
-                .type(d3.symbolTriangle)
-                .size(triangleSize);
-
             const line = d3.line()
                 .x((d) => x1(d.xpoint))
                 .y((d) => d.ypoint)
@@ -1944,8 +1685,8 @@ function drawChart() {
                 .append("g");
 
             lines.append("path")
-                .attr("marker-end", "url(#triangle)")
-                .attr("marker-start", "url(#triangle)")
+                .attr("marker-end", (d, i, a) => `url(#triangle${a[i].__data__[0]})`)
+                .attr("marker-start", (d, i, a) => `url(#triangle${a[i].__data__[0]})`)
                 .attr("d", "M10 80 C 40 10, 65 10, 95 80 S 150 150, 180 80")
                 //
                 .attr('fill', 'none')
@@ -1956,73 +1697,346 @@ function drawChart() {
                 .attr("d", (d) => line(d[1]))
                 .attr("class", d => `car${d[0]}`)
 
-            const trinagles = gChart.selectAll("triangles")
-                .data(sumstat)
-                .enter()
+            drawTriangles(lines, color, sumstat)
 
-            trinagles.append("svg:defs").append("svg:marker")
-                .attr("id", "triangle")
-                .attr("refX", 6)
-                .attr("refY", 6)
-                .attr("markerWidth", 30)
-                .attr("markerHeight", 30)
-                .attr("markerUnits", "userSpaceOnUse")
-                .attr("orient", "auto")
-                .append("path")
-                .attr("d", "M 0 0 12 6 0 12 3 6")
-                .style("fill", (d) => {
-                    console.log(color(d[0]));
-                    return color(d[0])
-                })
-
-            // const trinagles = gChart.selectAll("triangles")
-            //     .data(points[index])
+            // const text = gChart.selectAll("texts")
+            //     .data(sumstat)
             //     .enter()
-            //     .append("g");
+            //     .append("g")
 
-            // trinagles.append("path")
-            //     .attr("d", triangle)
-            //     .attr("stroke", d => color(d.carro))
-            //     .attr("fill", d => color(d.carro))
-            //     .attr("transform", (d) => {
-            //         if (d.ypoint === 0) {
-            //             return "translate(" + x1(d.xpoint) + "," + (d.ypoint) + "), rotate(5)"
-            //         } else {
-            //             return "translate(" + x1(d.xpoint) + "," + (d.ypoint) + "), rotate(5)"
-            //         }
+            // text.append("text")
+            //     .attr("x", (d, i, a) => {
+            //         console.log(d);
+            //         return x1(d.xpoint)
             //     })
+            //     .attr("dy", d => d.ypoint)
+            //     .attr("font-size", 14)
+            //     .text(d => d[0]);
         }
     }
 }
 
 function drawLabels() {
-    // var rectTransform = function(d) {
-    //     return "translate(" + 0 + "," + 0 + ")";
-    // };
+    const gLabels = svg.append("g")
+        .attr("transform", "translate(" + margin.left + "," + 10 + ")")
 
-    // const labelGroup = svg.append("g")
-    //     .attr("transform", "translate(0,0)")
+    var x = d3.scaleLinear()
+        .domain([0, cars.length])
+        .range([0, width]);
 
-    // const labels = labelGroup.selectAll("rect")
-    //     .data(carsName)
-    //     .enter()
-    //     .append("g")
+    var xLabelsGenerator = d3.axisBottom(x).tickSize(0)
 
-    // labels.append("rect")
-    //     .attr('y', 0)
-    //     .attr('height', 20)
-    //     .attr('width', 20)
-    //     .attr("rx", 6)
-    //     .attr("ry", 6)
-    //     .style("fill", d => color(d))
-    //     .attr('transform', "translate(" + margin.left + "," + 0 + ")");
+    gLabels.append("g")
+        .attr("transform", "translate(" + 0 + "," + 25 + ")")
+        .attr("class", "xLabels")
+        .attr('stroke-width', 3)
+        .call(xLabelsGenerator)
 
-    // var text = labelGroup.selectAll("text")
-    //     .data(carsName)
-    //     .enter()
-    //     .append("text")
-    //     .text((d) => d)
-    //     .attr("y", 0)
-    //     .attr("x", 0)
-    //     .attr("fill", d => color(d))
+    gLabels.selectAll(".xLabels text")
+        .attr("display", "none")
+
+    gLabels.selectAll(".xLabels path")
+        .attr("display", "none")
+
+    const labels = gLabels.selectAll("rect")
+        .data(carsName)
+        .enter()
+        .append("g")
+
+    labels.append("rect")
+        .attr('height', 20)
+        .attr('width', 60)
+        .attr("rx", 6)
+        .attr("ry", 6)
+        .style("fill", d => color(d))
+        .attr('transform', (d, i) => "translate(" + x(i) + "," + 0 + ")");
+
+    labels.selectAll("text")
+        .data(carsName)
+        .enter()
+        .append("text")
+        .attr("x", (d, i) => x(i))
+        .attr("dy", 15)
+        .attr("dx", 10)
+        .style("fill", "#FFF")
+        .attr("font-size", 14)
+        .attr("font-weight", 400)
+        .text(d => d);
+}
+
+function drawTriangles(lines, color, sumstat) {
+    const trinagles = lines.selectAll("triangles")
+        .data(sumstat)
+        .enter()
+
+    trinagles.append("svg:defs").append("svg:marker")
+        .attr("id", (d, i, a) => `triangle${a[i].__data__[0]}`)
+        .attr("refX", 6)
+        .attr("refY", 6)
+        .attr("markerWidth", 30)
+        .attr("markerHeight", 30)
+        .attr("markerUnits", "userSpaceOnUse")
+        .attr("orient", "auto")
+        .append("path")
+        .attr("d", "M 0 0 12 6 0 12 3 6")
+        .style("fill", (d) => {
+            return color(d[0])
+        })
+}
+
+function getNewHeightBA(height, width, a, b) {
+    return height - (height * (a - width) / (a - b))
+}
+
+function getNewHeightAB(height, width, a, b) {
+    return (height * (a - width) / (a - b))
+}
+
+function createPoint(data) {
+    for (let i = 0; i < data.length; i++) {
+        const element = data[i];
+
+        if (element.saida > 0 && element.saida < 360) {
+            if (element.sentido === 1) {
+                points[0].push({
+                    carro: element.carro,
+                    xpoint: element.saida,
+                    ypoint: height,
+                })
+                if (element.entrada > 360) {
+                    let newHeight = getNewHeightAB(height, 360, element.entrada, element.saida)
+                    points[0].push({
+                        carro: element.carro,
+                        xpoint: 360,
+                        ypoint: newHeight
+                    })
+                    points[1].push({
+                        carro: element.carro,
+                        xpoint: 0,
+                        ypoint: newHeight
+                    }, {
+                        carro: element.carro,
+                        xpoint: element.entrada,
+                        ypoint: 0
+                    })
+                } else {
+                    points[0].push({
+                        carro: element.carro,
+                        xpoint: element.entrada,
+                        ypoint: 0
+                    })
+                }
+
+            } else if (element.sentido === 0) {
+                points[0].push({
+                    carro: element.carro,
+                    xpoint: element.saida,
+                    ypoint: 0
+                })
+                if (element.entrada > 360) {
+                    let newHeight = getNewHeightBA(height, 360, element.entrada, element.saida)
+                    points[0].push({
+                        carro: element.carro,
+                        xpoint: 360,
+                        ypoint: newHeight
+                    })
+                    points[1].push({
+                        carro: element.carro,
+                        xpoint: 360,
+                        ypoint: newHeight
+                    }, {
+                        carro: element.carro,
+                        xpoint: element.entrada,
+                        ypoint: height
+                    })
+                } else {
+                    points[0].push({
+                        carro: element.carro,
+                        xpoint: element.entrada,
+                        ypoint: height
+                    })
+                }
+            }
+        } else if (element.saida >= 360 && element.saida < 720) {
+            if (element.sentido === 1) {
+                points[1].push({
+                    carro: element.carro,
+                    xpoint: element.saida,
+                    ypoint: height
+                })
+                if (element.entrada >= 720) {
+                    let newHeight = getNewHeightAB(height, 720, element.entrada, element.saida)
+                    points[1].push({
+                        carro: element.carro,
+                        xpoint: 720,
+                        ypoint: newHeight
+                    })
+                    points[2].push({
+                        carro: element.carro,
+                        xpoint: 720,
+                        ypoint: newHeight
+                    }, {
+                        carro: element.carro,
+                        xpoint: element.entrada,
+                        ypoint: 0
+                    })
+                } else {
+                    points[1].push({
+                        carro: element.carro,
+                        xpoint: element.entrada,
+                        ypoint: 0
+                    })
+                }
+            } else if (element.sentido === 0) {
+                points[1].push({
+                    carro: element.carro,
+                    xpoint: element.saida,
+                    ypoint: 0
+                })
+                if (element.entrada > 720) {
+                    let newHeight = getNewHeightBA(height, 720, element.entrada, element.saida)
+                    points[1].push({
+                        carro: element.carro,
+                        xpoint: 720,
+                        ypoint: newHeight
+                    })
+                    points[2].push({
+                        carro: element.carro,
+                        xpoint: 720,
+                        ypoint: newHeight
+                    }, {
+                        carro: element.carro,
+                        xpoint: element.entrada,
+                        ypoint: height
+                    })
+                } else {
+                    points[1].push({
+                        carro: element.carro,
+                        xpoint: element.entrada,
+                        ypoint: height
+                    })
+                }
+            }
+        } else if (element.saida >= 720 && element.saida < 1080) {
+            if (element.sentido === 1) {
+                points[2].push({
+                    carro: element.carro,
+                    xpoint: element.saida,
+                    ypoint: height
+                })
+                if (element.entrada >= 1080) {
+                    let newHeight = getNewHeightAB(height, 1080, element.entrada, element.saida)
+                    points[2].push({
+                        carro: element.carro,
+                        xpoint: 1080,
+                        ypoint: newHeight
+                    })
+                    points[3].push({
+                        carro: element.carro,
+                        xpoint: 1080,
+                        ypoint: newHeight
+                    }, {
+                        carro: element.carro,
+                        xpoint: element.entrada,
+                        ypoint: 0
+                    })
+                } else {
+                    points[2].push({
+                        carro: element.carro,
+                        xpoint: element.entrada,
+                        ypoint: 0
+                    })
+                }
+            } else if (element.sentido === 0) {
+                points[2].push({
+                    carro: element.carro,
+                    xpoint: element.saida,
+                    ypoint: 0
+                })
+                if (element.entrada > 1080) {
+                    let newHeight = getNewHeightBA(height, 1080, element.entrada, element.saida)
+                    points[2].push({
+                        carro: element.carro,
+                        xpoint: 1080,
+                        ypoint: newHeight
+                    })
+                    points[3].push({
+                        carro: element.carro,
+                        xpoint: 1080,
+                        ypoint: newHeight
+                    }, {
+                        carro: element.carro,
+                        xpoint: element.entrada,
+                        ypoint: height
+                    })
+                } else {
+                    points[2].push({
+                        carro: element.carro,
+                        xpoint: element.entrada,
+                        ypoint: height
+                    })
+                }
+            }
+        } else if (element.saida >= 1080 && element.saida < 1440) {
+            if (element.sentido === 1) {
+                points[3].push({
+                    carro: element.carro,
+                    xpoint: element.saida,
+                    ypoint: height
+                })
+                if (element.entrada >= 1440) {
+                    let newHeight = getNewHeightAB(height, 1440, element.entrada, element.saida)
+                    points[3].push({
+                        carro: element.carro,
+                        xpoint: 1440,
+                        ypoint: newHeight
+                    })
+                    points[0].push({
+                        carro: element.carro,
+                        xpoint: 0.1,
+                        ypoint: newHeight
+                    }, {
+                        carro: element.carro,
+                        xpoint: element.entrada - 1440,
+                        ypoint: 0
+                    })
+                } else {
+                    points[3].push({
+                        carro: element.carro,
+                        xpoint: element.entrada,
+                        ypoint: 0
+                    })
+                }
+            } else if (element.sentido === 0) {
+                points[3].push({
+                    carro: element.carro,
+                    xpoint: element.saida,
+                    ypoint: 0
+                })
+                if (element.entrada > 1440) {
+                    let newHeight = getNewHeightBA(height, 1440, element.entrada, element.saida)
+                    points[3].push({
+                        carro: element.carro,
+                        xpoint: 1440,
+                        ypoint: newHeight
+                    })
+                    points[0].push({
+                        carro: element.carro,
+                        xpoint: 0.1,
+                        ypoint: newHeight
+                    }, {
+                        carro: element.carro,
+                        xpoint: element.entrada - 1440,
+                        ypoint: height
+                    })
+                } else {
+                    points[3].push({
+                        carro: element.carro,
+                        xpoint: element.entrada,
+                        ypoint: height
+                    })
+                }
+            }
+        }
+    }
 }
