@@ -1429,27 +1429,7 @@ var data = [{
 
 ];
 
-data = data.map((element, index) => {
-    if (element.saida === "-") {
-        element.saida = 0
-    }
-    if (element.entrada === "-") {
-        element.entrada = 0
-    }
-    if (element.tempo_parado1 === "-") {
-        element.tempo_parado1 = "0"
-    }
-    if (element.itinerario === 'Viagem de deslocamento') {
-        element.saida = 0
-        element.entrada = 0
-    }
-    return {
-        ...element,
-        saida_planejada: parseInt(element.saida_planejada.toString()) * 60 + parseInt(element.saida_planejada.slice(-2)),
-        saida: parseInt(element.saida.toString()) * 60 + parseInt(element.saida.toString().slice(-2)),
-        entrada: parseInt(element.entrada.toString()) * 60 + parseInt(element.entrada.toString().slice(-2)),
-    }
-})
+data = dataFilter(data)
 
 var svgWidth = 1300,
     svgHeight = 1000;
@@ -1463,15 +1443,13 @@ var points = [
     [],
     []
 ]
-
-createPoint(data)
-
 var svg = d3.select("svg")
     .attr("width", svgWidth)
     .attr("height", svgHeight)
     .attr("class", "svg-container")
 
 window.addEventListener('DOMContentLoaded', (event) => {
+    createPoint(data);
     drawChart();
     drawLabels();
 });
@@ -1485,41 +1463,16 @@ function drawChart() {
     const groups = 4
     const groupHeight = svgHeight / 4
     const domains = [
-            [0, 360],
-            [360, 720],
-            [720, 1080],
-            [1080, 1439.99],
-        ],
-        tickHours = [],
-        tick10Min = [],
-        tick5Min = []
-
-    var tickHoursCount = 60;
-    for (let i = 1; i <= 4; i++) {
-        tickHours.push([])
-        for (let j = 0; j < 6; j++) {
-            tickHours[i - 1].push(tickHoursCount);
-            tickHoursCount += 60;
-        }
-    }
-
-    var tick10MinCount = 10;
-    for (let i = 1; i <= 4; i++) {
-        tick10Min.push([])
-        for (let j = 0; j < 36; j++) {
-            tick10Min[i - 1].push(tick10MinCount);
-            tick10MinCount += 10;
-        }
-    }
-
-    var tick5MinCount = 5;
-    for (let i = 1; i <= 4; i++) {
-        tick5Min.push([])
-        for (let j = 0; j < 36; j++) {
-            tick5Min[i - 1].push(tick5MinCount);
-            tick5MinCount += 10;
-        }
-    }
+        [0, 360],
+        [360, 720],
+        [720, 1080],
+        [1080, 1439.99],
+    ]
+    var {
+        tickHours,
+        tick10Min,
+        tick5Min
+    } = createTicks()
 
     const positions = [0, groupHeight, groupHeight * 2, groupHeight * 3]
 
@@ -2039,4 +1992,63 @@ function createPoint(data) {
             }
         }
     }
+}
+
+function dataFilter(data) {
+    return data.map((element, index) => {
+        if (element.saida === "-") {
+            element.saida = 0
+        }
+        if (element.entrada === "-") {
+            element.entrada = 0
+        }
+        if (element.tempo_parado1 === "-") {
+            element.tempo_parado1 = "0"
+        }
+        if (element.itinerario === 'Viagem de deslocamento') {
+            element.saida = 0
+            element.entrada = 0
+        }
+        return {
+            ...element,
+            saida_planejada: parseInt(element.saida_planejada.toString()) * 60 + parseInt(element.saida_planejada.slice(-2)),
+            saida: parseInt(element.saida.toString()) * 60 + parseInt(element.saida.toString().slice(-2)),
+            entrada: parseInt(element.entrada.toString()) * 60 + parseInt(element.entrada.toString().slice(-2)),
+        }
+    })
+}
+
+function createTicks() {
+    var tickHours = [],
+        tick10Min = [],
+        tick5Min = []
+
+    var tickHoursCount = 60;
+    for (let i = 1; i <= 4; i++) {
+        tickHours.push([])
+        for (let j = 0; j < 6; j++) {
+            tickHours[i - 1].push(tickHoursCount);
+            tickHoursCount += 60;
+        }
+    }
+
+    var tick10MinCount = 10;
+    for (let i = 1; i <= 4; i++) {
+        tick10Min.push([])
+        for (let j = 0; j < 36; j++) {
+            tick10Min[i - 1].push(tick10MinCount);
+            tick10MinCount += 10;
+        }
+    }
+
+    var tick5MinCount = 5;
+    for (let i = 1; i <= 4; i++) {
+        tick5Min.push([])
+        for (let j = 0; j < 36; j++) {
+            tick5Min[i - 1].push(tick5MinCount);
+            tick5MinCount += 10;
+        }
+    }
+
+    return { tickHours, tick10Min, tick5Min }
 }
