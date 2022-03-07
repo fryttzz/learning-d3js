@@ -1449,7 +1449,8 @@ var svg = d3.select("svg")
     .attr("class", "svg-container")
 
 window.addEventListener('DOMContentLoaded', (event) => {
-    createPoint(data);
+    createPoints(data);
+    dataFilterCar(data)
     drawChart();
     drawLabels();
 });
@@ -1646,25 +1647,11 @@ function drawChart() {
                 .attr("stroke-linejoin", "round")
                 .attr("stroke-linecap", "round")
                 .attr('stroke', d => color(d[0]))
-                .attr('stroke-width', 2.5)
+                .attr('stroke-width', 2.2)
                 .attr("d", (d) => line(d[1]))
                 .attr("class", d => `car${d[0]}`)
 
-            drawTriangles(lines, color, sumstat)
-
-            // const text = gChart.selectAll("texts")
-            //     .data(sumstat)
-            //     .enter()
-            //     .append("g")
-
-            // text.append("text")
-            //     .attr("x", (d, i, a) => {
-            //         console.log(d);
-            //         return x1(d.xpoint)
-            //     })
-            //     .attr("dy", d => d.ypoint)
-            //     .attr("font-size", 14)
-            //     .text(d => d[0]);
+            drawTriangles(gChart, color, sumstat)
         }
     }
 }
@@ -1714,8 +1701,8 @@ function drawLabels() {
         .text(d => d);
 }
 
-function drawTriangles(lines, color, sumstat) {
-    const trinagles = lines.selectAll("triangles")
+function drawTriangles(gChart, color, sumstat) {
+    const trinagles = gChart.selectAll("triangles")
         .data(sumstat)
         .enter()
 
@@ -1723,8 +1710,8 @@ function drawTriangles(lines, color, sumstat) {
         .attr("id", (d, i, a) => `triangle${a[i].__data__[0]}`)
         .attr("refX", 6)
         .attr("refY", 6)
-        .attr("markerWidth", 45)
-        .attr("markerHeight", 45)
+        .attr("markerWidth", 30)
+        .attr("markerHeight", 30)
         .attr("markerUnits", "userSpaceOnUse")
         .attr("orient", "auto")
         .append("path")
@@ -1742,10 +1729,76 @@ function getNewHeightAB(height, width, a, b) {
     return (height * (a - width) / (a - b))
 }
 
-function createPoint(data) {
+function dataFilter(data) {
+    return data.map((element, index) => {
+        if (element.saida === "-") {
+            element.saida = 0
+        }
+        if (element.entrada === "-") {
+            element.entrada = 0
+        }
+        if (element.tempo_parado1 === "-") {
+            element.tempo_parado1 = "0"
+        }
+        if (element.itinerario === 'Viagem de deslocamento') {
+            element.saida = 0
+            element.entrada = 0
+        }
+        return {
+            ...element,
+            saida_planejada: parseInt(element.saida_planejada.toString()) * 60 + parseInt(element.saida_planejada.slice(-2)),
+            saida: parseInt(element.saida.toString()) * 60 + parseInt(element.saida.toString().slice(-2)),
+            entrada: parseInt(element.entrada.toString()) * 60 + parseInt(element.entrada.toString().slice(-2)),
+        }
+    })
+}
+
+function dataFilterCar(data) {
+    var cars = d3.groups(data, d => d.carro);
+    cars = cars.map((element, index) => {
+        console.log(element[1][0].carro, element[1][0].saida, element[1][element[1].length - 1].saida);
+        return {...element }
+    })
+}
+
+function createTicks() {
+    var tickHours = [],
+        tick10Min = [],
+        tick5Min = []
+
+    var tickHoursCount = 60;
+    for (let i = 1; i <= 4; i++) {
+        tickHours.push([])
+        for (let j = 0; j < 6; j++) {
+            tickHours[i - 1].push(tickHoursCount);
+            tickHoursCount += 60;
+        }
+    }
+
+    var tick10MinCount = 10;
+    for (let i = 1; i <= 4; i++) {
+        tick10Min.push([])
+        for (let j = 0; j < 36; j++) {
+            tick10Min[i - 1].push(tick10MinCount);
+            tick10MinCount += 10;
+        }
+    }
+
+    var tick5MinCount = 5;
+    for (let i = 1; i <= 4; i++) {
+        tick5Min.push([])
+        for (let j = 0; j < 36; j++) {
+            tick5Min[i - 1].push(tick5MinCount);
+            tick5MinCount += 10;
+        }
+    }
+
+    return { tickHours, tick10Min, tick5Min }
+}
+
+function createPoints(data) {
     for (let i = 0; i < data.length; i++) {
         const element = data[i];
-
         if (element.saida > 0 && element.saida < 360) {
             if (element.sentido === 1) {
                 points[0].push({
@@ -1991,61 +2044,16 @@ function createPoint(data) {
     }
 }
 
-function dataFilter(data) {
-    return data.map((element, index) => {
-        if (element.saida === "-") {
-            element.saida = 0
-        }
-        if (element.entrada === "-") {
-            element.entrada = 0
-        }
-        if (element.tempo_parado1 === "-") {
-            element.tempo_parado1 = "0"
-        }
-        if (element.itinerario === 'Viagem de deslocamento') {
-            element.saida = 0
-            element.entrada = 0
-        }
-        return {
-            ...element,
-            saida_planejada: parseInt(element.saida_planejada.toString()) * 60 + parseInt(element.saida_planejada.slice(-2)),
-            saida: parseInt(element.saida.toString()) * 60 + parseInt(element.saida.toString().slice(-2)),
-            entrada: parseInt(element.entrada.toString()) * 60 + parseInt(element.entrada.toString().slice(-2)),
-        }
-    })
-}
+// const text = gChart.selectAll("texts")
+//     .data(sumstat)
+//     .enter()
+//     .append("g")
 
-function createTicks() {
-    var tickHours = [],
-        tick10Min = [],
-        tick5Min = []
-
-    var tickHoursCount = 60;
-    for (let i = 1; i <= 4; i++) {
-        tickHours.push([])
-        for (let j = 0; j < 6; j++) {
-            tickHours[i - 1].push(tickHoursCount);
-            tickHoursCount += 60;
-        }
-    }
-
-    var tick10MinCount = 10;
-    for (let i = 1; i <= 4; i++) {
-        tick10Min.push([])
-        for (let j = 0; j < 36; j++) {
-            tick10Min[i - 1].push(tick10MinCount);
-            tick10MinCount += 10;
-        }
-    }
-
-    var tick5MinCount = 5;
-    for (let i = 1; i <= 4; i++) {
-        tick5Min.push([])
-        for (let j = 0; j < 36; j++) {
-            tick5Min[i - 1].push(tick5MinCount);
-            tick5MinCount += 10;
-        }
-    }
-
-    return { tickHours, tick10Min, tick5Min }
-}
+// text.append("text")
+//     .attr("x", (d, i, a) => {
+//         console.log(d);
+//         return x1(d.xpoint)
+//     })
+//     .attr("dy", d => d.ypoint)
+//     .attr("font-size", 14)
+//     .text(d => d[0]);
