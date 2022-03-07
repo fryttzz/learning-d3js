@@ -1704,10 +1704,7 @@ function drawLabels() {
         .style("fill", d => color(d))
         .attr('transform', (d, i) => "translate(" + x(i) + "," + 0 + ")");
 
-    labels.selectAll("text")
-        .data(carsName)
-        .enter()
-        .append("text")
+    labels.append("text")
         .attr("x", (d, i) => x(i))
         .attr("dy", 15)
         .attr("dx", 10)
@@ -1726,8 +1723,8 @@ function drawTriangles(lines, color, sumstat) {
         .attr("id", (d, i, a) => `triangle${a[i].__data__[0]}`)
         .attr("refX", 6)
         .attr("refY", 6)
-        .attr("markerWidth", 30)
-        .attr("markerHeight", 30)
+        .attr("markerWidth", 45)
+        .attr("markerHeight", 45)
         .attr("markerUnits", "userSpaceOnUse")
         .attr("orient", "auto")
         .append("path")
