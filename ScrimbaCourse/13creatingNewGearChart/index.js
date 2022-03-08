@@ -1449,8 +1449,8 @@ var svg = d3.select("svg")
     .attr("class", "svg-container")
 
 window.addEventListener('DOMContentLoaded', (event) => {
-    createPoints(data);
     dataFilterCar(data)
+    createPoints(data);
     drawChart();
     drawLabels();
 });
@@ -1627,6 +1627,7 @@ function drawChart() {
             .attr("stroke", "currentColor")
             .attr("stroke-width", 2);
 
+        //LINHAS
         if (points[index].length > 0) {
             const line = d3.line()
                 .x((d) => x1(d.xpoint))
@@ -1635,21 +1636,25 @@ function drawChart() {
                 .defined(((d) => d.xpoint != 0))
 
             const lines = gChart.selectAll("lines")
-                .data(sumstat).enter()
+                .data(sumstat)
+                .enter()
                 .append("g");
 
             lines.append("path")
-                .attr("marker-end", (d, i, a) => `url(#triangle${a[i].__data__[0]})`)
                 .attr("marker-start", (d, i, a) => `url(#triangle${a[i].__data__[0]})`)
+                .attr("marker-end", (d, i, a) => `url(#triangle${a[i].__data__[0]})`)
                 .attr("d", "M10 80 C 40 10, 65 10, 95 80 S 150 150, 180 80")
                 //
                 .attr('fill', 'none')
                 .attr("stroke-linejoin", "round")
                 .attr("stroke-linecap", "round")
-                .attr('stroke', d => color(d[0]))
+                .attr('stroke', d => {
+                    console.log("teste");
+                    return color(d[0])
+                })
                 .attr('stroke-width', 2.2)
                 .attr("d", (d) => line(d[1]))
-                .attr("class", d => `car${d[0]}`)
+                .attr("class", d => `car${d[0]}`);
 
             drawTriangles(gChart, color, sumstat)
         }
@@ -1694,7 +1699,7 @@ function drawLabels() {
     labels.append("text")
         .attr("x", (d, i) => x(i))
         .attr("dy", 15)
-        .attr("dx", 10)
+        .attr("dx", 17)
         .style("fill", "#FFF")
         .attr("font-size", 14)
         .attr("font-weight", 400)
@@ -1740,7 +1745,7 @@ function dataFilter(data) {
         if (element.tempo_parado1 === "-") {
             element.tempo_parado1 = "0"
         }
-        if (element.itinerario === 'Viagem de deslocamento') {
+        if (element.itinerario === 'Viagem de deslocamento' || element.itinerario === 'Viagem de Deslocamento entre Terminais') {
             element.saida = 0
             element.entrada = 0
         }
@@ -1755,10 +1760,57 @@ function dataFilter(data) {
 
 function dataFilterCar(data) {
     var cars = d3.groups(data, d => d.carro);
-    cars = cars.map((element, index) => {
-        console.log(element[1][0].carro, element[1][0].saida, element[1][element[1].length - 1].saida);
-        return {...element }
+    cars = cars.map(car => {
+        return car[1].map((points, index) => {
+            let entrada = car[1][index].entrada
+            let saida = 0
+            let next = false
+            let nextPoint = {}
+            let previous = false
+            let previousPoint = {}
+
+            if (car[1][index + 1]) {
+                saida = car[1][index + 1].saida
+                nextPoint = car[1][index + 1]
+                next = true
+            }
+            if (car[1][index - 1]) {
+                previous = true
+                previousPoint = car[1][index - 1]
+            }
+            if (!next && !previous) {
+                points.position_saida = 1
+                points.position_entrada = 3
+            }
+            if (!next && previous) {
+                points.position_saida = 2
+                points.position_entrada = 3
+            }
+            if (next && !previous) {
+                points.position_saida = 1
+                points.position_entrada = 2
+            }
+            if (next && previous) {
+                points.position_saida = 2
+                points.position_entrada = 2
+            }
+            if ((!next && previous) && (previousPoint.entrada === 0)) {
+                points.position_saida = 1
+                points.position_entrada = 3
+            }
+            if ((next && previous) && (previousPoint.entrada === 0)) {
+                points.position_saida = 1
+                points.position_entrada = 2
+                    //nextPoint.position_saida = 2
+            }
+            if ((entrada - saida) > 30) {
+                points.position_entrada = 3
+            }
+
+            return {...points }
+        })
     })
+    return cars
 }
 
 function createTicks() {
@@ -1805,28 +1857,33 @@ function createPoints(data) {
                     carro: element.carro,
                     xpoint: element.saida,
                     ypoint: height,
+                    position: element.position_saida
                 })
                 if (element.entrada > 360) {
                     let newHeight = getNewHeightAB(height, 360, element.entrada, element.saida)
                     points[0].push({
                         carro: element.carro,
                         xpoint: 360,
-                        ypoint: newHeight
+                        ypoint: newHeight,
+                        position: element.position_entrada
                     })
                     points[1].push({
                         carro: element.carro,
                         xpoint: 0,
-                        ypoint: newHeight
+                        ypoint: newHeight,
+                        position: 2
                     }, {
                         carro: element.carro,
                         xpoint: element.entrada,
-                        ypoint: 0
+                        ypoint: 0,
+                        position: element.position_entrada
                     })
                 } else {
                     points[0].push({
                         carro: element.carro,
                         xpoint: element.entrada,
-                        ypoint: 0
+                        ypoint: 0,
+                        position: element.position_entrada
                     })
                 }
 
@@ -1834,29 +1891,34 @@ function createPoints(data) {
                 points[0].push({
                     carro: element.carro,
                     xpoint: element.saida,
-                    ypoint: 0
+                    ypoint: 0,
+                    position: element.position_saida
                 })
                 if (element.entrada > 360) {
                     let newHeight = getNewHeightBA(height, 360, element.entrada, element.saida)
                     points[0].push({
                         carro: element.carro,
                         xpoint: 360,
-                        ypoint: newHeight
+                        ypoint: newHeight,
+                        position: element.position_entrada
                     })
                     points[1].push({
                         carro: element.carro,
                         xpoint: 360,
-                        ypoint: newHeight
+                        ypoint: newHeight,
+                        position: 2
                     }, {
                         carro: element.carro,
                         xpoint: element.entrada,
-                        ypoint: height
+                        ypoint: height,
+                        position: element.position_entrada
                     })
                 } else {
                     points[0].push({
                         carro: element.carro,
                         xpoint: element.entrada,
-                        ypoint: height
+                        ypoint: height,
+                        position: element.position_entrada
                     })
                 }
             }
@@ -1865,58 +1927,68 @@ function createPoints(data) {
                 points[1].push({
                     carro: element.carro,
                     xpoint: element.saida,
-                    ypoint: height
+                    ypoint: height,
+                    position: element.position_saida
                 })
                 if (element.entrada >= 720) {
                     let newHeight = getNewHeightAB(height, 720, element.entrada, element.saida)
                     points[1].push({
                         carro: element.carro,
                         xpoint: 720,
-                        ypoint: newHeight
+                        ypoint: newHeight,
+                        position: element.position_entrada
                     })
                     points[2].push({
                         carro: element.carro,
                         xpoint: 720,
-                        ypoint: newHeight
+                        ypoint: newHeight,
+                        position: 2
                     }, {
                         carro: element.carro,
                         xpoint: element.entrada,
-                        ypoint: 0
+                        ypoint: 0,
+                        position: element.position_entrada
                     })
                 } else {
                     points[1].push({
                         carro: element.carro,
                         xpoint: element.entrada,
-                        ypoint: 0
+                        ypoint: 0,
+                        position: element.position_entrada
                     })
                 }
             } else if (element.sentido === 0) {
                 points[1].push({
                     carro: element.carro,
                     xpoint: element.saida,
-                    ypoint: 0
+                    ypoint: 0,
+                    position: element.position_saida
                 })
                 if (element.entrada > 720) {
                     let newHeight = getNewHeightBA(height, 720, element.entrada, element.saida)
                     points[1].push({
                         carro: element.carro,
                         xpoint: 720,
-                        ypoint: newHeight
+                        ypoint: newHeight,
+                        position: element.position_entrada
                     })
                     points[2].push({
                         carro: element.carro,
                         xpoint: 720,
-                        ypoint: newHeight
+                        ypoint: newHeight,
+                        position: 2
                     }, {
                         carro: element.carro,
                         xpoint: element.entrada,
-                        ypoint: height
+                        ypoint: height,
+                        position: element.position_entrada
                     })
                 } else {
                     points[1].push({
                         carro: element.carro,
                         xpoint: element.entrada,
-                        ypoint: height
+                        ypoint: height,
+                        position: element.position_entrada
                     })
                 }
             }
@@ -1925,58 +1997,68 @@ function createPoints(data) {
                 points[2].push({
                     carro: element.carro,
                     xpoint: element.saida,
-                    ypoint: height
+                    ypoint: height,
+                    position: element.position_saida
                 })
                 if (element.entrada >= 1080) {
                     let newHeight = getNewHeightAB(height, 1080, element.entrada, element.saida)
                     points[2].push({
                         carro: element.carro,
                         xpoint: 1080,
-                        ypoint: newHeight
+                        ypoint: newHeight,
+                        position: element.position_entrada
                     })
                     points[3].push({
                         carro: element.carro,
                         xpoint: 1080,
-                        ypoint: newHeight
+                        ypoint: newHeight,
+                        position: 2
                     }, {
                         carro: element.carro,
                         xpoint: element.entrada,
-                        ypoint: 0
+                        ypoint: 0,
+                        position: element.position_entrada
                     })
                 } else {
                     points[2].push({
                         carro: element.carro,
                         xpoint: element.entrada,
-                        ypoint: 0
+                        ypoint: 0,
+                        position: element.position_entrada
                     })
                 }
             } else if (element.sentido === 0) {
                 points[2].push({
                     carro: element.carro,
                     xpoint: element.saida,
-                    ypoint: 0
+                    ypoint: 0,
+                    position: element.position_saida
                 })
                 if (element.entrada > 1080) {
                     let newHeight = getNewHeightBA(height, 1080, element.entrada, element.saida)
                     points[2].push({
                         carro: element.carro,
                         xpoint: 1080,
-                        ypoint: newHeight
+                        ypoint: newHeight,
+                        position: element.position_entrada
                     })
                     points[3].push({
                         carro: element.carro,
                         xpoint: 1080,
-                        ypoint: newHeight
+                        ypoint: newHeight,
+                        position: 2
                     }, {
                         carro: element.carro,
                         xpoint: element.entrada,
-                        ypoint: height
+                        ypoint: height,
+                        position: element.position_entrada
                     })
                 } else {
                     points[2].push({
                         carro: element.carro,
                         xpoint: element.entrada,
-                        ypoint: height
+                        ypoint: height,
+                        position: element.position_entrada
                     })
                 }
             }
@@ -1985,58 +2067,68 @@ function createPoints(data) {
                 points[3].push({
                     carro: element.carro,
                     xpoint: element.saida,
-                    ypoint: height
+                    ypoint: height,
+                    position: element.position_saida
                 })
                 if (element.entrada >= 1440) {
                     let newHeight = getNewHeightAB(height, 1440, element.entrada, element.saida)
                     points[3].push({
                         carro: element.carro,
                         xpoint: 1440,
-                        ypoint: newHeight
+                        ypoint: newHeight,
+                        position: element.position_entrada
                     })
                     points[0].push({
                         carro: element.carro,
                         xpoint: 0.1,
-                        ypoint: newHeight
+                        ypoint: newHeight,
+                        position: 2
                     }, {
                         carro: element.carro,
                         xpoint: element.entrada - 1440,
-                        ypoint: 0
+                        ypoint: 0,
+                        position: element.position_entrada
                     })
                 } else {
                     points[3].push({
                         carro: element.carro,
                         xpoint: element.entrada,
-                        ypoint: 0
+                        ypoint: 0,
+                        position: element.position_entrada
                     })
                 }
             } else if (element.sentido === 0) {
                 points[3].push({
                     carro: element.carro,
                     xpoint: element.saida,
-                    ypoint: 0
+                    ypoint: 0,
+                    position: element.position_saida
                 })
                 if (element.entrada > 1440) {
                     let newHeight = getNewHeightBA(height, 1440, element.entrada, element.saida)
                     points[3].push({
                         carro: element.carro,
                         xpoint: 1440,
-                        ypoint: newHeight
+                        ypoint: newHeight,
+                        position: element.position_entrada
                     })
                     points[0].push({
                         carro: element.carro,
                         xpoint: 0.1,
-                        ypoint: newHeight
+                        ypoint: newHeight,
+                        position: 2
                     }, {
                         carro: element.carro,
                         xpoint: element.entrada - 1440,
-                        ypoint: height
+                        ypoint: height,
+                        position: element.position_entrada
                     })
                 } else {
                     points[3].push({
                         carro: element.carro,
                         xpoint: element.entrada,
-                        ypoint: height
+                        ypoint: height,
+                        position: element.position_entrada
                     })
                 }
             }
