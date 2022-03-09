@@ -1629,36 +1629,36 @@ function drawChart() {
 
         //LINHAS
         if (points[index].length > 0) {
-            const line = d3.line()
-                .x((d) => x1(d.xpoint))
-                .y((d) => d.ypoint)
-                .curve(d3.curveCatmullRom.alpha(0.7))
-                .defined(((d) => d.xpoint != 0))
-
-            const lines = gChart.selectAll("lines")
-                .data(sumstat)
-                .enter()
-                .append("g");
-
-            lines.append("path")
-                .attr("marker-start", (d, i, a) => `url(#triangle${a[i].__data__[0]})`)
-                .attr("marker-end", (d, i, a) => `url(#triangle${a[i].__data__[0]})`)
-                .attr("d", "M10 80 C 40 10, 65 10, 95 80 S 150 150, 180 80")
-                //
-                .attr('fill', 'none')
-                .attr("stroke-linejoin", "round")
-                .attr("stroke-linecap", "round")
-                .attr('stroke', d => {
-                    console.log("teste");
-                    return color(d[0])
-                })
-                .attr('stroke-width', 2.2)
-                .attr("d", (d) => line(d[1]))
-                .attr("class", d => `car${d[0]}`);
-
+            drawLines(gChart, sumstat, x1)
             drawTriangles(gChart, color, sumstat)
         }
     }
+}
+
+function drawLines(group, sumstat, x1) {
+    const line = d3.line()
+        .x((d) => x1(d.xpoint))
+        .y((d) => d.ypoint)
+        .curve(d3.curveCatmullRom.alpha(0.7))
+        .defined(((d) => d.xpoint != 0))
+
+    const lines = group.selectAll("lines")
+        .data(sumstat)
+        .enter()
+        .append("g");
+
+    lines.append("path")
+        .attr("marker-start", (d, i, a) => `url(#triangle${a[i].__data__[0]})`)
+        .attr("marker-end", (d, i, a) => `url(#triangle${a[i].__data__[0]})`)
+        .attr("d", "M10 80 C 40 10, 65 10, 95 80 S 150 150, 180 80")
+        //
+        .attr('fill', 'none')
+        .attr("stroke-linejoin", "round")
+        .attr("stroke-linecap", "round")
+        .attr('stroke', d => color(d[0]))
+        .attr('stroke-width', 2.2)
+        .attr("d", (d) => line(d[1]))
+        .attr("class", d => `car${d[0]}`);
 }
 
 function drawLabels() {
