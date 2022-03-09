@@ -1426,8 +1426,7 @@ var data = [{
         "tempo_parado2": "-",
         "sentido": 1
     }
-
-];
+]
 
 data = dataFilter(data)
 
@@ -1630,14 +1629,30 @@ function drawChart() {
         //LINHAS
         if (points[index].length > 0) {
             drawLines(gChart, sumstat, x1)
-            drawTriangles(gChart, color, sumstat)
+            drawTriangles(gChart, color, points[index])
         }
     }
 }
 
 function drawLines(group, sumstat, x1) {
     const line = d3.line()
-        .x((d) => x1(d.xpoint))
+        .x((data, i) => {
+            if (data.position != 2) {
+                if (data.ypoint === 0) {
+                    data.ypoint -= 10;
+                } else {
+                    data.ypoint += 10;
+                }
+            }
+            if (data.position === 1) {
+                lines.attr("marker-start", `url(#triangle${data.carro + data.xpoint})`)
+                    .attr("d", "M10 80 C 40 10, 65 10, 95 80 S 150 150, 180 80")
+            } else if (data.position === 3) {
+                lines.attr("marker-end", `url(#triangle${data.carro + data.xpoint})`)
+                    .attr("d", "M10 80 C 40 10, 65 10, 95 80 S 150 150, 180 80")
+            }
+            return x1(data.xpoint)
+        })
         .y((d) => d.ypoint)
         .curve(d3.curveCatmullRom.alpha(0.7))
         .defined(((d) => d.xpoint != 0))
@@ -1648,10 +1663,6 @@ function drawLines(group, sumstat, x1) {
         .append("g");
 
     lines.append("path")
-        .attr("marker-start", (d, i, a) => `url(#triangle${a[i].__data__[0]})`)
-        .attr("marker-end", (d, i, a) => `url(#triangle${a[i].__data__[0]})`)
-        .attr("d", "M10 80 C 40 10, 65 10, 95 80 S 150 150, 180 80")
-        //
         .attr('fill', 'none')
         .attr("stroke-linejoin", "round")
         .attr("stroke-linecap", "round")
@@ -1659,6 +1670,29 @@ function drawLines(group, sumstat, x1) {
         .attr('stroke-width', 2.2)
         .attr("d", (d) => line(d[1]))
         .attr("class", d => `car${d[0]}`);
+}
+
+function drawTriangles(gChart, color, points) {
+    const trinagles = gChart.selectAll("triangles")
+        .data(points)
+        .enter()
+
+    trinagles.append("svg:defs").append("svg:marker")
+        .attr("id", (d, i, a) => {
+            return `triangle${d.carro + d.xpoint}`
+        })
+        .attr("refX", 6)
+        .attr("refY", 6)
+        .attr("markerWidth", 30)
+        .attr("markerHeight", 30)
+        .attr("markerUnits", "userSpaceOnUse")
+        .attr("orient", "auto")
+        .append("path")
+        .attr("d", "M 0 0 12 6 0 12 3 6")
+        .style("fill", (d) => {
+            console.log(color(d.carro));
+            return color(d.carro)
+        })
 }
 
 function drawLabels() {
@@ -1704,26 +1738,6 @@ function drawLabels() {
         .attr("font-size", 14)
         .attr("font-weight", 400)
         .text(d => d);
-}
-
-function drawTriangles(gChart, color, sumstat) {
-    const trinagles = gChart.selectAll("triangles")
-        .data(sumstat)
-        .enter()
-
-    trinagles.append("svg:defs").append("svg:marker")
-        .attr("id", (d, i, a) => `triangle${a[i].__data__[0]}`)
-        .attr("refX", 6)
-        .attr("refY", 6)
-        .attr("markerWidth", 30)
-        .attr("markerHeight", 30)
-        .attr("markerUnits", "userSpaceOnUse")
-        .attr("orient", "auto")
-        .append("path")
-        .attr("d", "M 0 0 12 6 0 12 3 6")
-        .style("fill", (d) => {
-            return color(d[0])
-        })
 }
 
 function getNewHeightBA(height, width, a, b) {
@@ -1778,6 +1792,7 @@ function dataFilterCar(data) {
                 previous = true
                 previousPoint = car[1][index - 1]
             }
+
             if (!next && !previous) {
                 points.position_saida = 1
                 points.position_entrada = 3
@@ -1801,9 +1816,12 @@ function dataFilterCar(data) {
             if ((next && previous) && (previousPoint.entrada === 0)) {
                 points.position_saida = 1
                 points.position_entrada = 2
-                    //nextPoint.position_saida = 2
             }
-            if ((entrada - saida) > 30) {
+            if ((next && previous) && (saida - entrada) > 30) {
+                car[1][index + 1].position_saida = 1
+                points.position_entrada = 3
+            }
+            if (nextPoint.saida === 0) {
                 points.position_entrada = 3
             }
 
@@ -2135,17 +2153,3 @@ function createPoints(data) {
         }
     }
 }
-
-// const text = gChart.selectAll("texts")
-//     .data(sumstat)
-//     .enter()
-//     .append("g")
-
-// text.append("text")
-//     .attr("x", (d, i, a) => {
-//         console.log(d);
-//         return x1(d.xpoint)
-//     })
-//     .attr("dy", d => d.ypoint)
-//     .attr("font-size", 14)
-//     .text(d => d[0]);
