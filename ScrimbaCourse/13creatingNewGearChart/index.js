@@ -268,7 +268,7 @@ var data = [{
         "tempo_volta": "-",
         "tempo_planejado2": "3h 55m",
         "tempo_parado2": "-",
-        "sentido": 0
+        "sentido": 1
     },
     {
         "id": "17",
@@ -302,7 +302,7 @@ var data = [{
         "tempo_volta": "56m",
         "tempo_planejado2": "-3h 0m",
         "tempo_parado2": "-3h 56m",
-        "sentido": 0
+        "sentido": 1
     },
     {
         "id": "19",
@@ -795,7 +795,7 @@ var data = [{
         "tempo_volta": "-",
         "tempo_planejado2": "-",
         "tempo_parado2": "-",
-        "sentido": 0
+        "sentido": 1
     },
     {
         "id": "48",
@@ -812,7 +812,7 @@ var data = [{
         "tempo_volta": "57m",
         "tempo_planejado2": "70m",
         "tempo_parado2": "13m",
-        "sentido": 1
+        "sentido": 0
     },
     {
         "id": "49",
@@ -829,7 +829,7 @@ var data = [{
         "tempo_volta": "-",
         "tempo_planejado2": "-",
         "tempo_parado2": "-",
-        "sentido": 0
+        "sentido": 1
     },
     {
         "id": "50",
@@ -846,7 +846,7 @@ var data = [{
         "tempo_volta": "73m",
         "tempo_planejado2": "75m",
         "tempo_parado2": "2m",
-        "sentido": 1
+        "sentido": 0
     },
     {
         "id": "51",
@@ -863,7 +863,7 @@ var data = [{
         "tempo_volta": "-",
         "tempo_planejado2": "-",
         "tempo_parado2": "-",
-        "sentido": 0
+        "sentido": 1
     },
     {
         "id": "52",
@@ -880,7 +880,7 @@ var data = [{
         "tempo_volta": "61m",
         "tempo_planejado2": "90m",
         "tempo_parado2": "29m",
-        "sentido": 1
+        "sentido": 0
     },
     {
         "id": "53",
@@ -897,7 +897,7 @@ var data = [{
         "tempo_volta": "-",
         "tempo_planejado2": "-",
         "tempo_parado2": "-",
-        "sentido": 0
+        "sentido": 1
     },
     {
         "id": "54",
@@ -914,7 +914,7 @@ var data = [{
         "tempo_volta": "62m",
         "tempo_planejado2": "70m",
         "tempo_parado2": "8m",
-        "sentido": 1
+        "sentido": 0
     },
     {
         "id": "55",
@@ -931,7 +931,7 @@ var data = [{
         "tempo_volta": "-",
         "tempo_planejado2": "-",
         "tempo_parado2": "-",
-        "sentido": 0
+        "sentido": 1
     },
     {
         "id": "56",
@@ -948,7 +948,7 @@ var data = [{
         "tempo_volta": "66m",
         "tempo_planejado2": "75m",
         "tempo_parado2": "9m",
-        "sentido": 1
+        "sentido": 0
     },
     {
         "id": "57",
@@ -965,7 +965,7 @@ var data = [{
         "tempo_volta": "-",
         "tempo_planejado2": "-",
         "tempo_parado2": "-",
-        "sentido": 0
+        "sentido": 1
     },
     {
         "id": "58",
@@ -982,7 +982,7 @@ var data = [{
         "tempo_volta": "69m",
         "tempo_planejado2": "85m",
         "tempo_parado2": "16m",
-        "sentido": 1
+        "sentido": 0
     },
     {
         "id": "59",
@@ -999,7 +999,7 @@ var data = [{
         "tempo_volta": "-",
         "tempo_planejado2": "-",
         "tempo_parado2": "-",
-        "sentido": 0
+        "sentido": 1
     },
     {
         "id": "60",
@@ -1016,7 +1016,7 @@ var data = [{
         "tempo_volta": "64m",
         "tempo_planejado2": "80m",
         "tempo_parado2": "16m",
-        "sentido": 1
+        "sentido": 0
     },
     {
         "id": "61",
@@ -1033,7 +1033,7 @@ var data = [{
         "tempo_volta": "-",
         "tempo_planejado2": "-",
         "tempo_parado2": "-",
-        "sentido": 0
+        "sentido": 1
     },
     {
         "id": "62",
@@ -1050,7 +1050,7 @@ var data = [{
         "tempo_volta": "60m",
         "tempo_planejado2": "65m",
         "tempo_parado2": "5m",
-        "sentido": 1
+        "sentido": 0
     },
     {
         "id": "63",
@@ -1067,7 +1067,7 @@ var data = [{
         "tempo_volta": "-",
         "tempo_planejado2": "-",
         "tempo_parado2": "-",
-        "sentido": 0
+        "sentido": 1
     },
     {
         "id": "64",
@@ -1084,7 +1084,7 @@ var data = [{
         "tempo_volta": "63m",
         "tempo_planejado2": "75m",
         "tempo_parado2": "12m",
-        "sentido": 1
+        "sentido": 0
     },
     {
         "id": "65",
@@ -1101,7 +1101,7 @@ var data = [{
         "tempo_volta": "-",
         "tempo_planejado2": "-",
         "tempo_parado2": "-",
-        "sentido": 0
+        "sentido": 1
     },
     {
         "id": "66",
@@ -1118,7 +1118,7 @@ var data = [{
         "tempo_volta": "80m",
         "tempo_planejado2": "90m",
         "tempo_parado2": "10m",
-        "sentido": 1
+        "sentido": 0
     },
     {
         "id": "67",
@@ -1135,7 +1135,7 @@ var data = [{
         "tempo_volta": "-",
         "tempo_planejado2": "-",
         "tempo_parado2": "-",
-        "sentido": 0
+        "sentido": 1
     },
     {
         "id": "68",
@@ -1152,7 +1152,7 @@ var data = [{
         "tempo_volta": "65m",
         "tempo_planejado2": "85m",
         "tempo_parado2": "20m",
-        "sentido": 1
+        "sentido": 0
     },
     {
         "id": "69",
@@ -1169,7 +1169,7 @@ var data = [{
         "tempo_volta": "-",
         "tempo_planejado2": "-",
         "tempo_parado2": "-",
-        "sentido": 0
+        "sentido": 1
     },
     {
         "id": "70",
@@ -1186,7 +1186,7 @@ var data = [{
         "tempo_volta": "53m",
         "tempo_planejado2": "-",
         "tempo_parado2": "-",
-        "sentido": 1
+        "sentido": 0
     },
     {
         "id": "71",
@@ -1220,7 +1220,7 @@ var data = [{
         "tempo_volta": "-",
         "tempo_planejado2": "-",
         "tempo_parado2": "-",
-        "sentido": 0
+        "sentido": 1
     },
     {
         "id": "73",
@@ -1237,7 +1237,7 @@ var data = [{
         "tempo_volta": "71m",
         "tempo_planejado2": "80m",
         "tempo_parado2": "9m",
-        "sentido": 1
+        "sentido": 0
     },
     {
         "id": "74",
@@ -1254,7 +1254,7 @@ var data = [{
         "tempo_volta": "-",
         "tempo_planejado2": "-",
         "tempo_parado2": "-",
-        "sentido": 0
+        "sentido": 1
     },
     {
         "id": "75",
@@ -1271,7 +1271,7 @@ var data = [{
         "tempo_volta": "72m",
         "tempo_planejado2": "-1h 15m",
         "tempo_parado2": "-2h 27m",
-        "sentido": 1
+        "sentido": 0
     },
     {
         "id": "76",
@@ -1305,7 +1305,7 @@ var data = [{
         "tempo_volta": "-",
         "tempo_planejado2": "55m",
         "tempo_parado2": "-",
-        "sentido": 0
+        "sentido": 1
     },
     {
         "id": "78",
@@ -1322,7 +1322,7 @@ var data = [{
         "tempo_volta": "-",
         "tempo_planejado2": "-",
         "tempo_parado2": "-",
-        "sentido": 1
+        "sentido": 0
     },
     {
         "id": "79",
@@ -1339,7 +1339,7 @@ var data = [{
         "tempo_volta": "70m",
         "tempo_planejado2": "75m",
         "tempo_parado2": "5m",
-        "sentido": 0
+        "sentido": 1
     },
     {
         "id": "80",
@@ -1356,7 +1356,7 @@ var data = [{
         "tempo_volta": "-",
         "tempo_planejado2": "-",
         "tempo_parado2": "-",
-        "sentido": 1
+        "sentido": 0
     },
     {
         "id": "81",
@@ -1373,7 +1373,7 @@ var data = [{
         "tempo_volta": "71m",
         "tempo_planejado2": "9h 0m",
         "tempo_parado2": "7h 49m",
-        "sentido": 0
+        "sentido": 1
     },
     {
         "id": "82",
@@ -1390,7 +1390,7 @@ var data = [{
         "tempo_volta": "-",
         "tempo_planejado2": "-",
         "tempo_parado2": "-",
-        "sentido": 1
+        "sentido": 0
     },
     {
         "id": "83",
@@ -1407,7 +1407,7 @@ var data = [{
         "tempo_volta": "87m",
         "tempo_planejado2": "90m",
         "tempo_parado2": "3m",
-        "sentido": 0
+        "sentido": 1
     },
     {
         "id": "84",
@@ -1424,7 +1424,7 @@ var data = [{
         "tempo_volta": "-",
         "tempo_planejado2": "-",
         "tempo_parado2": "-",
-        "sentido": 1
+        "sentido": 0
     }
 ]
 
@@ -1816,7 +1816,7 @@ function dataFilterCar(data) {
                 nextPoint.position_saida = 1
                 points.position_entrada = 3
             }
-            if (nextPoint.saida === 0) {
+            if (nextPoint.saida === 0 && nextPoint.entrada === 0) {
                 points.position_entrada = 3
             }
 
@@ -1883,7 +1883,7 @@ function createPoints(data) {
                     })
                     points[1].push({
                         carro: element.carro,
-                        xpoint: 0,
+                        xpoint: 360,
                         ypoint: newHeight,
                         position: 2
                     }, {
