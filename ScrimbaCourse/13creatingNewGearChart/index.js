@@ -1457,7 +1457,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 var cars = d3.groups(data, d => d.carro);
 var carsName = cars.map(d => d[0])
 
-var color = d3.scaleOrdinal().domain(carsName).range(['#e41a1c', '#377eb8', '#4daf4a', '#984ea3', '#ff7f00', '#999999', '#a65628', '#f781bf', '#377', "#FFF000"])
+var color = d3.scaleOrdinal().domain(carsName).range(['#E41A10', '#377EB8', '#4DAF5A', '#984EA3', '#FF7F00', '#999999', '#A69620', '#377FFF', '#F781BF', "#FFF000"])
 
 function drawChart() {
     const groups = 4
@@ -1472,7 +1472,7 @@ function drawChart() {
         tickHours,
         tick10Min,
         tick5Min
-    } = createTicks()
+    } = populateTicks()
 
     const positions = [0, groupHeight, groupHeight * 2, groupHeight * 3]
 
@@ -1517,8 +1517,8 @@ function drawChart() {
         var y1Generator = d3.axisLeft(y1).ticks(1).tickSize(10)
         var y2Generator = d3.axisRight(y2).ticks(1).tickSize(1)
 
-        let xTickLabels = e => `${Math.floor(e / 60)}:${(e % 60).toString().padStart(2, '0')}`;
-        x3Generator.tickFormat((d) => xTickLabels(d));
+        // let xTickLabels = e => `${Math.floor(e / 60)}:${(e % 60).toString().padStart(2, '0')}`;
+        // x3Generator.tickFormat((d) => xTickLabels(d));
 
         //y axis tick labels
         let yTickLabels = ["A", "B"]
@@ -1653,6 +1653,7 @@ function drawLines(group, sumstat, x1) {
         //.attr("marker-end", `url(#triangle${data.carro + data.xpoint})`)
         //.attr("marker-start", `url(#triangle${data.carro + data.xpoint})`)
         //.attr("d", "M10 80 C 40 10, 65 10, 95 80 S 150 150, 180 80")
+        //.style("stroke-dasharray", ("3, 3"))
         .attr('fill', 'none')
         .attr("stroke-linejoin", "round")
         .attr("stroke-linecap", "round")
@@ -1782,6 +1783,7 @@ function dataFilterCar(data) {
             if (car[1][index + 1]) {
                 saida = car[1][index + 1].saida
                 nextPoint = car[1][index + 1]
+                car[1][index + 1].position_saida = 1
                 next = true
             }
             if (car[1][index - 1]) {
@@ -1813,7 +1815,7 @@ function dataFilterCar(data) {
                 points.position_entrada = 2
             }
             if ((next && previous) && (saida - entrada) > 30) {
-                nextPoint.position_saida = 1
+                car[1][index + 1].position_saida = 1
                 points.position_entrada = 3
             }
             if (nextPoint.saida === 0 && nextPoint.entrada === 0) {
@@ -1823,11 +1825,11 @@ function dataFilterCar(data) {
             return {...points }
         })
     })
-    console.log(cars);
+
     return cars
 }
 
-function createTicks() {
+function populateTicks() {
     var tickHours = [],
         tick10Min = [],
         tick5Min = []
@@ -1865,7 +1867,7 @@ function createTicks() {
 function createPoints(data) {
     for (let i = 0; i < data.length; i++) {
         const element = data[i];
-        if (element.saida > 0 && element.saida < 360) {
+        if (element.saida > 0 && element.saida <= 360) {
             if (element.sentido === 1) {
                 points[0].push({
                     carro: element.carro,
@@ -1936,7 +1938,7 @@ function createPoints(data) {
                     })
                 }
             }
-        } else if (element.saida >= 360 && element.saida < 720) {
+        } else if (element.saida >= 360 && element.saida <= 720) {
             if (element.sentido === 1) {
                 points[1].push({
                     carro: element.carro,
@@ -2006,7 +2008,7 @@ function createPoints(data) {
                     })
                 }
             }
-        } else if (element.saida >= 720 && element.saida < 1080) {
+        } else if (element.saida >= 720 && element.saida <= 1080) {
             if (element.sentido === 1) {
                 points[2].push({
                     carro: element.carro,
@@ -2076,7 +2078,7 @@ function createPoints(data) {
                     })
                 }
             }
-        } else if (element.saida >= 1080 && element.saida < 1440) {
+        } else if (element.saida >= 1080 && element.saida <= 1440) {
             if (element.sentido === 1) {
                 points[3].push({
                     carro: element.carro,
