@@ -1449,7 +1449,7 @@ var svg = d3.select("svg")
 
 window.addEventListener('DOMContentLoaded', (event) => {
     dataFilterCar(data)
-    createPoints(data);
+    populatePoints(data);
     drawChart();
     drawLabels();
 });
@@ -1517,8 +1517,8 @@ function drawChart() {
         var y1Generator = d3.axisLeft(y1).ticks(1).tickSize(10)
         var y2Generator = d3.axisRight(y2).ticks(1).tickSize(1)
 
-        // let xTickLabels = e => `${Math.floor(e / 60)}:${(e % 60).toString().padStart(2, '0')}`;
-        // x3Generator.tickFormat((d) => xTickLabels(d));
+        let xTickLabels = e => `${Math.floor(e / 60)}:${(e % 60).toString().padStart(2, '0')}`;
+        x3Generator.tickFormat((d) => xTickLabels(d));
 
         //y axis tick labels
         let yTickLabels = ["A", "B"]
@@ -1776,15 +1776,16 @@ function dataFilterCar(data) {
             let entrada = car[1][index].entrada
             let saida = 0
             let next = false
-            let nextPoint = {}
             let previous = false
+            let nextPoint = {}
             let previousPoint = {}
+            points.position_saida = 2
+            points.position_entrada = 2
 
             if (car[1][index + 1]) {
-                saida = car[1][index + 1].saida
-                nextPoint = car[1][index + 1]
-                car[1][index + 1].position_saida = 1
                 next = true
+                nextPoint = car[1][index + 1]
+                saida = car[1][index + 1].saida
             }
             if (car[1][index - 1]) {
                 previous = true
@@ -1802,10 +1803,6 @@ function dataFilterCar(data) {
                 points.position_saida = 1
                 points.position_entrada = 2
             }
-            if (next && previous) {
-                points.position_saida = 2
-                points.position_entrada = 2
-            }
             if ((!next && previous) && (previousPoint.entrada === 0)) {
                 points.position_saida = 1
                 points.position_entrada = 3
@@ -1814,7 +1811,7 @@ function dataFilterCar(data) {
                 points.position_saida = 1
                 points.position_entrada = 2
             }
-            if ((next && previous) && (saida - entrada) > 30) {
+            if ((next && previous) && (saida - entrada) > 45) {
                 car[1][index + 1].position_saida = 1
                 points.position_entrada = 3
             }
@@ -1825,7 +1822,6 @@ function dataFilterCar(data) {
             return {...points }
         })
     })
-
     return cars
 }
 
@@ -1864,7 +1860,7 @@ function populateTicks() {
     return { tickHours, tick10Min, tick5Min }
 }
 
-function createPoints(data) {
+function populatePoints(data) {
     for (let i = 0; i < data.length; i++) {
         const element = data[i];
         if (element.saida > 0 && element.saida <= 360) {
