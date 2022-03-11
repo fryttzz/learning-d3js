@@ -1683,18 +1683,30 @@ function drawLines(group, sumstat, x1) {
         .enter()
         .append("g");
 
-    lines.append("path")
-        .attr("marker-end", d => `url(#triangle${d[0]})`)
-        .attr("marker-start", d => `url(#triangle${d[0]})`)
-        .attr("d", "M10 80 C 40 10, 65 10, 95 80 S 150 150, 180 80")
-        //.style("stroke-dasharray", ("3, 3"))
+    lines.append("path") //.style("stroke-dasharray", ("3, 3"))
         .attr('fill', 'none')
         .attr("stroke-linejoin", "round")
         .attr("stroke-linecap", "round")
         .attr('stroke', d => color(d[0]))
         .attr('stroke-width', 2.2)
         .attr("d", (d) => line(d[1]))
-        .attr("class", d => `car${d[0]}`);
+        .attr("class", d => `car${d[0]}`)
+        .each(function(d, i, a) {
+            var path = d3.select(this);
+            d[1].forEach(element => {
+                appendTriangles(path, element)
+            })
+        });
+}
+
+function appendTriangles(path, data) {
+    if (data.position === 1) {
+        path.attr("marker-start", `url(#triangle${data.carro})`)
+    } else if (data.position === 3) {
+        path.attr("marker-end", `url(#triangle${data.carro})`)
+    } else {
+        return
+    }
 }
 
 function drawTriangles(gChart, color, sumstat) {
@@ -1856,7 +1868,6 @@ function dataFilterCar(data) {
             return {...points }
         })
     })
-    console.log(cars);
     return cars
 }
 
