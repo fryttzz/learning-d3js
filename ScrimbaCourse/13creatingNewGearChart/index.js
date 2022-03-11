@@ -271,6 +271,23 @@ var data = [{
         "sentido": 1
     },
     {
+        "id": "16",
+        "itinerario": "Ref.Marechal/Travessão/Serrano/Eldorado/Iracema",
+        "carro": "402",
+        "reserva": "",
+        "saida_planejada": "21:10",
+        "saida": "-",
+        "diferenca": "-6163:5:23:59",
+        "entrada": "-",
+        "tempo_viagem": "48m",
+        "tempo_planejado1": "1h 30m",
+        "tempo_parado1": "42m",
+        "tempo_volta": "-",
+        "tempo_planejado2": "3h 55m",
+        "tempo_parado2": "-",
+        "sentido": 0
+    },
+    {
         "id": "17",
         "itinerario": "Ref.Marechal/Travessão/Serrano/Eldorado/Iracema",
         "carro": "402",
@@ -1359,6 +1376,23 @@ var data = [{
         "sentido": 0
     },
     {
+        "id": "80",
+        "itinerario": "Serrano/Eldorado/Mal.Floriano",
+        "carro": "810",
+        "reserva": "",
+        "saida_planejada": "08:05",
+        "saida": "-",
+        "diferenca": "-6163:6",
+        "entrada": "-",
+        "tempo_viagem": "33m",
+        "tempo_planejado1": "8h 5m",
+        "tempo_parado1": "7h 36m",
+        "tempo_volta": "-",
+        "tempo_planejado2": "-",
+        "tempo_parado2": "-",
+        "sentido": 0
+    },
+    {
         "id": "81",
         "itinerario": "Ref.Mal.Floriano/Eldorado/Serrano",
         "carro": "810",
@@ -1457,7 +1491,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 var cars = d3.groups(data, d => d.carro);
 var carsName = cars.map(d => d[0])
 
-var color = d3.scaleOrdinal().domain(carsName).range(['#E41A10', '#377EB8', '#4DAF5A', '#984EA3', '#FF7F00', '#999999', '#A69620', '#377FFF', '#F781BF', "#FFF000"])
+var color = d3.scaleOrdinal().domain(carsName).range(['#E41A10', '#FFD000', '#059451', '#984EA3', '#FF7F00', '#999999', '#A69620', '#377FFF', '#F781BF', '#9FDFD9'])
 
 function drawChart() {
     const groups = 4
@@ -1629,7 +1663,7 @@ function drawChart() {
         //LINHAS
         if (points[index].length > 0) {
             drawLines(gChart, sumstat, x1)
-            drawTriangles(gChart, color, points[index])
+            drawTriangles(gChart, color, sumstat)
         }
     }
 }
@@ -1650,9 +1684,9 @@ function drawLines(group, sumstat, x1) {
         .append("g");
 
     lines.append("path")
-        //.attr("marker-end", `url(#triangle${data.carro + data.xpoint})`)
-        //.attr("marker-start", `url(#triangle${data.carro + data.xpoint})`)
-        //.attr("d", "M10 80 C 40 10, 65 10, 95 80 S 150 150, 180 80")
+        .attr("marker-end", d => `url(#triangle${d[0]})`)
+        .attr("marker-start", d => `url(#triangle${d[0]})`)
+        .attr("d", "M10 80 C 40 10, 65 10, 95 80 S 150 150, 180 80")
         //.style("stroke-dasharray", ("3, 3"))
         .attr('fill', 'none')
         .attr("stroke-linejoin", "round")
@@ -1663,13 +1697,13 @@ function drawLines(group, sumstat, x1) {
         .attr("class", d => `car${d[0]}`);
 }
 
-function drawTriangles(gChart, color, points) {
+function drawTriangles(gChart, color, sumstat) {
     const trinagles = gChart.selectAll("triangles")
-        .data(points)
+        .data(sumstat)
         .enter()
 
     trinagles.append("svg:defs").append("svg:marker")
-        .attr("id", (d) => `triangle${d.carro + d.xpoint}`)
+        .attr("id", (d) => `triangle${d[0]}`)
         .attr("refX", 6)
         .attr("refY", 6)
         .attr("markerWidth", 30)
@@ -1678,7 +1712,7 @@ function drawTriangles(gChart, color, points) {
         .attr("orient", "auto")
         .append("path")
         .attr("d", "M 0 0 12 6 0 12 3 6")
-        .style("fill", (d) => color(d.carro))
+        .style("fill", (d) => color(d[0]))
 }
 
 function drawLabels() {
@@ -1822,6 +1856,7 @@ function dataFilterCar(data) {
             return {...points }
         })
     })
+    console.log(cars);
     return cars
 }
 
