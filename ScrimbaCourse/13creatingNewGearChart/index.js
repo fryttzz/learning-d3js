@@ -540,7 +540,7 @@ var data = [{
     //     "tempo_volta": "36m",
     //     "tempo_planejado2": "5m",
     //     "tempo_parado2": "-31m",
-    //     "sentido": 1
+    //     "sentido": 0
     // },
     // {
     //     "id": "32",
@@ -557,7 +557,7 @@ var data = [{
     //     "tempo_volta": "-",
     //     "tempo_planejado2": "-",
     //     "tempo_parado2": "-",
-    //     "sentido": 0
+    //     "sentido": 1
     // },
     // {
     //     "id": "33",
@@ -574,7 +574,7 @@ var data = [{
     //     "tempo_volta": "55m",
     //     "tempo_planejado2": "65m",
     //     "tempo_parado2": "10m",
-    //     "sentido": 1
+    //     "sentido": 0
     // },
     // {
     //     "id": "34",
@@ -591,7 +591,7 @@ var data = [{
     //     "tempo_volta": "-",
     //     "tempo_planejado2": "-",
     //     "tempo_parado2": "-",
-    //     "sentido": 0
+    //     "sentido": 1
     // },
     // {
     //     "id": "35",
@@ -608,7 +608,7 @@ var data = [{
     //     "tempo_volta": "73m",
     //     "tempo_planejado2": "70m",
     //     "tempo_parado2": "-3m",
-    //     "sentido": 1
+    //     "sentido": 0
     // },
     // {
     //     "id": "36",
@@ -625,7 +625,7 @@ var data = [{
     //     "tempo_volta": "-",
     //     "tempo_planejado2": "-",
     //     "tempo_parado2": "-",
-    //     "sentido": 0
+    //     "sentido": 1
     // },
     // {
     //     "id": "37",
@@ -642,7 +642,7 @@ var data = [{
     //     "tempo_volta": "65m",
     //     "tempo_planejado2": "3h 25m",
     //     "tempo_parado2": "2h 20m",
-    //     "sentido": 1
+    //     "sentido": 0
     // },
     // {
     //     "id": "38",
@@ -659,7 +659,7 @@ var data = [{
     //     "tempo_volta": "-",
     //     "tempo_planejado2": "-",
     //     "tempo_parado2": "-",
-    //     "sentido": 0
+    //     "sentido": 1
     // },
     // {
     //     "id": "39",
@@ -676,7 +676,7 @@ var data = [{
     //     "tempo_volta": "70m",
     //     "tempo_planejado2": "80m",
     //     "tempo_parado2": "10m",
-    //     "sentido": 1
+    //     "sentido": 0
     // },
     // {
     //     "id": "40",
@@ -693,7 +693,7 @@ var data = [{
     //     "tempo_volta": "-",
     //     "tempo_planejado2": "-",
     //     "tempo_parado2": "-",
-    //     "sentido": 0
+    //     "sentido": 1
     // },
     // {
     //     "id": "41",
@@ -710,7 +710,7 @@ var data = [{
     //     "tempo_volta": "72m",
     //     "tempo_planejado2": "4h 10m",
     //     "tempo_parado2": "2h 58m",
-    //     "sentido": 1
+    //     "sentido": 0
     // },
     // {
     //     "id": "42",
@@ -727,7 +727,7 @@ var data = [{
     //     "tempo_volta": "-",
     //     "tempo_planejado2": "-",
     //     "tempo_parado2": "-",
-    //     "sentido": 0
+    //     "sentido": 1
     // },
     // {
     //     "id": "43",
@@ -744,7 +744,7 @@ var data = [{
     //     "tempo_volta": "80m",
     //     "tempo_planejado2": "95m",
     //     "tempo_parado2": "15m",
-    //     "sentido": 1
+    //     "sentido": 0
     // },
     // {
     //     "id": "44",
@@ -761,7 +761,7 @@ var data = [{
     //     "tempo_volta": "-",
     //     "tempo_planejado2": "-",
     //     "tempo_parado2": "-",
-    //     "sentido": 0
+    //     "sentido": 1
     // },
     // {
     //     "id": "45",
@@ -778,7 +778,7 @@ var data = [{
     //     "tempo_volta": "68m",
     //     "tempo_planejado2": "-",
     //     "tempo_parado2": "-",
-    //     "sentido": 1
+    //     "sentido": 0
     // },
     {
         "id": "46",
