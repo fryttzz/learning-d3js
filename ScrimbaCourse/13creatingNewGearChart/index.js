@@ -271,23 +271,6 @@ var data = [{
         "sentido": 1
     },
     {
-        "id": "16",
-        "itinerario": "Ref.Marechal/Travessão/Serrano/Eldorado/Iracema",
-        "carro": "402",
-        "reserva": "",
-        "saida_planejada": "21:10",
-        "saida": "-",
-        "diferenca": "-6163:5:23:59",
-        "entrada": "-",
-        "tempo_viagem": "48m",
-        "tempo_planejado1": "1h 30m",
-        "tempo_parado1": "42m",
-        "tempo_volta": "-",
-        "tempo_planejado2": "3h 55m",
-        "tempo_parado2": "-",
-        "sentido": 0
-    },
-    {
         "id": "17",
         "itinerario": "Ref.Marechal/Travessão/Serrano/Eldorado/Iracema",
         "carro": "402",
@@ -525,261 +508,261 @@ var data = [{
         "tempo_parado2": "-",
         "sentido": 0
     },
-    // {
-    //     "id": "31",
-    //     "itinerario": "Viagem de deslocamento",
-    //     "carro": "605",
-    //     "reserva": "",
-    //     "saida_planejada": "05:20",
-    //     "saida": "05:19",
-    //     "diferenca": "-6163:6:0:01",
-    //     "entrada": "05:28",
-    //     "tempo_viagem": "9m",
-    //     "tempo_planejado1": "10m",
-    //     "tempo_parado1": "2m",
-    //     "tempo_volta": "36m",
-    //     "tempo_planejado2": "5m",
-    //     "tempo_parado2": "-31m",
-    //     "sentido": 0
-    // },
-    // {
-    //     "id": "32",
-    //     "itinerario": "Ref.Mal.Floriano/Eldorado/Serrano",
-    //     "carro": "605",
-    //     "reserva": "",
-    //     "saida_planejada": "05:30",
-    //     "saida": "05:30",
-    //     "diferenca": "-6163:6",
-    //     "entrada": "05:59",
-    //     "tempo_viagem": "29m",
-    //     "tempo_planejado1": "30m",
-    //     "tempo_parado1": "2m",
-    //     "tempo_volta": "-",
-    //     "tempo_planejado2": "-",
-    //     "tempo_parado2": "-",
-    //     "sentido": 1
-    // },
-    // {
-    //     "id": "33",
-    //     "itinerario": "Serrano/Andreazza/Marechal Floriano",
-    //     "carro": "605",
-    //     "reserva": "",
-    //     "saida_planejada": "06:00",
-    //     "saida": "06:01",
-    //     "diferenca": "-6163:5:23:59",
-    //     "entrada": "06:27",
-    //     "tempo_viagem": "26m",
-    //     "tempo_planejado1": "35m",
-    //     "tempo_parado1": "3m",
-    //     "tempo_volta": "55m",
-    //     "tempo_planejado2": "65m",
-    //     "tempo_parado2": "10m",
-    //     "sentido": 0
-    // },
-    // {
-    //     "id": "34",
-    //     "itinerario": "Ref.Mal.Floriano/Eldorado/Serrano",
-    //     "carro": "605",
-    //     "reserva": "",
-    //     "saida_planejada": "06:35",
-    //     "saida": "06:30",
-    //     "diferenca": "-6163:6:0:05",
-    //     "entrada": "7:08",
-    //     "tempo_viagem": "38m",
-    //     "tempo_planejado1": "35m",
-    //     "tempo_parado1": "3m",
-    //     "tempo_volta": "-",
-    //     "tempo_planejado2": "-",
-    //     "tempo_parado2": "-",
-    //     "sentido": 1
-    // },
-    // {
-    //     "id": "35",
-    //     "itinerario": "Serrano/Andreazza/Marechal Floriano",
-    //     "carro": "605",
-    //     "reserva": "",
-    //     "saida_planejada": "07:10",
-    //     "saida": "07:11",
-    //     "diferenca": "-6163:5:23:59",
-    //     "entrada": "7:46",
-    //     "tempo_viagem": "35m",
-    //     "tempo_planejado1": "35m",
-    //     "tempo_parado1": "1m",
-    //     "tempo_volta": "73m",
-    //     "tempo_planejado2": "70m",
-    //     "tempo_parado2": "-3m",
-    //     "sentido": 0
-    // },
-    // {
-    //     "id": "36",
-    //     "itinerario": "Ref.Mal.Floriano/Eldorado/Serrano",
-    //     "carro": "605",
-    //     "reserva": "",
-    //     "saida_planejada": "07:45",
-    //     "saida": "07:47",
-    //     "diferenca": "-6163:5:23:58",
-    //     "entrada": "8:17",
-    //     "tempo_viagem": "30m",
-    //     "tempo_planejado1": "45m",
-    //     "tempo_parado1": "14m",
-    //     "tempo_volta": "-",
-    //     "tempo_planejado2": "-",
-    //     "tempo_parado2": "-",
-    //     "sentido": 1
-    // },
-    // {
-    //     "id": "37",
-    //     "itinerario": "Serrano/Andreazza/Marechal Floriano",
-    //     "carro": "605",
-    //     "reserva": "",
-    //     "saida_planejada": "08:30",
-    //     "saida": "08:31",
-    //     "diferenca": "-6163:5:23:59",
-    //     "entrada": "9:06",
-    //     "tempo_viagem": "35m",
-    //     "tempo_planejado1": "2h 40m",
-    //     "tempo_parado1": "2h 6m",
-    //     "tempo_volta": "65m",
-    //     "tempo_planejado2": "3h 25m",
-    //     "tempo_parado2": "2h 20m",
-    //     "sentido": 0
-    // },
-    // {
-    //     "id": "38",
-    //     "itinerario": "Ref.Mal.Floriano/Eldorado/Serrano",
-    //     "carro": "605",
-    //     "reserva": "810",
-    //     "saida_planejada": "11:10",
-    //     "saida": "11:12",
-    //     "diferenca": "-6163:5:23:58",
-    //     "entrada": "11:47",
-    //     "tempo_viagem": "35m",
-    //     "tempo_planejado1": "45m",
-    //     "tempo_parado1": "9m",
-    //     "tempo_volta": "-",
-    //     "tempo_planejado2": "-",
-    //     "tempo_parado2": "-",
-    //     "sentido": 1
-    // },
-    // {
-    //     "id": "39",
-    //     "itinerario": "Serrano/Andreazza/Marechal Floriano",
-    //     "carro": "605",
-    //     "reserva": "810",
-    //     "saida_planejada": "11:55",
-    //     "saida": "11:56",
-    //     "diferenca": "-6163:5:23:59",
-    //     "entrada": "12:31",
-    //     "tempo_viagem": "35m",
-    //     "tempo_planejado1": "35m",
-    //     "tempo_parado1": "1m",
-    //     "tempo_volta": "70m",
-    //     "tempo_planejado2": "80m",
-    //     "tempo_parado2": "10m",
-    //     "sentido": 0
-    // },
-    // {
-    //     "id": "40",
-    //     "itinerario": "Ref.Mal.Floriano/Trav.Leopoldina/Serrano",
-    //     "carro": "605",
-    //     "reserva": "810",
-    //     "saida_planejada": "12:30",
-    //     "saida": "12:32",
-    //     "diferenca": "-6163:5:23:58",
-    //     "entrada": "13:05",
-    //     "tempo_viagem": "33m",
-    //     "tempo_planejado1": "40m",
-    //     "tempo_parado1": "5m",
-    //     "tempo_volta": "-",
-    //     "tempo_planejado2": "-",
-    //     "tempo_parado2": "-",
-    //     "sentido": 1
-    // },
-    // {
-    //     "id": "41",
-    //     "itinerario": "Serrano/Eldorado/Mal.Floriano",
-    //     "carro": "605",
-    //     "reserva": "810",
-    //     "saida_planejada": "13:10",
-    //     "saida": "13:10",
-    //     "diferenca": "-6163:6",
-    //     "entrada": "13:49",
-    //     "tempo_viagem": "39m",
-    //     "tempo_planejado1": "3h 30m",
-    //     "tempo_parado1": "3h",
-    //     "tempo_volta": "72m",
-    //     "tempo_planejado2": "4h 10m",
-    //     "tempo_parado2": "2h 58m",
-    //     "sentido": 0
-    // },
-    // {
-    //     "id": "42",
-    //     "itinerario": "Ref.Mal.Floriano/Trav.Leopoldina/Serrano",
-    //     "carro": "605",
-    //     "reserva": "",
-    //     "saida_planejada": "16:40",
-    //     "saida": "16:49",
-    //     "diferenca": "-6163:5:23:51",
-    //     "entrada": "17:21",
-    //     "tempo_viagem": "32m",
-    //     "tempo_planejado1": "45m",
-    //     "tempo_parado1": "5m",
-    //     "tempo_volta": "-",
-    //     "tempo_planejado2": "-",
-    //     "tempo_parado2": "-",
-    //     "sentido": 1
-    // },
-    // {
-    //     "id": "43",
-    //     "itinerario": "Serrano/Eldorado/Mal.Floriano",
-    //     "carro": "605",
-    //     "reserva": "",
-    //     "saida_planejada": "17:25",
-    //     "saida": "17:26",
-    //     "diferenca": "-6163:5:23:59",
-    //     "entrada": "18:14",
-    //     "tempo_viagem": "48m",
-    //     "tempo_planejado1": "50m",
-    //     "tempo_parado1": "4m",
-    //     "tempo_volta": "80m",
-    //     "tempo_planejado2": "95m",
-    //     "tempo_parado2": "15m",
-    //     "sentido": 0
-    // },
-    // {
-    //     "id": "44",
-    //     "itinerario": "Ref.Mal.Floriano/Eldorado/Serrano",
-    //     "carro": "605",
-    //     "reserva": "",
-    //     "saida_planejada": "18:15",
-    //     "saida": "18:18",
-    //     "diferenca": "-6163:5:23:57",
-    //     "entrada": "18:59",
-    //     "tempo_viagem": "41m",
-    //     "tempo_planejado1": "45m",
-    //     "tempo_parado1": "6m",
-    //     "tempo_volta": "-",
-    //     "tempo_planejado2": "-",
-    //     "tempo_parado2": "-",
-    //     "sentido": 1
-    // },
-    // {
-    //     "id": "45",
-    //     "itinerario": "Serrano/Andreazza/Marechal Floriano",
-    //     "carro": "605",
-    //     "reserva": "",
-    //     "saida_planejada": "19:00",
-    //     "saida": "19:05",
-    //     "diferenca": "-6163:5:23:55",
-    //     "entrada": "19:32",
-    //     "tempo_viagem": "27m",
-    //     "tempo_planejado1": "-",
-    //     "tempo_parado1": "-",
-    //     "tempo_volta": "68m",
-    //     "tempo_planejado2": "-",
-    //     "tempo_parado2": "-",
-    //     "sentido": 0
-    // },
+    {
+        "id": "31",
+        "itinerario": "Viagem de deslocamento",
+        "carro": "605",
+        "reserva": "",
+        "saida_planejada": "05:20",
+        "saida": "05:19",
+        "diferenca": "-6163:6:0:01",
+        "entrada": "05:28",
+        "tempo_viagem": "9m",
+        "tempo_planejado1": "10m",
+        "tempo_parado1": "2m",
+        "tempo_volta": "36m",
+        "tempo_planejado2": "5m",
+        "tempo_parado2": "-31m",
+        "sentido": 0
+    },
+    {
+        "id": "32",
+        "itinerario": "Ref.Mal.Floriano/Eldorado/Serrano",
+        "carro": "605",
+        "reserva": "",
+        "saida_planejada": "05:30",
+        "saida": "05:30",
+        "diferenca": "-6163:6",
+        "entrada": "05:59",
+        "tempo_viagem": "29m",
+        "tempo_planejado1": "30m",
+        "tempo_parado1": "2m",
+        "tempo_volta": "-",
+        "tempo_planejado2": "-",
+        "tempo_parado2": "-",
+        "sentido": 1
+    },
+    {
+        "id": "33",
+        "itinerario": "Serrano/Andreazza/Marechal Floriano",
+        "carro": "605",
+        "reserva": "",
+        "saida_planejada": "06:00",
+        "saida": "06:01",
+        "diferenca": "-6163:5:23:59",
+        "entrada": "06:27",
+        "tempo_viagem": "26m",
+        "tempo_planejado1": "35m",
+        "tempo_parado1": "3m",
+        "tempo_volta": "55m",
+        "tempo_planejado2": "65m",
+        "tempo_parado2": "10m",
+        "sentido": 0
+    },
+    {
+        "id": "34",
+        "itinerario": "Ref.Mal.Floriano/Eldorado/Serrano",
+        "carro": "605",
+        "reserva": "",
+        "saida_planejada": "06:35",
+        "saida": "06:30",
+        "diferenca": "-6163:6:0:05",
+        "entrada": "7:08",
+        "tempo_viagem": "38m",
+        "tempo_planejado1": "35m",
+        "tempo_parado1": "3m",
+        "tempo_volta": "-",
+        "tempo_planejado2": "-",
+        "tempo_parado2": "-",
+        "sentido": 1
+    },
+    {
+        "id": "35",
+        "itinerario": "Serrano/Andreazza/Marechal Floriano",
+        "carro": "605",
+        "reserva": "",
+        "saida_planejada": "07:10",
+        "saida": "07:11",
+        "diferenca": "-6163:5:23:59",
+        "entrada": "7:46",
+        "tempo_viagem": "35m",
+        "tempo_planejado1": "35m",
+        "tempo_parado1": "1m",
+        "tempo_volta": "73m",
+        "tempo_planejado2": "70m",
+        "tempo_parado2": "-3m",
+        "sentido": 0
+    },
+    {
+        "id": "36",
+        "itinerario": "Ref.Mal.Floriano/Eldorado/Serrano",
+        "carro": "605",
+        "reserva": "",
+        "saida_planejada": "07:45",
+        "saida": "07:47",
+        "diferenca": "-6163:5:23:58",
+        "entrada": "8:17",
+        "tempo_viagem": "30m",
+        "tempo_planejado1": "45m",
+        "tempo_parado1": "14m",
+        "tempo_volta": "-",
+        "tempo_planejado2": "-",
+        "tempo_parado2": "-",
+        "sentido": 1
+    },
+    {
+        "id": "37",
+        "itinerario": "Serrano/Andreazza/Marechal Floriano",
+        "carro": "605",
+        "reserva": "",
+        "saida_planejada": "08:30",
+        "saida": "08:31",
+        "diferenca": "-6163:5:23:59",
+        "entrada": "9:06",
+        "tempo_viagem": "35m",
+        "tempo_planejado1": "2h 40m",
+        "tempo_parado1": "2h 6m",
+        "tempo_volta": "65m",
+        "tempo_planejado2": "3h 25m",
+        "tempo_parado2": "2h 20m",
+        "sentido": 0
+    },
+    {
+        "id": "38",
+        "itinerario": "Ref.Mal.Floriano/Eldorado/Serrano",
+        "carro": "605",
+        "reserva": "810",
+        "saida_planejada": "11:10",
+        "saida": "11:12",
+        "diferenca": "-6163:5:23:58",
+        "entrada": "11:47",
+        "tempo_viagem": "35m",
+        "tempo_planejado1": "45m",
+        "tempo_parado1": "9m",
+        "tempo_volta": "-",
+        "tempo_planejado2": "-",
+        "tempo_parado2": "-",
+        "sentido": 1
+    },
+    {
+        "id": "39",
+        "itinerario": "Serrano/Andreazza/Marechal Floriano",
+        "carro": "605",
+        "reserva": "810",
+        "saida_planejada": "11:55",
+        "saida": "11:56",
+        "diferenca": "-6163:5:23:59",
+        "entrada": "12:31",
+        "tempo_viagem": "35m",
+        "tempo_planejado1": "35m",
+        "tempo_parado1": "1m",
+        "tempo_volta": "70m",
+        "tempo_planejado2": "80m",
+        "tempo_parado2": "10m",
+        "sentido": 0
+    },
+    {
+        "id": "40",
+        "itinerario": "Ref.Mal.Floriano/Trav.Leopoldina/Serrano",
+        "carro": "605",
+        "reserva": "810",
+        "saida_planejada": "12:30",
+        "saida": "12:32",
+        "diferenca": "-6163:5:23:58",
+        "entrada": "13:05",
+        "tempo_viagem": "33m",
+        "tempo_planejado1": "40m",
+        "tempo_parado1": "5m",
+        "tempo_volta": "-",
+        "tempo_planejado2": "-",
+        "tempo_parado2": "-",
+        "sentido": 1
+    },
+    {
+        "id": "41",
+        "itinerario": "Serrano/Eldorado/Mal.Floriano",
+        "carro": "605",
+        "reserva": "810",
+        "saida_planejada": "13:10",
+        "saida": "13:10",
+        "diferenca": "-6163:6",
+        "entrada": "13:49",
+        "tempo_viagem": "39m",
+        "tempo_planejado1": "3h 30m",
+        "tempo_parado1": "3h",
+        "tempo_volta": "72m",
+        "tempo_planejado2": "4h 10m",
+        "tempo_parado2": "2h 58m",
+        "sentido": 0
+    },
+    {
+        "id": "42",
+        "itinerario": "Ref.Mal.Floriano/Trav.Leopoldina/Serrano",
+        "carro": "605",
+        "reserva": "",
+        "saida_planejada": "16:40",
+        "saida": "16:49",
+        "diferenca": "-6163:5:23:51",
+        "entrada": "17:21",
+        "tempo_viagem": "32m",
+        "tempo_planejado1": "45m",
+        "tempo_parado1": "5m",
+        "tempo_volta": "-",
+        "tempo_planejado2": "-",
+        "tempo_parado2": "-",
+        "sentido": 1
+    },
+    {
+        "id": "43",
+        "itinerario": "Serrano/Eldorado/Mal.Floriano",
+        "carro": "605",
+        "reserva": "",
+        "saida_planejada": "17:25",
+        "saida": "17:26",
+        "diferenca": "-6163:5:23:59",
+        "entrada": "18:14",
+        "tempo_viagem": "48m",
+        "tempo_planejado1": "50m",
+        "tempo_parado1": "4m",
+        "tempo_volta": "80m",
+        "tempo_planejado2": "95m",
+        "tempo_parado2": "15m",
+        "sentido": 0
+    },
+    {
+        "id": "44",
+        "itinerario": "Ref.Mal.Floriano/Eldorado/Serrano",
+        "carro": "605",
+        "reserva": "",
+        "saida_planejada": "18:15",
+        "saida": "18:18",
+        "diferenca": "-6163:5:23:57",
+        "entrada": "18:59",
+        "tempo_viagem": "41m",
+        "tempo_planejado1": "45m",
+        "tempo_parado1": "6m",
+        "tempo_volta": "-",
+        "tempo_planejado2": "-",
+        "tempo_parado2": "-",
+        "sentido": 1
+    },
+    {
+        "id": "45",
+        "itinerario": "Serrano/Andreazza/Marechal Floriano",
+        "carro": "605",
+        "reserva": "",
+        "saida_planejada": "19:00",
+        "saida": "19:05",
+        "diferenca": "-6163:5:23:55",
+        "entrada": "19:32",
+        "tempo_viagem": "27m",
+        "tempo_planejado1": "-",
+        "tempo_parado1": "-",
+        "tempo_volta": "68m",
+        "tempo_planejado2": "-",
+        "tempo_parado2": "-",
+        "sentido": 0
+    },
     {
         "id": "46",
         "itinerario": "Viagem de deslocamento",
@@ -1476,13 +1459,14 @@ var points = [
     [],
     []
 ]
+
 var svg = d3.select("svg")
     .attr("width", svgWidth)
     .attr("height", svgHeight)
     .attr("class", "svg-container")
 
 window.addEventListener('DOMContentLoaded', (event) => {
-    dataFilterCar(data)
+    dataFilterPoints(data)
     populatePoints(data);
     drawChart();
     drawLabels();
@@ -1502,11 +1486,6 @@ function drawChart() {
         [720, 1080],
         [1080, 1439.99],
     ]
-    var {
-        tickHours,
-        tick10Min,
-        tick5Min
-    } = populateTicks()
 
     const positions = [0, groupHeight, groupHeight * 2, groupHeight * 3]
 
@@ -1577,7 +1556,7 @@ function drawChart() {
             .call(y1Generator)
 
         gChart.append("g")
-            .attr("transform", "translate(" + width + ",0)")
+            .attr("transform", "translate(" + width + ", 0)")
             .attr("class", "yAxis2")
             .attr('stroke-width', 3)
             .call(y2Generator)
@@ -1612,53 +1591,7 @@ function drawChart() {
         gChart.selectAll(".yAxis2 text")
             .attr("display", "none")
 
-        const gridHours = gChart.selectAll("lines")
-            .data(tickHours[index])
-            .join("g")
-
-        gridHours.append("line")
-            .attr("x1", (d) => x1(d))
-            .attr("x2", d => x1(d))
-            .attr("y1", height)
-            .attr("y2", 0)
-            .attr("stroke-opacity", 0.7)
-            .attr("stroke", "currentColor")
-            .attr("stroke-width", 2);
-
-        const grid10Min = gChart.selectAll("lines")
-            .data(tick10Min[index])
-            .join("g")
-
-        grid10Min.append("line")
-            .attr("x1", (d) => x1(d))
-            .attr("x2", d => x1(d))
-            .attr("y1", height)
-            .attr("y2", 0)
-            .attr("stroke-opacity", 0.35)
-            .attr("stroke", "currentColor")
-            .attr("stroke-width", 2);
-
-        const grid5Min = gChart.selectAll("lines")
-            .data(tick5Min[index])
-            .join("g")
-
-        grid5Min.append("line")
-            .attr("x1", (d) => x1(d))
-            .attr("x2", d => x1(d))
-            .attr("y1", 10)
-            .attr("y2", 0)
-            .attr("stroke-opacity", 0.2)
-            .attr("stroke", "currentColor")
-            .attr("stroke-width", 2);
-
-        grid5Min.append("line")
-            .attr("x1", (d) => x1(d))
-            .attr("x2", d => x1(d))
-            .attr("y1", height)
-            .attr("y2", height - 10)
-            .attr("stroke-opacity", 0.2)
-            .attr("stroke", "currentColor")
-            .attr("stroke-width", 2);
+        drawTicks(gChart, index, x1)
 
         //LINHAS
         if (points[index].length > 0) {
@@ -1676,7 +1609,7 @@ function drawLines(group, sumstat, x1) {
         })
         .y((d) => d.ypoint)
         .curve(d3.curveCatmullRom.alpha(0.7))
-        .defined((d) => d.xpoint != 0)
+        .defined(d => d.xpoint != 0)
 
     const lines = group.selectAll("lines")
         .data(sumstat)
@@ -1709,9 +1642,9 @@ function appendTriangles(path, data) {
     }
 }
 
-function drawTriangles(gChart, color, sumstat) {
-    const trinagles = gChart.selectAll("triangles")
-        .data(sumstat)
+function drawTriangles(group, color, data) {
+    const trinagles = group.selectAll("triangles")
+        .data(data)
         .enter()
 
     trinagles.append("svg:defs").append("svg:marker")
@@ -1746,8 +1679,8 @@ function drawLabels() {
     gLabels.selectAll(".xLabels text")
         .attr("display", "none")
 
-    // gLabels.selectAll(".xLabels path")
-    //     .attr("display", "none")
+    gLabels.selectAll(".xLabels path")
+        .attr("display", "none")
 
     const labels = gLabels.selectAll("rect")
         .data(carsName)
@@ -1780,15 +1713,15 @@ function getNewHeightAB(height, width, a, b) {
     return (height * (a - width) / (a - b))
 }
 
-function drawExitsAndEntries(d) {
-    if (d.position != 2) {
-        if (d.ypoint === 0) {
-            d.ypoint -= 10;
+function drawExitsAndEntries(data) {
+    if (data.position != 2) {
+        if (data.ypoint === 0) {
+            data.ypoint -= 10;
         } else {
-            d.ypoint += 10;
+            data.ypoint += 10;
         }
     }
-    return d
+    return data
 }
 
 function dataFilter(data) {
@@ -1815,7 +1748,7 @@ function dataFilter(data) {
     })
 }
 
-function dataFilterCar(data) {
+function dataFilterPoints(data) {
     var cars = d3.groups(data, d => d.carro);
     cars = cars.map(car => {
         return car[1].map((points, index) => {
@@ -1904,6 +1837,62 @@ function populateTicks() {
     }
 
     return { tickHours, tick10Min, tick5Min }
+}
+
+function drawTicks(group, index, x) {
+    var {
+        tickHours,
+        tick10Min,
+        tick5Min
+    } = populateTicks()
+
+    const gridHours = group.selectAll("lines")
+        .data(tickHours[index])
+        .join("g")
+
+    gridHours.append("line")
+        .attr("x1", (d) => x(d))
+        .attr("x2", d => x(d))
+        .attr("y1", height)
+        .attr("y2", 0)
+        .attr("stroke-opacity", 0.7)
+        .attr("stroke", "currentColor")
+        .attr("stroke-width", 2);
+
+    const grid10Min = group.selectAll("lines")
+        .data(tick10Min[index])
+        .join("g")
+
+    grid10Min.append("line")
+        .attr("x1", (d) => x(d))
+        .attr("x2", d => x(d))
+        .attr("y1", height)
+        .attr("y2", 0)
+        .attr("stroke-opacity", 0.35)
+        .attr("stroke", "currentColor")
+        .attr("stroke-width", 2);
+
+    const grid5Min = group.selectAll("lines")
+        .data(tick5Min[index])
+        .join("g")
+
+    grid5Min.append("line")
+        .attr("x1", (d) => x(d))
+        .attr("x2", d => x(d))
+        .attr("y1", 10)
+        .attr("y2", 0)
+        .attr("stroke-opacity", 0.2)
+        .attr("stroke", "currentColor")
+        .attr("stroke-width", 2);
+
+    grid5Min.append("line")
+        .attr("x1", (d) => x(d))
+        .attr("x2", d => x(d))
+        .attr("y1", height)
+        .attr("y2", height - 10)
+        .attr("stroke-opacity", 0.2)
+        .attr("stroke", "currentColor")
+        .attr("stroke-width", 2);
 }
 
 function populatePoints(data) {
