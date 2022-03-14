@@ -1532,14 +1532,7 @@ function drawChart() {
         .attr("font-size", 14)
         .attr("font-weight", 400)
 
-    gChart.selectAll(".yAxis1 text")
-        .attr("color", "#262D36")
-        .attr("font-size", 16)
-        .attr("font-weight", 500)
-
-    gChart.selectAll(".yAxis1 .tick")
-        .attr("stroke-width", "0")
-
+    drawYTicks(gChart)
     drawTicks(gChart, x1)
     drawLines(gChart, x1, y)
 
@@ -1603,6 +1596,20 @@ function drawLines(group, x, y) {
         .attr("y2", d => (y.bandwidth() / 2) + y(d[0]))
         .attr("stroke", d => color(d[0]))
         .attr("stroke-width", 1)
+}
+
+function drawYTicks(group) {
+    var ticks = group.selectAll(".yAxis1 .tick");
+
+    ticks.attr("class", (d) => `tick${d}`)
+        .attr("stroke-width", "0");
+
+    mediaName.forEach(car => {
+        var carTick = group.select(`.yAxis1 .tick${car}`)
+        carTick.attr("color", color(car))
+            .attr("font-size", 16)
+            .attr("font-weight", 500)
+    })
 }
 
 function rectTransform(data, x, y) {
