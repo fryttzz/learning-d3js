@@ -1746,8 +1746,8 @@ function drawLabels() {
     gLabels.selectAll(".xLabels text")
         .attr("display", "none")
 
-    gLabels.selectAll(".xLabels path")
-        .attr("display", "none")
+    // gLabels.selectAll(".xLabels path")
+    //     .attr("display", "none")
 
     const labels = gLabels.selectAll("rect")
         .data(carsName)
@@ -1765,7 +1765,7 @@ function drawLabels() {
     labels.append("text")
         .attr("x", (d, i) => x(i))
         .attr("dy", 15)
-        .attr("dx", 17)
+        .attr("dx", 7)
         .style("fill", "#FFF")
         .attr("font-size", 14)
         .attr("font-weight", 400)
