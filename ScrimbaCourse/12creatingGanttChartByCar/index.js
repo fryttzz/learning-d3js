@@ -1447,7 +1447,7 @@ var data = [{
 
 data = dataFilter(data)
 
-var svgWidth = 1400,
+var svgWidth = 1300,
     svgHeight = 900;
 
 var margin = { top: 45, right: 40, bottom: 80, left: 50 };
@@ -1466,17 +1466,17 @@ window.addEventListener('DOMContentLoaded', (event) => {
 var cars = d3.groups(data, d => d.carro);
 var mediaName = cars.map(d => d[0])
 
-var color = d3.scaleOrdinal().domain(mediaName).range(['#E41A10', '#FFD000', '#059451', '#984EA3', '#FF7F00', '#999999', '#A69620', '#377FFF', '#F781BF', '#9FDFD9'])
+var color = d3.scaleOrdinal().domain(mediaName).range(['#E41A10', '#FFD000', '#059451', '#984EA3', '#FF7F00', '#999999', '#A69620', '#377FFF', '#F781BF', '#9FDFD9']);
 
 function drawChart() {
+    var domains = [0, 1440]
+
     const g = svg.append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
         .attr("class", `chart1`)
 
     const gChart = g.append("g")
         .attr("transform", "translate(" + 0 + "," + 10 + ")")
-
-    var domains = [0, 1440]
 
     var x1 = d3.scaleLinear()
         .domain(domains)
@@ -1492,10 +1492,8 @@ function drawChart() {
         .paddingInner(0.3)
         .paddingOuter(1)
 
-    var x1Generator = d3.axisBottom(x1).ticks(24).tickSize(10)
-
-    var x2Generator = d3.axisTop(x2).ticks(24).tickSize(10)
-
+    var x1Generator = d3.axisBottom(x1).tickSize(10).tickValues(d3.range(0, 1440, 60));
+    var x2Generator = d3.axisTop(x2).tickSize(10).tickValues(d3.range(0, 1440, 60));
     var yGenerator = d3.axisLeft(y)
 
     let xTickLabels = e => `${Math.floor(e / 60)}:${(e % 60).toString().padStart(2, '0')}`;
@@ -1533,12 +1531,6 @@ function drawChart() {
         .attr("color", "#262D36")
         .attr("font-size", 14)
         .attr("font-weight", 400)
-
-    // gChart.selectAll(".xAxis1 text")
-    //     .attr("display", "none")
-
-    // gChart.selectAll(".xAxis2 text")
-    //     .attr("display", "none")
 
     gChart.selectAll(".yAxis1 text")
         .attr("color", "#262D36")
