@@ -1,434 +1,533 @@
-const data = [{
-        "id": "1",
-        "itinerario": "Ref.Mal.Floriano/Eldorado/Serrano",
-        "carro": "402",
-        "reserva": "605",
-        "saida_planejado": 545, //09:05
-        "saida": 549,
-        "diferenca": 4,
-        "entrada": 584,
-        "tempo_viagem1": 35,
-        "tempo_planejado1": 40,
-        "tempo_parado1": 2,
-        "tempo_volta": 0,
-        "tempo_planejado2": 0,
-        "tempo_parado2": 0,
-        "sentido": 1
+var data = [{
+        "saida": "03:40",
+        "linha": "VE001",
+        "codigo": "VE0010254",
+        "descricao": "Planalto/São Victor/Garagem",
+        "carro": "100",
+        "km": "35",
+        "km_morta": ""
     },
     {
-        "id": "19",
-        "itinerario": "Ref.Mal.Floriano/Eldorado/Serrano",
-        "carro": "401",
-        "reserva": "605",
-        "saida_planejado": 545, //09:05
-        "saida": 549,
-        "diferenca": 4,
-        "entrada": 584,
-        "tempo_viagem1": 35,
-        "tempo_planejado1": 40,
-        "tempo_parado1": 2,
-        "tempo_volta": 0,
-        "tempo_planejado2": 0,
-        "tempo_parado2": 0,
-        "sentido": 0
+        "saida": "05:30",
+        "linha": "L0041",
+        "codigo": "L004100GT",
+        "descricao": "Viagem de deslocamento",
+        "carro": "100",
+        "km": "",
+        "km_morta": "4,9"
     },
     {
-        "id": "2",
-        "itinerario": "Serrano/Andreazza/Marechal Floriano",
-        "carro": "402",
-        "reserva": "605",
-        "saida_planejado": 585, //09:45
-        "saida": 586,
-        "diferenca": 1,
-        "entrada": 619,
-        "tempo_viagem": 33,
-        "tempo_planejado1": 35,
-        "tempo_parado1": 2,
-        "tempo_volta": 68,
-        "tempo_planejado2": 75,
-        "tempo_parado2": 7,
-        "sentido": 0
+        "saida": "05:45",
+        "linha": "L0041",
+        "codigo": "L00410002",
+        "descricao": "Ref.Os 18 do Forte X Alfr.Chaves/Shopping Iguatemi/Floresta",
+        "carro": "100",
+        "km": "6,55",
+        "km_morta": ""
     },
     {
-        "id": "3",
-        "itinerario": "Ref.Mal.Floriano/Eldorado/Serrano",
-        "carro": "402",
-        "reserva": "605",
-        "saida_planejado": 620,
-        "saida": 621,
-        "diferenca": 1,
-        "entrada": 657,
-        "tempo_viagem": 36,
-        "tempo_planejado1": 40,
-        "tempo_parado1": 3,
-        "tempo_volta": 0,
-        "tempo_planejado2": 0,
-        "tempo_parado2": 0,
-        "sentido": 1
+        "saida": "06:10",
+        "linha": "L0041",
+        "codigo": "L00410001",
+        "descricao": "Floresta/Ref.Os 18 do Forte X Alfr.Chaves",
+        "carro": "100",
+        "km": "3,24",
+        "km_morta": ""
     },
     {
-        "id": "4",
-        "itinerario": "Serrano/Andreazza/Marechal Floriano",
-        "carro": "402",
-        "reserva": "605",
-        "saida_planejado": 660,
-        "saida": 660,
-        "diferenca": 0,
-        "entrada": 692,
-        "tempo_viagem": 32,
-        "tempo_planejado1": 35,
-        "tempo_parado1": 2,
-        "tempo_volta": 68,
-        "tempo_planejado2": 75,
-        "tempo_parado2": 7,
-        "sentido": 0
+        "saida": "06:25",
+        "linha": "L0041",
+        "codigo": "L00410002",
+        "descricao": "Ref.Os 18 do Forte X Alfr.Chaves/Shopping Iguatemi/Floresta",
+        "carro": "100",
+        "km": "6,55",
+        "km_morta": ""
     },
     {
-        "id": "5",
-        "itinerario": "Ref.Mal.Floriano/Trav.Leopoldina/Serrano",
-        "carro": "402",
-        "reserva": "605",
-        "saida_planejado": 695,
-        "saida": 694,
-        "diferenca": -1,
-        "entrada": 724,
-        "tempo_viagem": 30,
-        "tempo_planejado1": 45,
-        "tempo_parado1": 16,
-        "tempo_volta": 0,
-        "tempo_planejado2": 0,
-        "tempo_parado2": 0,
-        "sentido": 1
+        "saida": "07:10",
+        "linha": "L0041",
+        "codigo": "L00410001",
+        "descricao": "Floresta/Ref.Os 18 do Forte X Alfr.Chaves",
+        "carro": "100",
+        "km": "3,24",
+        "km_morta": ""
     },
     {
-        "id": "6",
-        "itinerario": "Serrano/Eldorado/Mal.Floriano",
-        "carro": "402",
-        "reserva": "605",
-        "saida_planejado": 740,
-        "saida": 740,
-        "diferenca": 0,
-        "entrada": 774,
-        "tempo_viagem": 34,
-        "tempo_planejado1": 35,
-        "tempo_parado1": 1,
-        "tempo_volta": 64,
-        "tempo_planejado2": 80,
-        "tempo_parado2": 16,
-        "sentido": 0
+        "saida": "07:25",
+        "linha": "L0041",
+        "codigo": "L00410002",
+        "descricao": "Ref.Os 18 do Forte X Alfr.Chaves/Shopping Iguatemi/Floresta",
+        "carro": "100",
+        "km": "6,55",
+        "km_morta": ""
     },
     {
-        "id": "4",
-        "itinerario": "Serrano/Andreazza/Marechal Floriano",
-        "carro": "410",
-        "reserva": "605",
-        "saida_planejado": 660,
-        "saida": 660,
-        "diferenca": 0,
-        "entrada": 692,
-        "tempo_viagem": 32,
-        "tempo_planejado1": 35,
-        "tempo_parado1": 2,
-        "tempo_volta": 68,
-        "tempo_planejado2": 75,
-        "tempo_parado2": 7,
-        "sentido": 1
+        "saida": "08:10",
+        "linha": "L0041",
+        "codigo": "L00410001",
+        "descricao": "Floresta/Ref.Os 18 do Forte X Alfr.Chaves",
+        "carro": "100",
+        "km": "3,24",
+        "km_morta": ""
     },
     {
-        "id": "5",
-        "itinerario": "Ref.Mal.Floriano/Trav.Leopoldina/Serrano",
-        "carro": "410",
-        "reserva": "605",
-        "saida_planejado": 695,
-        "saida": 694,
-        "diferenca": -1,
-        "entrada": 724,
-        "tempo_viagem": 30,
-        "tempo_planejado1": 45,
-        "tempo_parado1": 16,
-        "tempo_volta": 0,
-        "tempo_planejado2": 0,
-        "tempo_parado2": 0,
-        "sentido": 0
+        "saida": "08:25",
+        "linha": "L0041",
+        "codigo": "L00410002",
+        "descricao": "Ref.Os 18 do Forte X Alfr.Chaves/Shopping Iguatemi/Floresta",
+        "carro": "100",
+        "km": "6,55",
+        "km_morta": ""
     },
     {
-        "id": "6",
-        "itinerario": "Serrano/Eldorado/Mal.Floriano",
-        "carro": "410",
-        "reserva": "605",
-        "saida_planejado": 740,
-        "saida": 740,
-        "diferenca": 0,
-        "entrada": 774,
-        "tempo_viagem": 34,
-        "tempo_planejado1": 35,
-        "tempo_parado1": 1,
-        "tempo_volta": 64,
-        "tempo_planejado2": 80,
-        "tempo_parado2": 16,
-        "sentido": 1
+        "saida": "10:30",
+        "linha": "L0041",
+        "codigo": "L00410001",
+        "descricao": "Floresta/Ref.Os 18 do Forte X Alfr.Chaves",
+        "carro": "100",
+        "km": "3,24",
+        "km_morta": ""
     },
     {
-        "id": "7",
-        "itinerario": "Ref.Mal.Floriano/Eldorado/Serrano",
-        "carro": "402",
-        "reserva": "605",
-        "saida_planejado": 775,
-        "saida": 775,
-        "diferenca": 0,
-        "entrada": 805,
-        "tempo_viagem": 30,
-        "tempo_planejado1": 40,
-        "tempo_parado1": 11,
-        "tempo_volta": 0,
-        "tempo_planejado2": 0,
-        "tempo_parado2": 0,
-        "sentido": 1
+        "saida": "10:45",
+        "linha": "L0041",
+        "codigo": "L00410002",
+        "descricao": "Ref.Os 18 do Forte X Alfr.Chaves/Shopping Iguatemi/Floresta",
+        "carro": "100",
+        "km": "6,55",
+        "km_morta": ""
     },
     {
-        "id": "8",
-        "itinerario": "Serrano/Andreazza/Marechal Floriano",
-        "carro": "402",
-        "reserva": "605",
-        "saida_planejado": 815,
-        "saida": 816,
-        "diferenca": 1,
-        "entrada": 851,
-        "tempo_viagem": 35,
-        "tempo_planejado1": 35,
-        "tempo_parado1": 2,
-        "tempo_volta": 65,
-        "tempo_planejado2": 75,
-        "tempo_parado2": 10,
-        "sentido": 0
+        "saida": "11:15",
+        "linha": "L0041",
+        "codigo": "L00410001",
+        "descricao": "Floresta/Ref.Os 18 do Forte X Alfr.Chaves",
+        "carro": "100",
+        "km": "3,24",
+        "km_morta": ""
     },
     {
-        "id": "9",
-        "itinerario": "Ref.Mal.Floriano/Eldorado/Serrano",
-        "carro": "402",
-        "reserva": "605",
-        "saida_planejado": 850,
-        "saida": 853,
-        "diferenca": 3,
-        "entrada": 887,
-        "tempo_viagem": 34,
-        "tempo_planejado1": 40,
-        "tempo_parado1": 4,
-        "tempo_volta": 0,
-        "tempo_planejado2": 0,
-        "tempo_parado2": 0,
-        "sentido": 1
+        "saida": "11:30",
+        "linha": "L0041",
+        "codigo": "L00410002",
+        "descricao": "Ref.Os 18 do Forte X Alfr.Chaves/Shopping Iguatemi/Floresta",
+        "carro": "100",
+        "km": "6,55",
+        "km_morta": ""
     },
     {
-        "id": "10",
-        "itinerario": "Serrano/Andreazza/Marechal Floriano",
-        "carro": "402",
-        "reserva": "605",
-        "saida_planejado": 890,
-        "saida": 890,
-        "diferenca": 1,
-        "entrada": 929,
-        "tempo_viagem": 38,
-        "tempo_planejado1": 35,
-        "tempo_parado1": 2,
-        "tempo_volta": 72,
-        "tempo_planejado2": 75,
-        "tempo_parado2": 3,
-        "sentido": 0
+        "saida": "12:00",
+        "linha": "L0041",
+        "codigo": "L00410001",
+        "descricao": "Floresta/Ref.Os 18 do Forte X Alfr.Chaves",
+        "carro": "100",
+        "km": "3,24",
+        "km_morta": ""
     },
     {
-        "id": "11",
-        "itinerario": "Ref.Mal.Floriano/Eldorado/Serrano",
-        "carro": "402",
-        "reserva": "605",
-        "saida_planejado": 925,
-        "saida": 935,
-        "diferenca": 6,
-        "entrada": 969,
-        "tempo_viagem": 38,
-        "tempo_planejado1": 45,
-        "tempo_parado1": 3,
-        "tempo_volta": 0,
-        "tempo_planejado2": 0,
-        "tempo_parado2": 0,
-        "sentido": 1
+        "saida": "12:15",
+        "linha": "L0041",
+        "codigo": "L00410002",
+        "descricao": "Ref.Os 18 do Forte X Alfr.Chaves/Shopping Iguatemi/Floresta",
+        "carro": "100",
+        "km": "6,55",
+        "km_morta": ""
     },
     {
-        "id": "12",
-        "itinerario": "Serrano/Andreazza/Marechal Floriano",
-        "carro": "402",
-        "reserva": "605",
-        "saida_planejado": 970,
-        "saida": 972,
-        "diferenca": 2,
-        "entrada": 1008,
-        "tempo_viagem": 36,
-        "tempo_planejado1": 85,
-        "tempo_parado1": 0,
-        "tempo_volta": 74,
-        "tempo_planejado2": 130,
-        "tempo_parado2": 56,
-        "sentido": 0
+        "saida": "13:00",
+        "linha": "L0041",
+        "codigo": "L00410001",
+        "descricao": "Floresta/Ref.Os 18 do Forte X Alfr.Chaves",
+        "carro": "100",
+        "km": "3,24",
+        "km_morta": ""
     },
     {
-        "id": "13",
-        "itinerario": "Viagem de deslocamento",
-        "carro": "402",
-        "reserva": "",
-        "saida_planejado": 1055,
-        "saida": 0,
-        "diferenca": 0,
-        "entrada": 0,
-        "tempo_viagem": 0,
-        "tempo_planejado1": 25,
-        "tempo_parado1": 0,
-        "tempo_volta": 0,
-        "tempo_planejado2": 0,
-        "tempo_parado2": 0,
-        "sentido": 0
+        "saida": "13:15",
+        "linha": "L0041",
+        "codigo": "L00410002",
+        "descricao": "Ref.Os 18 do Forte X Alfr.Chaves/Shopping Iguatemi/Floresta",
+        "carro": "100",
+        "km": "6,55",
+        "km_morta": ""
     },
     {
-        "id": "14",
-        "itinerario": "Ref.Mal.Floriano/Trav.Leopoldina/Serrano",
-        "carro": "402",
-        "reserva": "",
-        "saida_planejado": 1080,
-        "saida": 0,
-        "diferenca": 0,
-        "entrada": 0,
-        "tempo_viagem": 0,
-        "tempo_planejado1": 45,
-        "tempo_parado1": 0,
-        "tempo_volta": 0,
-        "tempo_planejado2": 70,
-        "tempo_parado2": 0,
-        "sentido": 1
+        "saida": "16:00",
+        "linha": "L0041",
+        "codigo": "L00410001",
+        "descricao": "Floresta/Ref.Os 18 do Forte X Alfr.Chaves",
+        "carro": "100",
+        "km": "3,24",
+        "km_morta": ""
     },
     {
-        "id": "15",
-        "itinerario": "Serrano/Eldorado/Mal.Floriano",
-        "carro": "402",
-        "reserva": "",
-        "saida_planejado": 1125,
-        "saida": 0,
-        "diferenca": 0,
-        "entrada": 0,
-        "tempo_viagem": 0,
-        "tempo_planejado1": 145,
-        "tempo_parado1": 0,
-        "tempo_volta": 0,
-        "tempo_planejado2": 0,
-        "tempo_parado2": 0,
-        "sentido": 0
+        "saida": "16:15",
+        "linha": "L0041",
+        "codigo": "L00410002",
+        "descricao": "Ref.Os 18 do Forte X Alfr.Chaves/Shopping Iguatemi/Floresta",
+        "carro": "100",
+        "km": "6,55",
+        "km_morta": ""
     },
     {
-        "id": "16",
-        "itinerario": "Ref.Marechal/Travessão/Serrano/Eldorado/Iracema",
-        "carro": "402",
-        "reserva": "",
-        "saida_planejado": 1270,
-        "saida": 1271,
-        "diferenca": 1,
-        "entrada": 1319,
-        "tempo_viagem": 48,
-        "tempo_planejado1": 90,
-        "tempo_parado1": 42,
-        "tempo_volta": 0,
-        "tempo_planejado2": 235,
-        "tempo_parado2": 0,
-        "sentido": 1
+        "saida": "17:00",
+        "linha": "L0041",
+        "codigo": "L00410001",
+        "descricao": "Floresta/Ref.Os 18 do Forte X Alfr.Chaves",
+        "carro": "100",
+        "km": "3,24",
+        "km_morta": ""
     },
+    {
+        "saida": "17:15",
+        "linha": "L0041",
+        "codigo": "L00410002",
+        "descricao": "Ref.Os 18 do Forte X Alfr.Chaves/Shopping Iguatemi/Floresta",
+        "carro": "100",
+        "km": "6,55",
+        "km_morta": ""
+    },
+    {
+        "saida": "18:00",
+        "linha": "L0041",
+        "codigo": "L00410001",
+        "descricao": "Floresta/Ref.Os 18 do Forte X Alfr.Chaves",
+        "carro": "100",
+        "km": "3,24",
+        "km_morta": ""
+    },
+    {
+        "saida": "18:15",
+        "linha": "L0041",
+        "codigo": "L00410002",
+        "descricao": "Ref.Os 18 do Forte X Alfr.Chaves/Shopping Iguatemi/Floresta",
+        "carro": "100",
+        "km": "6,55",
+        "km_morta": ""
+    },
+    {
+        "saida": "19:00",
+        "linha": "L0041",
+        "codigo": "L00410001",
+        "descricao": "Floresta/Ref.Os 18 do Forte X Alfr.Chaves",
+        "carro": "100",
+        "km": "3,24",
+        "km_morta": ""
+    },
+    {
+        "saida": "19:15",
+        "linha": "L0041",
+        "codigo": "L00410002",
+        "descricao": "Ref.Os 18 do Forte X Alfr.Chaves/Shopping Iguatemi/Floresta",
+        "carro": "100",
+        "km": "6,55",
+        "km_morta": ""
+    },
+    {
+        "saida": "20:00",
+        "linha": "L0041",
+        "codigo": "L00410001",
+        "descricao": "Floresta/Ref.Os 18 do Forte X Alfr.Chaves",
+        "carro": "100",
+        "km": "3,24",
+        "km_morta": ""
+    },
+    {
+        "saida": "20:15",
+        "linha": "L0041",
+        "codigo": "L00410002",
+        "descricao": "Ref.Os 18 do Forte X Alfr.Chaves/Shopping Iguatemi/Floresta",
+        "carro": "100",
+        "km": "6,55",
+        "km_morta": ""
+    },
+    {
+        "saida": "20:30",
+        "linha": "L0041",
+        "codigo": "L004100TG",
+        "descricao": "Viagem de deslocamento",
+        "carro": "100",
+        "km": "",
+        "km_morta": "3,5"
+    },
+    {
+        "saida": "23:00",
+        "linha": "ESP19",
+        "codigo": "ESP190011",
+        "descricao": "Sai Hosp.Geral/Bairros",
+        "carro": "100",
+        "km": "41",
+        "km_morta": ""
+    }
 ]
 
-var rectTransform = function(d) {
-    return "translate(" + x1(d.saida) + "," + y(d.carro) + ")";
-};
+data = dataFilter(data)
 
-var cars = d3.groups(data, d => d.carro);
+var svgWidth = 1350,
+    svgHeight = 900;
 
-var mediaName = cars.map(d => d[0])
-
-var color = d3.scaleOrdinal().domain(mediaName).range(['#984EA3', '#FF7F00', '#E41A1C', '#377EB8', '#999999', '#FFFF33', '#A65628', '#4DAF4A', ])
-
-var svgWidth = 1400,
-    svgHeight = 700;
-
-var margin = { top: 60, right: 10, bottom: 60, left: 100 };
+var margin = { top: 45, right: 40, bottom: 80, left: 55 };
 var width = svgWidth - margin.left - margin.right;
 var height = svgHeight - margin.top - margin.bottom;
-
 var svg = d3.select('svg')
     .attr("width", svgWidth)
     .attr("height", svgHeight)
     .attr("class", "svg-container");
 
-var g = svg.append("g")
-    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+var cars = d3.groups(data, d => d.carro);
+var linhas = d3.groups(cars[0][1], d => d.linha);
+var mediaName = linhas.map(d => d[0])
 
-var xDomain = [0, 1440]
+var color = d3.scaleOrdinal().domain(mediaName).range(['#E41A10', '#FFD000', '#059451', '#984EA3', '#FF7F00', '#999999', '#A69620', '#377FFF', '#F781BF', '#9FDFD9']);
 
-var x1 = d3.scaleTime()
-    .domain(xDomain)
-    .range([15, width]);
-
-var x2 = d3.scaleTime()
-    .domain(xDomain)
-    .range([15, width]);
-
-var y = d3.scaleBand()
-    .domain(data.map(x => x.carro))
-    .range([0, height])
-    .paddingInner(0.7)
-    .paddingOuter(1)
-
-var x1Generator = d3.axisBottom(x1).ticks(12)
-
-var x2Generator = d3.axisTop(x2).ticks(12)
-
-var yGenerator = d3.axisLeft(y)
-
-let xTickLabels = e => `${Math.floor(e / 60)}:${(e % 60).toString().padStart(2, '0')}`;
-x1Generator.tickFormat((d) => xTickLabels(d));
-x2Generator.tickFormat((d) => xTickLabels(d));
-
-//x1 axis tick labels
-yGenerator.ticks(mediaName.length)
-let yTickLabels = e => e;
-yGenerator.tickFormat((d) => {
-    return yTickLabels(d)
+window.addEventListener('DOMContentLoaded', (event) => {
+    dataFilterPoints(data)
+    drawChart();
 });
 
-g.append("g")
-    .attr("transform", "translate(0," + (height + 10) + ")")
-    .call(x1Generator);
+function drawChart() {
+    var domains = [0, 1440]
 
-g.append("g")
-    .attr("transform", "translate(0,-10)")
-    .call(x2Generator);
+    const g = svg.append("g")
+        .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+        .attr("class", `chart1`)
 
-g.append("g")
-    .call(yGenerator);
+    const gChart = g.append("g")
+        .attr("transform", "translate(" + 0 + "," + 10 + ")")
 
-//ticks text style
-g.selectAll(".tick text")
-    .attr("font-size", 16)
-    .attr("font-family", "Roboto")
-    .attr("color", "#262d36")
+    var x1 = d3.scaleLinear()
+        .domain(domains)
+        .rangeRound([0, width]);
 
-//domains style
-g.selectAll(".domain")
-    .attr("stroke-width", "2")
-    .attr("opacity", ".6")
-    .attr("color", "#262d36");
+    var x2 = d3.scaleLinear()
+        .domain(domains)
+        .rangeRound([0, width]);
 
-const rects = g.selectAll('rect')
-    .data(data)
-    .enter()
-    .append('rect')
-    .attr('y', 0)
-    .attr('height', y.bandwidth())
-    .attr('width', d => x1(d.entrada) - x1(d.saida))
-    .attr("rx", 6)
-    .attr("ry", 6)
-    .style("fill", d => color(d.carro))
-    .attr('transform', rectTransform);
+    var y = d3.scaleBand()
+        .domain(mediaName.map(function(x) { return x }))
+        .range([0, height])
+        .paddingInner(0.6)
+        .paddingOuter(1)
+
+    var x1Generator = d3.axisBottom(x1).tickSize(10).tickValues(d3.range(0, 1440, 60));
+    var x2Generator = d3.axisTop(x2).tickSize(10).tickValues(d3.range(0, 1440, 60));
+    var yGenerator = d3.axisLeft(y)
+
+    let xTickLabels = e => `${Math.floor(e / 60)}:${(e % 60).toString().padStart(2, '0')}`;
+    x1Generator.tickFormat((d) => xTickLabels(d));
+    x2Generator.tickFormat((d) => xTickLabels(d));
+
+    yGenerator.ticks(mediaName.length);
+    let yTickLabels = e => e;
+    yGenerator.tickFormat((d) => yTickLabels(d));
+
+    gChart.append("g")
+        .attr("transform", "translate(0," + height + ")")
+        .attr("class", "xAxis1")
+        .attr('stroke-width', 3)
+        .call(x1Generator)
+
+    gChart.append("g")
+        .attr("transform", "translate(0,0)")
+        .attr("class", "xAxis2")
+        .attr('stroke-width', 3)
+        .call(x2Generator)
+
+    gChart.append("g")
+        .attr("transform", "translate(0,0)")
+        .attr("class", "yAxis1")
+        .attr('stroke-width', 3)
+        .call(yGenerator)
+
+    gChart.selectAll(".xAxis1 text")
+        .attr("color", "#262D36")
+        .attr("font-size", 14)
+        .attr("font-weight", 400);
+
+    gChart.selectAll(".xAxis2 text")
+        .attr("color", "#262D36")
+        .attr("font-size", 14)
+        .attr("font-weight", 400)
+
+    drawYTicks(gChart);
+    drawTicks(gChart, x1);
+    drawLines(gChart, x1, y);
+    drawLabels(gChart)
+    drawRects(gChart, x1, y)
+}
+
+function drawRects(group, x, y) {
+    group.selectAll('rect')
+        .data(data)
+        .enter()
+        .append('rect')
+        .attr('y', 0)
+        .attr('height', y.bandwidth())
+        .attr('width', d => x(d.entrada) - x(d.saida))
+        .attr('opacity', "0.9")
+        .attr("rx", 6)
+        .attr("ry", 6)
+        .style("fill", d => color(d.linha))
+        .attr('transform', d => rectTransform(d, x, y));
+}
+
+function drawTicks(group, x) {
+    var {
+        tickHours,
+        tick10Min,
+    } = populateTicks()
+
+    const gridHours = group.selectAll("lines")
+        .data(tickHours)
+        .join("g")
+
+    gridHours.append("line")
+        .attr("x1", (d) => x(d))
+        .attr("x2", d => x(d))
+        .attr("y1", height)
+        .attr("y2", 0)
+        .attr("stroke-opacity", 0.9)
+        .attr("stroke", "currentColor")
+        .attr("stroke-width", 1);
+
+    const grid10Min = group.selectAll("lines")
+        .data(tick10Min)
+        .join("g")
+
+    grid10Min.append("line")
+        .attr("x1", (d) => x(d))
+        .attr("x2", d => x(d))
+        .attr("y1", height)
+        .attr("y2", 0)
+        .attr("stroke-opacity", 0.35)
+        .attr("stroke", "currentColor")
+        .attr("stroke-width", 1)
+        .style("stroke-dasharray", ("3, 3"));
+}
+
+function drawLines(group, x, y) {
+    const lines = group.selectAll("lines")
+        .data(linhas)
+        .enter()
+        .append("g")
+
+    lines.append("line")
+        .attr("x1", x(-8))
+        .attr("x2", x(1440))
+        .attr("y1", d => (y.bandwidth() / 2) + y(d[0]))
+        .attr("y2", d => (y.bandwidth() / 2) + y(d[0]))
+        .attr("stroke", d => color(d[0]))
+        .attr("stroke-width", 1)
+}
+
+function drawYTicks(group) {
+    var ticks = group.selectAll(".yAxis1 .tick");
+
+    ticks.attr("class", (d) => `tick${d}`)
+        .attr("stroke-width", "0");
+
+    mediaName.forEach(car => {
+        var carTick = group.select(`.yAxis1 .tick${car}`)
+        carTick.attr("color", color(car))
+            .attr("font-size", 16)
+            .attr("font-weight", 500)
+    })
+}
+
+function rectTransform(data, x, y) {
+    return "translate(" + x(data.saida) + "," + y(data.linha) + ")";
+};
+
+function populateTicks() {
+    var tickHours = [],
+        tick10Min = [];
+
+    var tickHoursCount = 60;
+    tickHours.push([])
+    for (let j = 0; j < 24; j++) {
+        tickHours.push(tickHoursCount);
+        tickHoursCount += 60;
+    }
+
+    var tick10MinCount = 10;
+    for (let j = 0; j < 144; j++) {
+        tick10Min.push(tick10MinCount);
+        tick10MinCount += 10;
+    }
+
+    return { tickHours, tick10Min }
+}
+
+function drawLabels(group) {
+    const carLabel = group.append("g")
+        .attr("transform", "translate(20,55), rotate(-90)")
+        .attr("class", "gCarLabel")
+
+    carLabel.append("text")
+        .attr("class", "carLabel")
+        .text("LINHAS");
+
+    var carLabelAttr = group.select(`.gCarLabel .carLabel`)
+    carLabelAttr.attr("color", "#3874A8")
+        .attr("font-size", 12)
+        .attr("font-weight", 700)
+
+    const timeLineLabel = group.append("g")
+        .attr("transform", "translate(10," + (height - 10) + ")")
+        .attr("class", "gTimeLineLabel");
+
+    timeLineLabel.append("text")
+        .attr("color", "#3874A8")
+        .attr("font-size", 12)
+        .attr("font-weight", 700)
+        .attr("class", "timelineLabel")
+        .text("LINHA DO TEMPO");
+}
+
+function dataFilter(data) {
+    data = data.filter(element => element.descricao !== 'Viagem de deslocamento' || element.descricao === 'Viagem de Deslocamento entre Terminais')
+
+    data = data.map((element) => {
+        if (element.km === "\r" || element.km === "") {
+            element.km = 0
+        }
+        return {
+            ...element,
+            saida: parseFloat(element.saida.toString()) * 60 + parseInt(element.saida.toString().slice(-2)),
+            entrada: (parseFloat(element.saida.toString()) * 60 + parseInt(element.saida.toString().slice(-2))) + parseInt(element.km) / 18 * 60
+        }
+    })
+
+    return data
+}
+
+function dataFilterPoints(data) {
+    var cars = d3.groups(data, d => d.carro);
+    cars = cars.map(car => {
+        return car[1].map((points, index) => {
+            let entrada = car[1][index].entrada
+            let saida = 0
+            let next = false
+            let previous = false
+            let nextPoint = {}
+            let previousPoint = {}
+
+            if (car[1][index + 1]) {
+                next = true
+                nextPoint = car[1][index + 1]
+                saida = car[1][index + 1].saida
+            }
+            if (car[1][index - 1]) {
+                previous = true
+                previousPoint = car[1][index - 1]
+            }
+            if ((next && previous) && (saida - entrada) > 45) {
+                car[1][index + 1].ocioso = true
+                points.ocioso = true
+            }
+
+            return {...points }
+        })
+    })
+    return cars
+}
