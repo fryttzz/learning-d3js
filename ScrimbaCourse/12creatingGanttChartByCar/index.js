@@ -1532,9 +1532,10 @@ function drawChart() {
         .attr("font-size", 14)
         .attr("font-weight", 400)
 
-    drawYTicks(gChart)
-    drawTicks(gChart, x1)
-    drawLines(gChart, x1, y)
+    drawYTicks(gChart);
+    drawTicks(gChart, x1);
+    drawLines(gChart, x1, y);
+    drawLabels(gChart)
 
     const rects = gChart.selectAll('rect')
         .data(data)
@@ -1564,7 +1565,7 @@ function drawTicks(group, x) {
         .attr("x2", d => x(d))
         .attr("y1", height)
         .attr("y2", 0)
-        .attr("stroke-opacity", 0.7)
+        .attr("stroke-opacity", 0.9)
         .attr("stroke", "currentColor")
         .attr("stroke-width", 1);
 
@@ -1634,6 +1635,32 @@ function populateTicks() {
     }
 
     return { tickHours, tick10Min }
+}
+
+function drawLabels(group) {
+    const carLabel = group.append("g")
+        .attr("transform", "translate(20,60), rotate(-90)")
+        .attr("class", "gCarLabel")
+
+    carLabel.append("text")
+        .attr("class", "carLabel")
+        .text("CARROS");
+
+    var carLabelAttr = group.select(`.gCarLabel .carLabel`)
+    carLabelAttr.attr("color", "#3874A8")
+        .attr("font-size", 12)
+        .attr("font-weight", 700)
+
+    const timeLineLabel = group.append("g")
+        .attr("transform", "translate(10," + (height - 10) + ")")
+        .attr("class", "gTimeLineLabel");
+
+    timeLineLabel.append("text")
+        .attr("color", "#3874A8")
+        .attr("font-size", 12)
+        .attr("font-weight", 700)
+        .attr("class", "timelineLabel")
+        .text("LINHA DO TEMPO");
 }
 
 function dataFilter(data) {
