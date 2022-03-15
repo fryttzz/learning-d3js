@@ -1536,18 +1536,21 @@ function drawChart() {
     drawTicks(gChart, x1);
     drawLines(gChart, x1, y);
     drawLabels(gChart)
+    drawRects(gChart, x1, y)
+}
 
-    const rects = gChart.selectAll('rect')
+function drawRects(group, x, y) {
+    group.selectAll('rect')
         .data(data)
         .enter()
         .append('rect')
         .attr('y', 0)
         .attr('height', y.bandwidth())
-        .attr('width', d => x1(d.entrada) - x1(d.saida))
+        .attr('width', d => x(d.entrada) - x(d.saida))
         .attr("rx", 6)
         .attr("ry", 6)
         .style("fill", d => color(d.carro))
-        .attr('transform', d => rectTransform(d, x1, y));
+        .attr('transform', d => rectTransform(d, x, y));
 }
 
 function drawTicks(group, x) {
