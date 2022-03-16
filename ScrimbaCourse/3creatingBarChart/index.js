@@ -19,6 +19,8 @@ var barChart = svg.selectAll('rect')
     .attr('y', (d) => svgHeight - d)
     .attr('height', (d) => d)
     .attr('width', barWidth - barPadding)
+    .attr("rx", 6)
+    .attr("ry", 6)
     .attr('transform', (d, i) => {
         var translate = [barWidth * i, 0];
         return 'translate(' + translate + ')';

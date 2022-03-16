@@ -364,7 +364,7 @@ function drawRects(group, x, y) {
         .attr('y', 0)
         .attr('height', y.bandwidth())
         .attr('width', d => x(d.entrada) - x(d.saida))
-        .attr('opacity', "0.9")
+        .attr('opacity', "1")
         .attr("rx", 6)
         .attr("ry", 6)
         .style("fill", d => color(d.linha))

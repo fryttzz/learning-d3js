@@ -1,5 +1,3 @@
-//javascript
-
 var dataset = [80, 100, 56, 120, 180, 30, 40, 120, 160];
 // var dataset = [1, 2, 3, 4, 5];
 
@@ -24,6 +22,8 @@ var barChart = svg.selectAll('rect')
     .attr('y', (d) => svgHeight - yScale(d))
     .attr('height', (d) => yScale(d))
     .attr('width', barWidth - barPadding)
+    .attr("rx", 6)
+    .attr("ry", 6)
     .attr('transform', (d, i) => {
         var translate = [barWidth * i, 0];
         return 'translate(' + translate + ')';
@@ -35,6 +35,7 @@ var text = svg.selectAll("text")
     .enter()
     .append("text")
     .text((d) => d)
-    .attr("y", (d, i) => svgHeight - yScale(d) + 15)
-    .attr("x", (d, i) => barWidth * i)
-    .attr("fill", "#A64C38")
+    .attr("y", (d, i) => svgHeight - yScale(d) + 20)
+    .attr("x", (d, i) => barWidth * i + 5)
+    .attr("font-size", "20")
+    .attr("fill", "#F3FFF3")
