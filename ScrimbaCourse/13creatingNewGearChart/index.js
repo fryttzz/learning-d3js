@@ -1458,12 +1458,12 @@ var points = [
     [],
     [],
     []
-]
+];
 
 var svg = d3.select("svg")
     .attr("width", svgWidth)
     .attr("height", svgHeight)
-    .attr("class", "svg-container")
+    .attr("class", "svg-container");
 
 window.addEventListener('DOMContentLoaded', (event) => {
     dataFilterPoints(data)
@@ -1473,22 +1473,21 @@ window.addEventListener('DOMContentLoaded', (event) => {
 });
 
 var cars = d3.groups(data, d => d.carro);
-var carsName = cars.map(d => d[0])
+var carsName = cars.map(d => d[0]);
 
-var color = d3.scaleOrdinal().domain(carsName).range(['#E41A10', '#FFD000', '#059451', '#984EA3', '#FF7F00', '#999999', '#A69620', '#377FFF', '#F781BF', '#9FDFD9'])
+var color = d3.scaleOrdinal().domain(carsName).range(['#E41A10', '#FFD000', '#059451', '#984EA3', '#FF7F00', '#999999', '#A69620', '#377FFF', '#F781BF', '#9FDFD9']);
 
 function drawChart() {
-    const groups = 4
-    const groupHeight = svgHeight / 4
+    const groups = 4;
+    const groupHeight = svgHeight / 4;
     const domains = [
         [0, 360],
         [360, 720],
         [720, 1080],
         [1080, 1439.99],
-    ]
+    ];
 
-    const positions = [0, groupHeight, groupHeight * 2, groupHeight * 3]
-
+    const positions = [0, groupHeight, groupHeight * 2, groupHeight * 3];
     for (let index = 0; index < groups; index++) {
         var sumstat = d3.groups(points[index], d => d.carro);
 
@@ -1601,18 +1600,18 @@ function drawChart() {
     }
 }
 
-function drawPaths(group, sumstat, x1) {
+function drawPaths(group, paths, x) {
     const line = d3.line()
         .x((d) => {
             d = drawExitsAndEntries(d)
-            return x1(d.xpoint)
+            return x(d.xpoint)
         })
         .y((d) => d.ypoint)
         .curve(d3.curveCatmullRom.alpha(0.7))
         .defined(d => d.xpoint != 0)
 
     const lines = group.selectAll("lines")
-        .data(sumstat)
+        .data(paths)
         .enter()
         .append("g");
 
@@ -1628,9 +1627,6 @@ function drawPaths(group, sumstat, x1) {
             var path = d3.select(this);
             d[1].forEach(point => {
                 appendTriangles(path, point)
-                if (point.path != 1) {
-                    console.log(d[1].filter(point => point.path != 1));
-                }
             })
         });
 }
@@ -1728,25 +1724,25 @@ function drawExitsAndEntries(data) {
 }
 
 function dataFilter(data) {
-    return data.map((element, index) => {
-        if (element.saida === "-") {
-            element.saida = 0
+    return data.map((point, index) => {
+        if (point.saida === "-") {
+            point.saida = 0
         }
-        if (element.entrada === "-") {
-            element.entrada = 0
+        if (point.entrada === "-") {
+            point.entrada = 0
         }
-        if (element.tempo_parado1 === "-") {
-            element.tempo_parado1 = "0"
+        if (point.tempo_parado1 === "-") {
+            point.tempo_parado1 = "0"
         }
-        if (element.itinerario === 'Viagem de deslocamento' || element.itinerario === 'Viagem de Deslocamento entre Terminais') {
-            element.saida = 0
-            element.entrada = 0
+        if (point.itinerario === 'Viagem de deslocamento' || point.itinerario === 'Viagem de Deslocamento entre Terminais') {
+            point.saida = 0
+            point.entrada = 0
         }
         return {
-            ...element,
-            saida_planejada: parseInt(element.saida_planejada.toString()) * 60 + parseInt(element.saida_planejada.slice(-2)),
-            saida: parseInt(element.saida.toString()) * 60 + parseInt(element.saida.toString().slice(-2)),
-            entrada: parseInt(element.entrada.toString()) * 60 + parseInt(element.entrada.toString().slice(-2)),
+            ...point,
+            saida_planejada: parseInt(point.saida_planejada.toString()) * 60 + parseInt(point.saida_planejada.slice(-2)),
+            saida: parseInt(point.saida.toString()) * 60 + parseInt(point.saida.toString().slice(-2)),
+            entrada: parseInt(point.entrada.toString()) * 60 + parseInt(point.entrada.toString().slice(-2)),
         }
     })
 }
