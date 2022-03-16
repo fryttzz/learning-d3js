@@ -1359,6 +1359,7 @@ var data = [{
         "sentido": 0
     },
     {
+        //TODO remover este deslocamento quando resolver o problema dos inicios de um novo path
         "id": "80",
         "itinerario": "Serrano/Eldorado/Mal.Floriano",
         "carro": "810",
@@ -1489,7 +1490,7 @@ function drawChart() {
 
     const positions = [0, groupHeight, groupHeight * 2, groupHeight * 3];
     for (let index = 0; index < groups; index++) {
-        var sumstat = d3.groups(points[index], d => d.carro);
+        var sumstat = d3.groups(points[index], d => d.carro, d => d.path);
 
         const g = svg.append("g")
             .attr("transform", "translate(" + margin.left + "," + positions[index] + ")")
@@ -1601,34 +1602,36 @@ function drawChart() {
 }
 
 function drawPaths(group, paths, x) {
-    const line = d3.line()
-        .x((d) => {
-            d = drawExitsAndEntries(d)
-            return x(d.xpoint)
-        })
-        .y((d) => d.ypoint)
-        .curve(d3.curveCatmullRom.alpha(0.7))
-        .defined(d => d.xpoint != 0)
-
-    const lines = group.selectAll("lines")
-        .data(paths)
-        .enter()
-        .append("g");
-
-    lines.append("path") //.style("stroke-dasharray", ("3, 3"))
-        .attr('fill', 'none')
-        .attr("stroke-linejoin", "round")
-        .attr("stroke-linecap", "round")
-        .attr('stroke', d => color(d[0]))
-        .attr('stroke-width', 2.2)
-        .attr("d", (d) => line(d[1]))
-        .attr("class", d => `car${d[0]}`)
-        .each(function(d, i, a) {
-            var path = d3.select(this);
-            d[1].forEach(point => {
-                appendTriangles(path, point)
+    paths.forEach(car => {
+        const line = d3.line()
+            .x((d) => {
+                d = drawExitsAndEntries(d)
+                return x(d.xpoint)
             })
-        });
+            .y((d) => d.ypoint)
+            .curve(d3.curveCatmullRom.alpha(0.7))
+            .defined(d => d.xpoint != 0)
+
+        const lines = group.selectAll("lines")
+            .data(car[1])
+            .enter()
+            .append("g");
+
+        lines.append("path") //.style("stroke-dasharray", ("3, 3"))
+            .attr('fill', 'none')
+            .attr("stroke-linejoin", "round")
+            .attr("stroke-linecap", "round")
+            .attr('stroke', d => color(car[0]))
+            .attr('stroke-width', 2.2)
+            .attr("d", (d) => line(d[1]))
+            .attr("class", d => `car${car[0]}`)
+            .each(function(d, i, a) {
+                var path = d3.select(this);
+                d[1].forEach(point => {
+                    appendTriangles(path, point)
+                })
+            });
+    })
 }
 
 function appendTriangles(path, data) {
@@ -1740,6 +1743,8 @@ function dataFilter(data) {
         }
         return {
             ...point,
+            position_saida: 2,
+            position_entrada: 2,
             saida_planejada: parseInt(point.saida_planejada.toString()) * 60 + parseInt(point.saida_planejada.slice(-2)),
             saida: parseInt(point.saida.toString()) * 60 + parseInt(point.saida.toString().slice(-2)),
             entrada: parseInt(point.entrada.toString()) * 60 + parseInt(point.entrada.toString().slice(-2)),
@@ -1758,8 +1763,6 @@ function dataFilterPoints(data) {
             let nextPoint = {}
             let previousPoint = {}
             let path = 1
-            points.position_saida = 2
-            points.position_entrada = 2
             points.path = 1
 
             if (car[1][index + 1]) {
@@ -1793,6 +1796,7 @@ function dataFilterPoints(data) {
             }
             if ((next && previous) && (saida - entrada) > 40) {
                 car[1][index + 1].position_saida = 1
+                    //car[1][index + 1].path = path + 1
                 points.position_entrada = 3
                 points.path = path + 1
                 path++
