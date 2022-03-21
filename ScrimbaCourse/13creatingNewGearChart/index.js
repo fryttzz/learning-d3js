@@ -1359,24 +1359,6 @@ var data = [{
         "sentido": 0
     },
     {
-        //TODO remover este deslocamento quando resolver o problema dos inicios de um novo path
-        "id": "80",
-        "itinerario": "Serrano/Eldorado/Mal.Floriano",
-        "carro": "810",
-        "reserva": "",
-        "saida_planejada": "08:05",
-        "saida": "-",
-        "diferenca": "-6163:6",
-        "entrada": "-",
-        "tempo_viagem": "33m",
-        "tempo_planejado1": "8h 5m",
-        "tempo_parado1": "7h 36m",
-        "tempo_volta": "-",
-        "tempo_planejado2": "-",
-        "tempo_parado2": "-",
-        "sentido": 0
-    },
-    {
         "id": "81",
         "itinerario": "Ref.Mal.Floriano/Eldorado/Serrano",
         "carro": "810",
@@ -1467,8 +1449,8 @@ var svg = d3.select("svg")
     .attr("class", "svg-container");
 
 window.addEventListener('DOMContentLoaded', (event) => {
-    dataFilterPoints(data)
-    populatePoints(data);
+    const newData = dataFilterPoints(data)
+    populatePoints(newData);
     drawChart();
     drawLabels();
 });
@@ -1727,24 +1709,11 @@ function drawExitsAndEntries(data) {
 }
 
 function dataFilter(data) {
-    return data.map((point, index) => {
-        if (point.saida === "-") {
-            point.saida = 0
-        }
-        if (point.entrada === "-") {
-            point.entrada = 0
-        }
-        if (point.tempo_parado1 === "-") {
-            point.tempo_parado1 = "0"
-        }
-        if (point.itinerario === 'Viagem de deslocamento' || point.itinerario === 'Viagem de Deslocamento entre Terminais') {
-            point.saida = 0
-            point.entrada = 0
-        }
+    data = data.filter(point => (point.itinerario !== 'Viagem de deslocamento') && (point.itinerario !== 'Viagem de Deslocamento entre Terminais'))
+
+    return data.map((point) => {
         return {
             ...point,
-            position_saida: 2,
-            position_entrada: 2,
             saida_planejada: parseInt(point.saida_planejada.toString()) * 60 + parseInt(point.saida_planejada.slice(-2)),
             saida: parseInt(point.saida.toString()) * 60 + parseInt(point.saida.toString().slice(-2)),
             entrada: parseInt(point.entrada.toString()) * 60 + parseInt(point.entrada.toString().slice(-2)),
@@ -1754,61 +1723,57 @@ function dataFilter(data) {
 
 function dataFilterPoints(data) {
     var cars = d3.groups(data, d => d.carro);
+    var newData = []
+
     cars = cars.map(car => {
         return car[1].map((points, index) => {
-            let entrada = car[1][index].entrada
-            let saida = 0
-            let next = false
-            let previous = false
-            let nextPoint = {}
-            let previousPoint = {}
-            let path = 1
-            points.path = 1
+            var next = findNextPoint(car[1], index)
+            var previous = findPreviousPoint(car[1], index)
+            var newPoint = {}
+            var path = 1
+            points.path = path
 
-            if (car[1][index + 1]) {
-                next = true
-                nextPoint = car[1][index + 1]
-                saida = car[1][index + 1].saida
+            if (index === 0) {
+                newPoint = {...points, position_saida: 1, position_entrada: 2 }
+            } else if (index === car[1].length - 1) {
+                newPoint = {...points, position_saida: 2, position_entrada: 3 }
+            } else {
+                newPoint = {...points, position_saida: 2, position_entrada: 2 }
             }
-            if (car[1][index - 1]) {
-                previous = true
-                previousPoint = car[1][index - 1]
+            if (previous) {
+                if (points.saida - car[1][previous].entrada > 40) {
+                    newPoint = {...points, position_saida: 1, position_entrada: 2, path: path + 1 }
+                }
             }
-            if (!next && !previous) {
-                points.position_saida = 1
-                points.position_entrada = 3
+            if (next) {
+                if (car[1][next].saida - points.entrada > 40) {
+                    newPoint = {...points, position_saida: 2, position_entrada: 3 }
+                }
             }
-            if (!next && previous) {
-                points.position_saida = 2
-                points.position_entrada = 3
-            }
-            if (next && !previous) {
-                points.position_saida = 1
-                points.position_entrada = 2
-            }
-            if ((!next && previous) && (previousPoint.entrada === 0)) {
-                points.position_saida = 1
-                points.position_entrada = 3
-            }
-            if ((next && previous) && (previousPoint.entrada === 0)) {
-                points.position_saida = 1
-                points.position_entrada = 2
-            }
-            if ((next && previous) && (saida - entrada) > 40) {
-                car[1][index + 1].position_saida = 1
-                    //car[1][index + 1].path = path + 1
-                points.position_entrada = 3
-                points.path = path + 1
-                path++
-            }
-            if (nextPoint.saida === 0 && nextPoint.entrada === 0) {
-                points.position_entrada = 3
+            if (next === false && previous === false) {
+                newPoint = {...points, position_saida: 1, position_entrada: 3 }
             }
 
-            return {...points }
+            newData.push(newPoint)
         })
     })
-    return cars
+    return newData
+}
+
+function findNextPoint(array, index) {
+    if (array[index + 1]) {
+        return array.indexOf(array[index + 1])
+    } else {
+        return false
+    }
+}
+
+function findPreviousPoint(array, index) {
+    if (array[index - 1]) {
+        return array.indexOf(array[index - 1])
+    } else {
+        return false
+    }
 }
 
 function populateTicks() {
