@@ -1451,7 +1451,7 @@ var svg = d3.select("svg")
 window.addEventListener('DOMContentLoaded', (event) => {
     var newData = dataFilterPaths(data)
     var newPoints = dataExitsEntries(newData)
-    populatePoints(newPoints);
+    addPointsToGroups(newPoints);
     drawChart();
     drawLabels();
 });
@@ -1834,34 +1834,27 @@ function populateTicks() {
         tick10Min = [],
         tick5Min = []
 
-    var tickHoursCount = 60;
-    for (let i = 1; i <= 4; i++) {
-        tickHours.push([])
-        for (let j = 0; j < 6; j++) {
-            tickHours[i - 1].push(tickHoursCount);
-            tickHoursCount += 60;
-        }
-    }
+    var tickHoursCount = 60,
+        tick10MinCount = 10,
+        tick5MinCount = 5;
 
-    var tick10MinCount = 10;
-    for (let i = 1; i <= 4; i++) {
-        tick10Min.push([])
-        for (let j = 0; j < 36; j++) {
-            tick10Min[i - 1].push(tick10MinCount);
-            tick10MinCount += 10;
-        }
-    }
-
-    var tick5MinCount = 5;
-    for (let i = 1; i <= 4; i++) {
-        tick5Min.push([])
-        for (let j = 0; j < 36; j++) {
-            tick5Min[i - 1].push(tick5MinCount);
-            tick5MinCount += 10;
-        }
-    }
+    tickHours = pushTicks(tickHours, tickHoursCount, 6, 60)
+    tick10Min = pushTicks(tick10Min, tick10MinCount, 36, 10)
+    tick5Min = pushTicks(tick5Min, tick5MinCount, 36, 10)
 
     return { tickHours, tick10Min, tick5Min }
+}
+
+function pushTicks(array, count, qnt, gap) {
+    for (let i = 1; i <= 4; i++) {
+        array.push([])
+        for (let j = 0; j < qnt; j++) {
+            array[i - 1].push(count);
+            count += gap;
+        }
+    }
+
+    return array
 }
 
 function drawTicks(group, index, x) {
@@ -1920,330 +1913,100 @@ function drawTicks(group, index, x) {
         .attr("stroke-width", 2);
 }
 
-function populatePoints(data) {
+function addPointsToGroups(data) {
     for (let i = 0; i < data.length; i++) {
         const element = data[i];
         if (element.saida > 0 && element.saida <= 360) {
-            if (element.sentido === 1) {
-                points[0].push({
-                    carro: element.carro,
-                    xpoint: element.saida,
-                    ypoint: height,
-                    position: element.position_saida,
-                    path: element.path
-                })
-                if (element.entrada > 360) {
-                    let newHeight = getNewHeightAB(height, 360, element.entrada, element.saida)
-                    points[0].push({
-                        carro: element.carro,
-                        xpoint: 360,
-                        ypoint: newHeight,
-                        position: element.position_entrada,
-                        path: element.path
-                    })
-                    points[1].push({
-                        carro: element.carro,
-                        xpoint: 360,
-                        ypoint: newHeight,
-                        position: 2,
-                        path: element.path
-                    }, {
-                        carro: element.carro,
-                        xpoint: element.entrada,
-                        ypoint: 0,
-                        position: element.position_entrada,
-                        path: element.path
-                    })
-                } else {
-                    points[0].push({
-                        carro: element.carro,
-                        xpoint: element.entrada,
-                        ypoint: 0,
-                        position: element.position_entrada,
-                        path: element.path
-                    })
-                }
-
-            } else if (element.sentido === 0) {
-                points[0].push({
-                    carro: element.carro,
-                    xpoint: element.saida,
-                    ypoint: 0,
-                    position: element.position_saida,
-                    path: element.path
-                })
-                if (element.entrada > 360) {
-                    let newHeight = getNewHeightBA(height, 360, element.entrada, element.saida)
-                    points[0].push({
-                        carro: element.carro,
-                        xpoint: 360,
-                        ypoint: newHeight,
-                        position: element.position_entrada,
-                        path: element.path
-                    })
-                    points[1].push({
-                        carro: element.carro,
-                        xpoint: 360,
-                        ypoint: newHeight,
-                        position: 2,
-                        path: element.path
-                    }, {
-                        carro: element.carro,
-                        xpoint: element.entrada,
-                        ypoint: height,
-                        position: element.position_entrada,
-                        path: element.path
-                    })
-                } else {
-                    points[0].push({
-                        carro: element.carro,
-                        xpoint: element.entrada,
-                        ypoint: height,
-                        position: element.position_entrada,
-                        path: element.path
-                    })
-                }
-            }
+            populatePoints(element, 0, 1, 360, 0.1)
         } else if (element.saida >= 360 && element.saida <= 720) {
-            if (element.sentido === 1) {
-                points[1].push({
-                    carro: element.carro,
-                    xpoint: element.saida,
-                    ypoint: height,
-                    position: element.position_saida,
-                    path: element.path
-                })
-                if (element.entrada >= 720) {
-                    let newHeight = getNewHeightAB(height, 720, element.entrada, element.saida)
-                    points[1].push({
-                        carro: element.carro,
-                        xpoint: 720,
-                        ypoint: newHeight,
-                        position: element.position_entrada,
-                        path: element.path
-                    })
-                    points[2].push({
-                        carro: element.carro,
-                        xpoint: 720,
-                        ypoint: newHeight,
-                        position: 2,
-                        path: element.path
-                    }, {
-                        carro: element.carro,
-                        xpoint: element.entrada,
-                        ypoint: 0,
-                        position: element.position_entrada,
-                        path: element.path
-                    })
-                } else {
-                    points[1].push({
-                        carro: element.carro,
-                        xpoint: element.entrada,
-                        ypoint: 0,
-                        position: element.position_entrada,
-                        path: element.path
-                    })
-                }
-            } else if (element.sentido === 0) {
-                points[1].push({
-                    carro: element.carro,
-                    xpoint: element.saida,
-                    ypoint: 0,
-                    position: element.position_saida,
-                    path: element.path
-                })
-                if (element.entrada > 720) {
-                    let newHeight = getNewHeightBA(height, 720, element.entrada, element.saida)
-                    points[1].push({
-                        carro: element.carro,
-                        xpoint: 720,
-                        ypoint: newHeight,
-                        position: element.position_entrada,
-                        path: element.path
-                    })
-                    points[2].push({
-                        carro: element.carro,
-                        xpoint: 720,
-                        ypoint: newHeight,
-                        position: 2,
-                        path: element.path
-                    }, {
-                        carro: element.carro,
-                        xpoint: element.entrada,
-                        ypoint: height,
-                        position: element.position_entrada,
-                        path: element.path
-                    })
-                } else {
-                    points[1].push({
-                        carro: element.carro,
-                        xpoint: element.entrada,
-                        ypoint: height,
-                        position: element.position_entrada,
-                        path: element.path
-                    })
-                }
-            }
+            populatePoints(element, 1, 2, 720, 0.1)
         } else if (element.saida >= 720 && element.saida <= 1080) {
-            if (element.sentido === 1) {
-                points[2].push({
-                    carro: element.carro,
-                    xpoint: element.saida,
-                    ypoint: height,
-                    position: element.position_saida,
-                    path: element.path
-                })
-                if (element.entrada >= 1080) {
-                    let newHeight = getNewHeightAB(height, 1080, element.entrada, element.saida)
-                    points[2].push({
-                        carro: element.carro,
-                        xpoint: 1080,
-                        ypoint: newHeight,
-                        position: element.position_entrada,
-                        path: element.path
-                    })
-                    points[3].push({
-                        carro: element.carro,
-                        xpoint: 1080,
-                        ypoint: newHeight,
-                        position: 2,
-                        path: element.path
-                    }, {
-                        carro: element.carro,
-                        xpoint: element.entrada,
-                        ypoint: 0,
-                        position: element.position_entrada,
-                        path: element.path
-                    })
-                } else {
-                    points[2].push({
-                        carro: element.carro,
-                        xpoint: element.entrada,
-                        ypoint: 0,
-                        position: element.position_entrada,
-                        path: element.path
-                    })
-                }
-            } else if (element.sentido === 0) {
-                points[2].push({
-                    carro: element.carro,
-                    xpoint: element.saida,
-                    ypoint: 0,
-                    position: element.position_saida,
-                    path: element.path
-                })
-                if (element.entrada > 1080) {
-                    let newHeight = getNewHeightBA(height, 1080, element.entrada, element.saida)
-                    points[2].push({
-                        carro: element.carro,
-                        xpoint: 1080,
-                        ypoint: newHeight,
-                        position: element.position_entrada,
-                        path: element.path
-                    })
-                    points[3].push({
-                        carro: element.carro,
-                        xpoint: 1080,
-                        ypoint: newHeight,
-                        position: 2,
-                        path: element.path
-                    }, {
-                        carro: element.carro,
-                        xpoint: element.entrada,
-                        ypoint: height,
-                        position: element.position_entrada,
-                        path: element.path
-                    })
-                } else {
-                    points[2].push({
-                        carro: element.carro,
-                        xpoint: element.entrada,
-                        ypoint: height,
-                        position: element.position_entrada,
-                        path: element.path
-                    })
-                }
-            }
+            populatePoints(element, 2, 3, 1080, 0.1)
         } else if (element.saida >= 1080 && element.saida <= 1440) {
-            if (element.sentido === 1) {
-                points[3].push({
-                    carro: element.carro,
-                    xpoint: element.saida,
-                    ypoint: height,
-                    position: element.position_saida,
-                    path: element.path
-                })
-                if (element.entrada >= 1440) {
-                    let newHeight = getNewHeightAB(height, 1440, element.entrada, element.saida)
-                    points[3].push({
-                        carro: element.carro,
-                        xpoint: 1440,
-                        ypoint: newHeight,
-                        position: element.position_entrada,
-                        path: element.path
-                    })
-                    points[0].push({
-                        carro: element.carro,
-                        xpoint: 0.1,
-                        ypoint: newHeight,
-                        position: 2,
-                        path: element.path
-                    }, {
-                        carro: element.carro,
-                        xpoint: element.entrada - 1440,
-                        ypoint: 0,
-                        position: element.position_entrada,
-                        path: element.path
-                    })
-                } else {
-                    points[3].push({
-                        carro: element.carro,
-                        xpoint: element.entrada,
-                        ypoint: 0,
-                        position: element.position_entrada,
-                        path: element.path
-                    })
-                }
-            } else if (element.sentido === 0) {
-                points[3].push({
-                    carro: element.carro,
-                    xpoint: element.saida,
-                    ypoint: 0,
-                    position: element.position_saida,
-                    path: element.path
-                })
-                if (element.entrada > 1440) {
-                    let newHeight = getNewHeightBA(height, 1440, element.entrada, element.saida)
-                    points[3].push({
-                        carro: element.carro,
-                        xpoint: 1440,
-                        ypoint: newHeight,
-                        position: element.position_entrada,
-                        path: element.path
-                    })
-                    points[0].push({
-                        carro: element.carro,
-                        xpoint: 0.1,
-                        ypoint: newHeight,
-                        position: 2,
-                        path: element.path
-                    }, {
-                        carro: element.carro,
-                        xpoint: element.entrada - 1440,
-                        ypoint: height,
-                        position: element.position_entrada,
-                        path: element.path
-                    })
-                } else {
-                    points[3].push({
-                        carro: element.carro,
-                        xpoint: element.entrada,
-                        ypoint: height,
-                        position: element.position_entrada,
-                        path: element.path
-                    })
-                }
-            }
+            populatePoints(element, 3, 4, 1440, 0.1)
+        }
+    }
+}
+
+function populatePoints(element, indexI, indexJ, range, xpoint) {
+    if (element.sentido === 1) {
+        points[indexI].push({
+            carro: element.carro,
+            xpoint: element.saida,
+            ypoint: height,
+            position: element.position_saida,
+            path: element.path
+        })
+        if (element.entrada > range) {
+            let newHeight = getNewHeightAB(height, range, element.entrada, element.saida)
+            points[indexI].push({
+                carro: element.carro,
+                xpoint: range,
+                ypoint: newHeight,
+                position: element.position_entrada,
+                path: element.path
+            })
+            points[indexJ].push({
+                carro: element.carro,
+                xpoint: range === 1440 ? xpoint : range,
+                ypoint: newHeight,
+                position: 2,
+                path: element.path
+            }, {
+                carro: element.carro,
+                xpoint: range === 1440 ? element.entrada - 1440 : element.entrada,
+                ypoint: 0,
+                position: element.position_entrada,
+                path: element.path
+            })
+        } else {
+            points[indexI].push({
+                carro: element.carro,
+                xpoint: element.entrada,
+                ypoint: 0,
+                position: element.position_entrada,
+                path: element.path
+            })
+        }
+
+    } else if (element.sentido === 0) {
+        points[indexI].push({
+            carro: element.carro,
+            xpoint: element.saida,
+            ypoint: 0,
+            position: element.position_saida,
+            path: element.path
+        })
+        if (element.entrada > range) {
+            let newHeight = getNewHeightBA(height, range, element.entrada, element.saida)
+            points[indexI].push({
+                carro: element.carro,
+                xpoint: range,
+                ypoint: newHeight,
+                position: element.position_entrada,
+                path: element.path
+            })
+            points[indexJ].push({
+                carro: element.carro,
+                xpoint: range === 1440 ? xpoint : range,
+                ypoint: newHeight,
+                position: 2,
+                path: element.path
+            }, {
+                carro: element.carro,
+                xpoint: range === 1440 ? element.entrada - 1440 : element.entrada,
+                ypoint: height,
+                position: element.position_entrada,
+                path: element.path
+            })
+        } else {
+            points[indexI].push({
+                carro: element.carro,
+                xpoint: element.entrada,
+                ypoint: height,
+                position: element.position_entrada,
+                path: element.path
+            })
         }
     }
 }
